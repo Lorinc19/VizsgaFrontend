@@ -1,0 +1,208 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "vizsga_backend",
+    "version": "1.0"
+  },
+  "paths": {
+    "/Email": {
+      "post": {
+        "tags": [
+          "Email"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Hirdetés/Hirdetes": {
+      "get": {
+        "tags": [
+          "Hirdete"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hirdete"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hirdete"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hirdete"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmailRequestDto": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string",
+            "nullable": true
+          },
+          "subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Felhasznalo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "csaladnev": {
+            "type": "string",
+            "nullable": true
+          },
+          "vezeteknev": {
+            "type": "string",
+            "nullable": true
+          },
+          "elado": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "berlo": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "kor": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "hirdetes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Hirdete"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Hirdete": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "felhasznaloId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "leiras": {
+            "type": "string",
+            "nullable": true
+          },
+          "elerhetoseg": {
+            "type": "string",
+            "nullable": true
+          },
+          "felhasznalo": {
+            "$ref": "#/components/schemas/Felhasznalo"
+          },
+          "hirdetesadatok": {
+            "$ref": "#/components/schemas/Hirdetesadatok"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Hirdetesadatok": {
+        "type": "object",
+        "properties": {
+          "hirdetesId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "orszag": {
+            "type": "string",
+            "nullable": true
+          },
+          "varmegye": {
+            "type": "string",
+            "nullable": true
+          },
+          "telepules": {
+            "type": "string",
+            "nullable": true
+          },
+          "utcahazszam": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipus": {
+            "type": "string",
+            "nullable": true
+          },
+          "ar": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "mikiado": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "allatbarat": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "kiadasiidotartam": {
+            "type": "string",
+            "nullable": true
+          },
+          "hirdetes": {
+            "$ref": "#/components/schemas/Hirdete"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

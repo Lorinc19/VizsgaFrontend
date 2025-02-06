@@ -1,0 +1,38 @@
+[
+  {
+    "ContainingType": "vizsga_backend.Controllers.EmailController",
+    "Method": "SendNewMail",
+    "RelativePath": "Email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emailRequestDto",
+        "Type": "vizsga_backend.Models.Dtos.EmailRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
+    "Method": "Get",
+    "RelativePath": "Hirdet\u00E9s/Hirdetes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "vizsga_backend.Models.Hirdete",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
