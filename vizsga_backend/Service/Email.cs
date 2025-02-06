@@ -32,6 +32,8 @@ namespace vizsga_backend.Service
             smtp.Send(email);
 
             smtp.Disconnect(true);
+
+
         }
     }
 }
