@@ -13,6 +13,8 @@ public partial class Hirdete
 
     public string? Elerhetoseg { get; set; }
 
+    public string? Hirdetesnev { get ; set; }
+
     public virtual Felhasznalo? Felhasznalo { get; set; }
 
     public virtual Hirdetesadatok? Hirdetesadatok { get; set; }
