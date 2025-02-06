@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MimeKit.Cryptography;
 using vizsga_backend.Models;
 
@@ -17,7 +18,7 @@ namespace vizsga_backend.Controllers
         }
 
         [HttpPost("FElhasznalo")]
-        public async Task<ActionResult<Felhasznalo>> Post_Felhasznalo (CreatedFelhasznaloDto createdFelhasznaloDto)
+        public async Task<ActionResult<Felhasznalo>> Post_Felhasznalo(CreatedFelhasznaloDto createdFelhasznaloDto)
         {
             var uf = new Felhasznalo
             {
@@ -37,6 +38,18 @@ namespace vizsga_backend.Controllers
 
 
             return BadRequest();
+
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Felhasznalo>> FelhGetid(int id)
+        {
+            var fi = szakmaivizsgaContext.Felhasznalos.FirstOrDefaultAsync(fi => fi.Id == id);
+            if (fi != null)
+            {
+                return Ok( fi);
+            }
+            return NotFound();
+        }
+        
     }
 }

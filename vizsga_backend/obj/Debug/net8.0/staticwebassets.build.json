@@ -1,12 +1,11 @@
 {
   "Version": 1,
-  "Hash": "1FhSX4oopLvKo+mjrMmvw+3p/nmm5Ju/5MNir+Fxx4g=",
+  "Hash": "kEevABthx8hIgRy1/tyE+uKRE6CoypRfpPPi3z7Eg7k=",
   "Source": "vizsga_backend",
   "BasePath": "_content/vizsga_backend",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }
