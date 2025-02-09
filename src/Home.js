@@ -13,7 +13,7 @@ export default function Home() {
     Get()
 
   }, [])
-
+//Hirdetések leszedése
 
   function Get() {
     fetch('https://localhost:7007/Hirdetés/Hirdetes')

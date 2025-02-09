@@ -4,6 +4,7 @@ import './nav.css'
 
 export default function Nav() {
     return (
+        //Navigáció
         <div>
 
             <ul className="topnav">
