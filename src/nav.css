@@ -1,0 +1,19 @@
+.nav-link.custom-link {
+    background-color: red;
+   
+    color: black !important;
+   
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    
+    border-radius: 5px;
+    text-decoration: none !important;
+}
+
+
+.nav-link.custom-link:hover {
+    background-color: white !important;
+    
+    color: black !important;
+    
+}

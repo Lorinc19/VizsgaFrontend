@@ -1,7 +1,11 @@
 import React from 'react'
+import Header from './Header'
 
 export default function Login() {
+
   return (
-    <div>Login</div>
+    <div>
+      <Header/>
+    </div>
   )
 }
