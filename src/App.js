@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-import Home from './Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import News from './News';
-import Login from './Login';
+import Home from './Home';
+import LoginRegister from './LoginRegister';
+import Navbar from './Navbar';
 
 function App() {
   return (
     <div>
         <BrowserRouter>
-        
+        <Navbar/>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/hirek" element={<News />} />
-          <Route path='/belepes' element={<Login/>}/>
-          <Route path='/registracio' element={<Login/>}/>
+          <Route path='/belepes' element={<LoginRegister/>}/>
+          <Route path='/regisztracio' element={<LoginRegister/>}/>
         </Routes>
-        
-        
+
         </BrowserRouter>
     </div>
   );
