@@ -36,6 +36,94 @@
         }
       }
     },
+    "/Felhasznaló/FElhasznalo": {
+      "post": {
+        "tags": [
+          "Felhasznalo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatedFelhasznaloDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatedFelhasznaloDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatedFelhasznaloDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Felhasznalo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Felhasznalo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Felhasznalo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Felhasznaló/{id}": {
+      "get": {
+        "tags": [
+          "Felhasznalo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Felhasznalo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Felhasznalo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Felhasznalo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/Hirdetés/Hirdetes": {
       "get": {
         "tags": [
@@ -68,6 +156,38 @@
   },
   "components": {
     "schemas": {
+      "CreatedFelhasznaloDto": {
+        "type": "object",
+        "properties": {
+          "csaladnev": {
+            "type": "string",
+            "nullable": true
+          },
+          "vezeteknev": {
+            "type": "string",
+            "nullable": true
+          },
+          "elado": {
+            "type": "boolean"
+          },
+          "berlo": {
+            "type": "boolean"
+          },
+          "kor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "jelszo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "EmailRequestDto": {
         "type": "object",
         "properties": {
@@ -114,6 +234,14 @@
             "format": "int32",
             "nullable": true
           },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "jelszo": {
+            "type": "string",
+            "nullable": true
+          },
           "hirdetes": {
             "type": "array",
             "items": {
@@ -141,6 +269,10 @@
             "nullable": true
           },
           "elerhetoseg": {
+            "type": "string",
+            "nullable": true
+          },
+          "hirdetesnev": {
             "type": "string",
             "nullable": true
           },

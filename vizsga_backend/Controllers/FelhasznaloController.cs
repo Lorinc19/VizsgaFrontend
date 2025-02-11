@@ -26,7 +26,9 @@ namespace vizsga_backend.Controllers
                 Csaladnev = createdFelhasznaloDto.Csaladnev,
                 Elado = createdFelhasznaloDto.Elado,
                 Berlo = createdFelhasznaloDto.Berlo,
-                Kor = createdFelhasznaloDto.Kor
+                Kor = createdFelhasznaloDto.Kor,
+                Email = createdFelhasznaloDto.Email,
+                Jelszo = createdFelhasznaloDto.Jelszo
             };
             if (uf != null)
             {

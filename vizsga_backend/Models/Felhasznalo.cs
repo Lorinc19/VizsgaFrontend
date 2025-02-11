@@ -17,5 +17,9 @@ public partial class Felhasznalo
 
     public int? Kor { get; set; }
 
+    public string? Email { get; set; }
+
+    public string? Jelszo { get; set; }
+
     public virtual ICollection<Hirdete> Hirdetes { get; set; } = new List<Hirdete>();
 }

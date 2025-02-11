@@ -45,6 +45,12 @@ public partial class SzakmaivizsgaContext : DbContext
             entity.Property(e => e.Vezeteknev)
                 .HasMaxLength(50)
                 .HasDefaultValueSql("'NULL'");
+            entity.Property(e => e.Email)
+                .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'");
+            entity.Property(e => e.Jelszo)
+                .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'");
         });
 
         modelBuilder.Entity<Hirdete>(entity =>
