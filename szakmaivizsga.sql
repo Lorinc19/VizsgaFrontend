@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Jan 15. 21:55
+-- Létrehozás ideje: 2025. Feb 11. 20:36
 -- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.0.30
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,8 +35,22 @@ CREATE TABLE `felhasznalo` (
   `Vezeteknev` varchar(50) DEFAULT NULL,
   `Elado` tinyint(1) DEFAULT NULL,
   `Berlo` tinyint(1) DEFAULT NULL,
-  `Kor` int(11) DEFAULT NULL
+  `Kor` int(11) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `Jelszo` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `felhasznalo`
+--
+
+INSERT INTO `felhasznalo` (`ID`, `Csaladnev`, `Vezeteknev`, `Elado`, `Berlo`, `Kor`, `Email`, `Jelszo`) VALUES
+(1, 'Liff', 'Sonnie', 0, 0, 1, NULL, NULL),
+(2, 'Gentery', 'Riane', 0, 0, 2, NULL, NULL),
+(3, 'Meade', 'Chrissie', 0, 1, 3, NULL, NULL),
+(4, 'McFayden', 'Rory', 1, 1, 4, NULL, NULL),
+(5, 'Stribling', 'Aland', 1, 0, 5, NULL, NULL),
+(6, 'Jóusef', 'Akna', 1, 1, 55, 'aknafedel@gmail.com', 'Akna5569');
 
 -- --------------------------------------------------------
 
@@ -48,8 +62,20 @@ CREATE TABLE `hirdetes` (
   `ID` int(11) NOT NULL,
   `FelhasznaloID` int(11) DEFAULT NULL,
   `Leiras` text DEFAULT NULL,
-  `Elerhetoseg` varchar(100) DEFAULT NULL
+  `Elerhetoseg` varchar(100) DEFAULT NULL,
+  `Hirdetesnev` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `hirdetes`
+--
+
+INSERT INTO `hirdetes` (`ID`, `FelhasznaloID`, `Leiras`, `Elerhetoseg`, `Hirdetesnev`) VALUES
+(1, 1, 'Miskolc', '+36-70-934-3071', 'Lőrinc'),
+(2, 2, 'Budapest', '+36-30-517-2022', 'Márk'),
+(3, 3, 'Debrecen', '+36-20-654-7021', 'Enikő'),
+(4, 4, 'Kecskemét', '+36-70-554-2435', 'Gábor'),
+(5, 5, 'Parasznya', '+36-30-466-2238', 'Andrea');
 
 -- --------------------------------------------------------
 
@@ -101,13 +127,13 @@ ALTER TABLE `hirdetesadatok`
 -- AUTO_INCREMENT a táblához `felhasznalo`
 --
 ALTER TABLE `felhasznalo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `hirdetes`
 --
 ALTER TABLE `hirdetes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Megkötések a kiírt táblákhoz
