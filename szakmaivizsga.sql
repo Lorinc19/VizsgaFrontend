@@ -45,12 +45,26 @@ CREATE TABLE `felhasznalo` (
 --
 
 INSERT INTO `felhasznalo` (`ID`, `Csaladnev`, `Vezeteknev`, `Elado`, `Berlo`, `Kor`, `Email`, `Jelszo`) VALUES
-(1, 'Liff', 'Sonnie', 0, 0, 1, NULL, NULL),
-(2, 'Gentery', 'Riane', 0, 0, 2, NULL, NULL),
-(3, 'Meade', 'Chrissie', 0, 1, 3, NULL, NULL),
-(4, 'McFayden', 'Rory', 1, 1, 4, NULL, NULL),
-(5, 'Stribling', 'Aland', 1, 0, 5, NULL, NULL),
-(6, 'Jóusef', 'Akna', 1, 1, 55, 'aknafedel@gmail.com', 'Akna5569');
+(1, 'Csarni', 'Lőrinc', 0, 1, 19, 'csarnil@gmail.com', 'Lolocstraktor2000'),
+(2, 'Krizsán', 'Márk', 1, 0, 20, 'krizsanm@gmail.com', 'MarkiDrum1234'),
+(3, 'Taskó', 'Enikő', 1, 1, 21, 'taskoe@gmail.com', 'Enikobigb1010'),
+(4, 'Gábor', 'Áron', 1, 0, 44, 'nagygabikrisi@gmail.com', 'Gabo2004'),
+(5, 'Tóth', 'Andrea', 0, 1, 25, 'tothandi@gmail.com', 'Andi1993'),
+(6, 'Nagy', 'Ildikó', 1, 1, 48, 'nagyilda77@gmail.com', 'NagyI1977'),
+(7, 'Flaskó', 'Attila', 1, 0, 59, 'atiflasko@gmail.com', 'FlasiAti59'),
+(8, 'Várkonyi', 'Dominik', 0, 1, 20, 'varkonyid@gmail.com', 'Varkonyidominagyszinpad20'),
+(9, 'Kiss', 'Jolán', 1, 1, 74, 'kissjolimama@gmail.com', 'Unokajoli01'),
+(10, 'Horváth', 'István', 0, 1, 75, 'horvathpityesz@gmail.com', 'Istvan1950'),
+(11, 'Juhász', 'Ágota', 1, 0, 36, 'juhaszagota@gmail.com', 'Juhasz888'),
+(12, 'Huszár', 'Dávid', 0, 1, 25, 'huszardavidka@gmail.com', 'Davidka9786'),
+(13, 'Károly', 'Róbert', 1, 1, 67, 'krobert@gmail.com', 'Karolyrobi68'),
+(14, 'Makkai', 'László', 1, 1, 52, 'makkailll55@gmail.com', 'MakkaiLlL32'),
+(15, 'Orsós', 'Sándor', 1, 0, 22, 'orsossanyikobanya@gmail.com', 'OrsossanyiPerka0'),
+(16, 'Buzsik', 'Bianka', 1, 0, 31, 'biankabuzsiklove@gmail.com', 'Buzsikbaba85'),
+(17, 'Boros', 'Patrik', 0, 1, 49, 'bppatrikmic@gmail.com', 'BorosBass5467'),
+(18, 'Nagy', 'István', 1, 1, 82, 'nagyistvan@gmail.com', 'Nagyapa0922'),
+(19, 'Miklósi', 'Ákos', 1, 0, 33, 'commonvibeproject@gmail.com', 'CsibeszAkos0329'),
+(20, 'Kékesi', 'Alexandra', 0, 1, 57, 'kekesimandarin@gmail.com', 'Mandi1968');
 
 -- --------------------------------------------------------
 
@@ -71,11 +85,11 @@ CREATE TABLE `hirdetes` (
 --
 
 INSERT INTO `hirdetes` (`ID`, `FelhasznaloID`, `Leiras`, `Elerhetoseg`, `Hirdetesnev`) VALUES
-(1, 1, 'Miskolc', '+36-70-934-3071', 'Lőrinc'),
-(2, 2, 'Budapest', '+36-30-517-2022', 'Márk'),
-(3, 3, 'Debrecen', '+36-20-654-7021', 'Enikő'),
-(4, 4, 'Kecskemét', '+36-70-554-2435', 'Gábor'),
-(5, 5, 'Parasznya', '+36-30-466-2238', 'Andrea');
+(1, 1, 'Miskolc', '+36-70-934-3071', '2 szobás/80m²'),
+(2, 2, 'Budapest', '+36-30-517-2022', '4 szobás/200m²'),
+(3, 3, 'Debrecen', '+36-20-654-7021', '3 szobás/160m²'),
+(4, 4, 'Kecskemét', '+36-70-554-2435', '1 szobás/60m²'),
+(5, 5, 'Parasznya', '+36-30-466-2238', '5 szobás/250m²');
 
 -- --------------------------------------------------------
 
