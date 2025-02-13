@@ -83,13 +83,14 @@ CREATE TABLE `hirdetes` (
 --
 -- A tábla adatainak kiíratása `hirdetes`
 --
+ALTER TABLE `hirdetes` ADD `KepURL` varchar(255) NOT NULL;
 
-INSERT INTO `hirdetes` (`ID`, `FelhasznaloID`, `Leiras`, `Elerhetoseg`, `Hirdetesnev`) VALUES
-(1, 1, 'Miskolc', '+36-70-934-3071', '2 szobás/80m²'),
-(2, 2, 'Budapest', '+36-30-517-2022', '4 szobás/200m²'),
-(3, 3, 'Debrecen', '+36-20-654-7021', '3 szobás/160m²'),
-(4, 4, 'Kecskemét', '+36-70-554-2435', '1 szobás/60m²'),
-(5, 5, 'Parasznya', '+36-30-466-2238', '5 szobás/250m²');
+INSERT INTO `hirdetes` (`ID`, `FelhasznaloID`, `Leiras`, `Elerhetoseg`, `Hirdetesnev`, `KepURL`) VALUES
+(1, 1, 'Miskolc', '+36-70-934-3071', '2 szobás/80m²', 'kepek/hirdetes1.jpg'),
+(2, 2, 'Budapest', '+36-30-517-2022', '4 szobás/200m²', 'kepek/hirdetes2.jpg'),
+(3, 3, 'Debrecen', '+36-20-654-7021', '3 szobás/160m²', 'kepek/hirdetes3.jpg'),
+(4, 4, 'Kecskemét', '+36-70-554-2435', '1 szobás/60m²', 'kepek/hirdetes4.jpg'),
+(5, 5, 'Parasznya', '+36-30-466-2238', '5 szobás/250m²' 'kepek/hirdetes5.jpg');
 
 -- --------------------------------------------------------
 
@@ -105,7 +106,7 @@ CREATE TABLE `hirdetesadatok` (
   `Utcahazszam` varchar(100) DEFAULT NULL,
   `Tipus` varchar(50) DEFAULT NULL,
   `Ar` decimal(10,2) DEFAULT NULL,
-  `Mikiado` varchar(50) DEFAULT NULL,
+  `Gyerekbarat` tinyint(1) DEFAULT NULL,
   `Allatbarat` tinyint(1) DEFAULT NULL,
   `Kiadasiidotartam` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
