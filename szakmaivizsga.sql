@@ -45,12 +45,11 @@ CREATE TABLE `felhasznalo` (
 --
 
 INSERT INTO `felhasznalo` (`ID`, `Csaladnev`, `Vezeteknev`, `Elado`, `Berlo`, `Kor`, `Email`, `Jelszo`) VALUES
-(1, 'Liff', 'Sonnie', 0, 0, 1, NULL, NULL),
-(2, 'Gentery', 'Riane', 0, 0, 2, NULL, NULL),
-(3, 'Meade', 'Chrissie', 0, 1, 3, NULL, NULL),
-(4, 'McFayden', 'Rory', 1, 1, 4, NULL, NULL),
-(5, 'Stribling', 'Aland', 1, 0, 5, NULL, NULL),
-(6, 'Jóusef', 'Akna', 1, 1, 55, 'aknafedel@gmail.com', 'Akna5569');
+(1, 'Lőrinc', 'Miskolc', 0, 0, 1, 'csarnil@gmail.com', 'Lolocstraktor2000'),
+(2, 'Márk', 'Budapest', 0, 0, 2, 'krizsanm@gmail.com', 'MarkiDrum1234'),
+(3, 'Enikő', 'Debrecen', 0, 1, 3, 'taskoe@gmail.com', 'EnikoBigB1010'),
+(4, 'Gábor', 'Kecskemét', 1, 1, 4, 'nagygabikrisi@gmail.com', 'Gabo2004'),
+(5, 'Andrea', 'Parasznya', 1, 0, 5, 'tothandi@gmail.com', 'Andi1993');
 
 -- --------------------------------------------------------
 
