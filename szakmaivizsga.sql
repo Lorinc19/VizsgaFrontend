@@ -105,7 +105,7 @@ CREATE TABLE `hirdetesadatok` (
   `Utcahazszam` varchar(100) DEFAULT NULL,
   `Tipus` varchar(50) DEFAULT NULL,
   `Ar` decimal(10,2) DEFAULT NULL,
-  `Mikiado` tinyint(1) DEFAULT NULL,
+  `Mikiado` varchar(50) DEFAULT NULL,
   `Allatbarat` tinyint(1) DEFAULT NULL,
   `Kiadasiidotartam` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
