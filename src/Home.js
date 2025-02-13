@@ -11,7 +11,7 @@ export default function Home() {
   }, [])
   
   function Get() {
-    fetch('https://localhost:7007/Hirdetés/Hirdetes')
+    fetch('http://10.169.84.128:5160/Hirdetés/Hirdetes')
       .then(response => response.json())
       .then(data => setdatabase(data))
   }
@@ -31,7 +31,7 @@ export default function Home() {
             //    <Card id={home.id} home={home}/>
             //  </div>
             //))
-            <div className="row justify-content-center mx-auto col-md-8" style={{ paddingBottom: "20px", paddingTop: "10px" }}>
+            <div className="row justify-content-center mx-auto col-md-4" style={{ paddingBottom: "20px", paddingTop: "10px"}}>
             {database.map(databases => (
               <Card felhasznalo={databases} getFv={Get} />
 

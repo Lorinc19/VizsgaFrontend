@@ -25,6 +25,13 @@ export default function Navbar() {
             className={location.pathname === "/belepes" ? "active" : ""} to="/belepes">
             Profil
           </Link>
+          </li>
+          <li>
+
+          <Link className={location.pathname === "/ujhaz" ? "active" : ""} to="/ujhaz">
+            Új hirdetés feltöltése
+          </Link>
+        
         </li>
       </ul>
     </div>
