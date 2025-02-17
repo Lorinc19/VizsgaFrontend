@@ -152,6 +152,37 @@
           }
         }
       }
+    },
+    "/Hirdetés": {
+      "post": {
+        "tags": [
+          "Hirdete"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HirdetesDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HirdetesDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HirdetesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -276,11 +307,84 @@
             "type": "string",
             "nullable": true
           },
+          "kepURL": {
+            "type": "string",
+            "nullable": true
+          },
           "felhasznalo": {
             "$ref": "#/components/schemas/Felhasznalo"
           },
           "hirdetesadatok": {
             "$ref": "#/components/schemas/Hirdetesadatok"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HirdetesAdatokDto": {
+        "type": "object",
+        "properties": {
+          "orszag": {
+            "type": "string",
+            "nullable": true
+          },
+          "varmegye": {
+            "type": "string",
+            "nullable": true
+          },
+          "telepules": {
+            "type": "string",
+            "nullable": true
+          },
+          "utcahazszam": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipus": {
+            "type": "string",
+            "nullable": true
+          },
+          "ar": {
+            "type": "number",
+            "format": "double"
+          },
+          "gyerekbarat": {
+            "type": "boolean"
+          },
+          "allatbarat": {
+            "type": "boolean"
+          },
+          "kiadasiidotartam": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HirdetesDto": {
+        "type": "object",
+        "properties": {
+          "felhasznaloID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "leiras": {
+            "type": "string",
+            "nullable": true
+          },
+          "elerhetoseg": {
+            "type": "string",
+            "nullable": true
+          },
+          "hirdetesnev": {
+            "type": "string",
+            "nullable": true
+          },
+          "kepURL": {
+            "type": "string",
+            "nullable": true
+          },
+          "hirdetesAdatok": {
+            "$ref": "#/components/schemas/HirdetesAdatokDto"
           }
         },
         "additionalProperties": false
@@ -317,7 +421,7 @@
             "format": "double",
             "nullable": true
           },
-          "mikiado": {
+          "gyerekbarat": {
             "type": "boolean",
             "nullable": true
           },

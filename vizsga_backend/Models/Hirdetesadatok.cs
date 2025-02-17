@@ -19,7 +19,7 @@ public partial class Hirdetesadatok
 
     public decimal? Ar { get; set; }
 
-    public bool? Mikiado { get; set; }
+    public bool? Gyerekbarat { get; set; }
 
     public bool? Allatbarat { get; set; }
 

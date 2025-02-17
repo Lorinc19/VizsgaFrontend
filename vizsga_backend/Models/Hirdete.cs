@@ -15,6 +15,8 @@ public partial class Hirdete
 
     public string? Hirdetesnev { get ; set; }
 
+    public string? KepURL { get; set; }
+
     public virtual Felhasznalo? Felhasznalo { get; set; }
 
     public virtual Hirdetesadatok? Hirdetesadatok { get; set; }

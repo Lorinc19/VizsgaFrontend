@@ -69,6 +69,22 @@
   },
   {
     "ContainingType": "vizsga_backend.Controllers.HirdeteController",
+    "Method": "Ujhird",
+    "RelativePath": "Hirdet\u00E9s",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hirdetesDto",
+        "Type": "vizsga_backend.Models.HirdetesDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
     "Method": "Get",
     "RelativePath": "Hirdet\u00E9s/Hirdetes",
     "HttpMethod": "GET",

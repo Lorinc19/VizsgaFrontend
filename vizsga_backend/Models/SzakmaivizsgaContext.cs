@@ -97,7 +97,7 @@ public partial class SzakmaivizsgaContext : DbContext
             entity.Property(e => e.Kiadasiidotartam)
                 .HasMaxLength(50)
                 .HasDefaultValueSql("'NULL'");
-            entity.Property(e => e.Mikiado).HasDefaultValueSql("'NULL'");
+            entity.Property(e => e.Gyerekbarat).HasDefaultValueSql("'NULL'");
             entity.Property(e => e.Orszag).HasMaxLength(50);
             entity.Property(e => e.Telepules)
                 .HasMaxLength(50)
