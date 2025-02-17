@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
+import Modal from "./Modal";
 
 export default function Home() {
 
   const [database, setdatabase] = useState([])
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     Get()
@@ -11,11 +14,22 @@ export default function Home() {
   }, [])
   
   function Get() {
-    fetch('http://10.169.84.128:5160/Hirdetés/Hirdetes')
+    //http://10.169.84.128:5160/Hirdetés/Hirdetes
+    fetch('adat.json')
       .then(response => response.json())
       .then(data => setdatabase(data))
   }
 
+    // Kattintásra megnyitjuk a modált
+    const handleCardClick = (felhasznalo) => {
+      setSelectedCard(felhasznalo);
+      setIsModalOpen(true);
+    };
+  
+    // Modál bezárása
+    const handleCloseModal = () => {
+      setIsModalOpen(false);
+    };
 
   return (
     <div>
@@ -33,13 +47,14 @@ export default function Home() {
             //))
             <div className="row justify-content-center mx-auto col-md-4" style={{ paddingBottom: "20px", paddingTop: "10px"}}>
             {database.map(databases => (
-              <Card felhasznalo={databases} getFv={Get} />
+              <Card felhasznalo={databases} getFv={Get} onClick={() => handleCardClick(databases)}/>
 
             ))}
           </div>
           }  
         </div>
       </div>
+      {isModalOpen && <Modal data={selectedCard} onClose={handleCloseModal} />}
     </div>
   );
 }
