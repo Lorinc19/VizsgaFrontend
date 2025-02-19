@@ -572,3 +572,110 @@ button.btn:hover {
   }
 
 }
+
+
+
+/* map*/ 
+.google-map {
+  width: 400px;
+  height: 300px;
+  border: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* naptar */ 
+/* Flexbox elrendezés a kártyák és a naptár elhelyezéséhez */
+/* Konténer a kártyáknak és a naptárnak */
+
+.cards-and-calendar {
+  display: flex; /* Flexbox elrendezés */
+  justify-content: flex-start; /* Alapértelmezetten a kártyák balra igazítva */
+  align-items: flex-start; /* A kártyák és a naptár egy szinten helyezkednek el */
+  gap: 20px; /* Kis távolság a kártyák és a naptár között */
+  flex-wrap: wrap; /* Ha nem férnek el egymás mellett, új sorba kerüljenek */
+}
+
+/* Naptár */
+#naptar-container {
+  width: 300px; /* Naptár szélessége */
+  margin-left: 20px; /* Kis távolság a kártyáktól */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* Megakadályozza, hogy a naptár összenyomódjon */
+}
+
+.container.content {
+  display: flex;
+  justify-content: space-between; /* Kártyák és naptár közötti távolság beállítása */
+  align-items: flex-start; /* A kártyák és naptár magasságát igazítjuk */
+  flex-wrap: nowrap; /* Nem engedjük, hogy új sorba törjenek */
+}
+
+
+.naptar-container {
+  width: 25%; /* Naptár szélessége */
+  margin-left: 20px; /* Kis távolság a kártyáktól */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start; /* A naptár balra igazítása */
+}
+
+#naptar-container {
+  width: 25%;
+  margin: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#honap-ev-cim {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#het-napjai {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.het-nap {
+  font-weight: bold;
+}
+
+#napok {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+}
+
+.nap {
+  padding: 10px;
+  cursor: default;
+}
+
+.nap.ures {
+  background-color: #f0f0f0;
+}
+
+.nap:hover {
+  background-color: #e0e0e0;
+}
