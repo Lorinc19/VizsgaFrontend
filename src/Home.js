@@ -16,7 +16,7 @@ export default function Home() {
   }, [])
   
   function Get() {
-    //http://10.169.84.128:5160/Hirdetés/Hirdetes adat.js
+    //https://localhost:7007/Hirdetés/Hirdetess adat.js
     fetch('https://localhost:7007/Hirdetés/Hirdetes')
       .then(response => response.json())
       .then(data => setdatabase(data))
@@ -62,7 +62,11 @@ export default function Home() {
       </div>
       {isModalOpen && <Modal data={selectedCard} onClose={handleCloseModal} />}
     </div>
+  
 
     
   );
+
+
+
 }

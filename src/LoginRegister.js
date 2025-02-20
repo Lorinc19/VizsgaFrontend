@@ -47,7 +47,7 @@ export default function LoginRegister() {
     } else {
       console.log("Regisztráció:", formData);
       try {
-        const response = await axios.post("http://10.169.84.128:5160/Felhasznaló/Felhasznalo", formData);
+        const response = await axios.post("https://localhost:7007/Felhasznaló/Felhasznalo", formData);
         setMessage("Sikeres regisztráció! Jelentkezz be.");
         console.log("Regisztráció sikeres:", response.data);
       } catch (error) {

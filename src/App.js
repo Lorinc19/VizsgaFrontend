@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import NewHousePost from './NewHousePost';
 import Map from './Map';
 import Naptarproba from './Naptarproba';
+import Lablec from './Lablec';
 
 function App() {
   return (
@@ -22,7 +23,10 @@ function App() {
         </Routes>
 
         </BrowserRouter>
+        <Lablec />  {/* Itt hívjuk meg a Footer komponenst */}
+       
     </div>
+    
   );
 }
 

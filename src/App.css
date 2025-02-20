@@ -592,59 +592,54 @@ button.btn:hover {
 
 
 
-
-/* naptar */ 
-/* Flexbox elrendezés a kártyák és a naptár elhelyezéséhez */
-/* Konténer a kártyáknak és a naptárnak */
-
+/* Alapértelmezett stílusok */
 .cards-and-calendar {
-  display: flex; /* Flexbox elrendezés */
-  justify-content: flex-start; /* Alapértelmezetten a kártyák balra igazítva */
-  align-items: flex-start; /* A kártyák és a naptár egy szinten helyezkednek el */
-  gap: 20px; /* Kis távolság a kártyák és a naptár között */
-  flex-wrap: wrap; /* Ha nem férnek el egymás mellett, új sorba kerüljenek */
-}
-
-/* Naptár */
-#naptar-container {
-  width: 300px; /* Naptár szélessége */
-  margin-left: 20px; /* Kis távolság a kártyáktól */
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0; /* Megakadályozza, hogy a naptár összenyomódjon */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  transform: scale(1); /* Kezdetben normál méret */
+  transform-origin: top left; /* Alap pozíció */
+  transition: transform 0.3s ease; /* Animáció a simább átméretezésért */
 }
 
 .container.content {
   display: flex;
-  justify-content: space-between; /* Kártyák és naptár közötti távolság beállítása */
-  align-items: flex-start; /* A kártyák és naptár magasságát igazítjuk */
-  flex-wrap: nowrap; /* Nem engedjük, hogy új sorba törjenek */
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
 
+/* Naptár konténer */
 .naptar-container {
-  width: 25%; /* Naptár szélessége */
-  margin-left: 20px; /* Kis távolság a kártyáktól */
+  flex: 1;
+  max-width: 30%; /* Maximum szélesség */
+  margin-left: 20px;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start; /* A naptár balra igazítása */
+  align-items: flex-start;
+  box-sizing: border-box;
+  position: relative;
 }
 
 #naptar-container {
-  width: 25%;
-  margin: 20px;
+  width: 100%;
   padding: 10px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 #honap-ev-cim {
   text-align: center;
-  font-size: 18px;
+  font-size: 2vw;
   margin-bottom: 10px;
 }
 
@@ -670,6 +665,7 @@ button.btn:hover {
 .nap {
   padding: 10px;
   cursor: default;
+  font-size: 1.5vw;
 }
 
 .nap.ures {
@@ -678,4 +674,90 @@ button.btn:hover {
 
 .nap:hover {
   background-color: #e0e0e0;
+}
+
+/* Mobil verzió - kisebb képernyőkre (max-width: 600px) */
+@media screen and (max-width: 600px) {
+  /* Az egész elrendezést arányosan csökkentjük */
+  .cards-and-calendar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transform: scale(0.8); /* Az egész elrendezés méretének csökkentése */
+  }
+
+  .container.content {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .naptar-container {
+    width: 90%;
+    position: relative;
+    margin-left: 0;
+    margin-top: 20px;
+    max-width: 100%;
+    margin-right: auto;
+  }
+
+  #naptar-container {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  #honap-ev-cim {
+    font-size: 5vw; /* Kisebb betűk mobilon */
+  }
+
+  .nap {
+    font-size: 4vw; /* A napok számának betűmérete is rugalmas */
+  }
+
+ 
+}
+
+
+
+
+
+/* Footer */
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  padding: 10px;
+}
+
+.footer h4 {
+  margin-top: 0;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 }

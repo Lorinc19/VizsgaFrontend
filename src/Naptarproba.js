@@ -14,17 +14,17 @@ export default function Naptar() {
 
     const napokArray = [];
 
-    // Előző hónap napjainak kitöltése
+    // Előző hónap napjainak 
     for (let i = elsoNapIndex - 1; i >= 0; i--) {
       napokArray.push({ day: "", isEmpty: true });
     }
 
-    // Az adott hónap napjainak kitöltése
+    // Az adott hónap napjainak 
     for (let nap = 1; nap <= napokSzama; nap++) {
       napokArray.push({ day: nap, isEmpty: false });
     }
 
-    // Az utolsó hét napjainak kitöltése
+    // Az utolsó hét napjainak 
     const utolsoNapIndex = (elsoNapIndex + napokSzama) % 7;
     for (let i = 1; i <= (7 - utolsoNapIndex) % 7; i++) {
       napokArray.push({ day: "", isEmpty: true });
@@ -35,12 +35,12 @@ export default function Naptar() {
 
   const [napok, setNapok] = useState([]);
 
-  // Naptár újragenerálása a hónap változásakor
+  // a hónap változásakor
   useEffect(() => {
     generaldNaptarat();
   }, [ev, honap]);
 
-  // Előző hónapra lépés
+  // Előző hónap
   const elozoHonap = () => {
     if (honap === 0) {
       setHonap(11);
@@ -50,7 +50,7 @@ export default function Naptar() {
     }
   };
 
-  // Következő hónapra lépés
+  // Következő hónap
   const kovetkezoHonap = () => {
     if (honap === 11) {
       setHonap(0);
