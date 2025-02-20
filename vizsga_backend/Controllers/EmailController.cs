@@ -20,7 +20,7 @@ namespace vizsga_backend.Controllers
         public ActionResult SendNewMail(EmailRequestDto emailRequestDto)
         {
             email.SendEmail(emailRequestDto);
-            return Ok(new { messege = "Siekres email küldés" });
+            return Ok(new { messege = "Sikeres email küldés" });
         }
     }
 }
