@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 11. 20:36
+-- Létrehozás ideje: 2025. Feb 20. 08:05
 -- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.2.12
+-- PHP verzió: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -77,20 +77,20 @@ CREATE TABLE `hirdetes` (
   `FelhasznaloID` int(11) DEFAULT NULL,
   `Leiras` text DEFAULT NULL,
   `Elerhetoseg` varchar(100) DEFAULT NULL,
-  `Hirdetesnev` varchar(100) DEFAULT NULL
+  `Hirdetesnev` varchar(100) DEFAULT NULL,
+  `KepURL` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `hirdetes`
 --
-ALTER TABLE `hirdetes` ADD `KepURL` varchar(255) NOT NULL;
 
 INSERT INTO `hirdetes` (`ID`, `FelhasznaloID`, `Leiras`, `Elerhetoseg`, `Hirdetesnev`, `KepURL`) VALUES
 (1, 1, 'Miskolc', '+36-70-934-3071', '2 szobás/80m²', 'kepek/hirdetes1.jpg'),
 (2, 2, 'Budapest', '+36-30-517-2022', '4 szobás/200m²', 'kepek/hirdetes2.jpg'),
 (3, 3, 'Debrecen', '+36-20-654-7021', '3 szobás/160m²', 'kepek/hirdetes3.jpg'),
 (4, 4, 'Kecskemét', '+36-70-554-2435', '1 szobás/60m²', 'kepek/hirdetes4.jpg'),
-(5, 5, 'Parasznya', '+36-30-466-2238', '5 szobás/250m²' 'kepek/hirdetes5.jpg');
+(5, 5, 'Parasznya', '+36-30-466-2238', '5 szobás/250m²', 'kepek/hirdetes5.jpg');
 
 -- --------------------------------------------------------
 
@@ -142,7 +142,7 @@ ALTER TABLE `hirdetesadatok`
 -- AUTO_INCREMENT a táblához `felhasznalo`
 --
 ALTER TABLE `felhasznalo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT a táblához `hirdetes`
