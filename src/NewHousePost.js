@@ -36,7 +36,7 @@ export default function NewHousePost() {
     if (!formData.title.trim()) errors.title = "A cím szükséges!";
     if (!formData.description.trim()) errors.description = "A leírás szükséges!";
     if (!formData.phone || !/^\d{10}$/.test(formData.phone)) {
-      errors.phone = "Érvényes telefonszámot adj meg (10 számjegy).";
+      errors.phone = "Érvényes telefonszámot adj meg (11 számjegy).";
     }
     if (!formData.country.trim()) errors.country = "Ország szükséges!";
     if (!formData.county.trim()) errors.county = "Vármegye szükséges!";
@@ -70,7 +70,7 @@ export default function NewHousePost() {
     form.append("image", formData.image); // Kép feltöltése
 
     try {
-      const response = await axios.post("http://10.169.84.128:5160/Listing/Add", form, {
+      const response = await axios.post("https://localhost:7007/Hirdetés", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setMessage("Sikeres hirdetés felvétel!");
