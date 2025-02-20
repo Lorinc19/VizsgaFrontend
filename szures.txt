@@ -1,0 +1,51 @@
+   [HttpGet("Szures")]
+   public async Task<ActionResult<IEnumerable<Hirdete>>> GetFiltered(
+      string? orszag,
+      string? varmegye,
+      string? telepules,
+      decimal? minAr,
+      decimal? maxAr,
+      bool? gyerekbarat,
+      bool? allatbarat)
+   {
+       var lekerdezes = szakmaivizsgaContext.Hirdetes.Include(h => h.Hirdetesadatok).AsQueryable();
+
+       if (!string.IsNullOrEmpty(orszag))
+       {
+           lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Orszag == orszag);
+       }
+
+       if (!string.IsNullOrEmpty(varmegye))
+       {
+           lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Varmegye == varmegye);
+       }
+
+       if (!string.IsNullOrEmpty(telepules))
+       {
+           lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Telepules == telepules);
+       }
+
+       if (minAr.HasValue)
+       {
+           lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Ar >= minAr.Value);
+       }
+
+       if (maxAr.HasValue)
+       {
+           lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Ar <= maxAr.Value);
+       }
+
+       if (gyerekbarat.HasValue)
+       {
+           lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Gyerekbarat == gyerekbarat.Value);
+       }
+
+       if (allatbarat.HasValue)
+       {
+           lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Allatbarat == allatbarat.Value);
+       }
+
+       var filteredHirdetesek = await lekerdezes.ToListAsync();
+
+       return Ok(filteredHirdetesek);
+   }
