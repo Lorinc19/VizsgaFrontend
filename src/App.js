@@ -7,7 +7,6 @@ import NewHousePost from './NewHousePost';
 import Map from './Map';
 import Naptarproba from './Naptarproba';
 import Lablec from './Lablec';
-import Szuresfeltetelek from './Szuresfeltetelek';
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
           <Route path='/ujhaz' element={<NewHousePost/>}/>
           <Route path='/map' element={<Map/>}/>
           <Route path='/naptar' element={<Naptarproba/>}/>
-          <Route path='/szures' element={<Szuresfeltetelek/>}/>
         </Routes>
 
         </BrowserRouter>
