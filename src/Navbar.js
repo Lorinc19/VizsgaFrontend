@@ -38,7 +38,9 @@ export default function Navbar() {
           <Link className={location.pathname === "/naptar" ? "active" : ""} to="/naptar">
             naptar proba
           </Link>
-
+          <Link className={location.pathname === "/szures" ? "active" : ""} to="/szures">
+            Szűrés proba
+          </Link>
 
         </li>
       </ul>

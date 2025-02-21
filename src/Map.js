@@ -1,6 +1,7 @@
 import React from 'react'
 import "./App.css";
-import { Links } from 'react-router-dom';
+
+import Szuresfeltetelek from './Szuresfeltetelek';
 
 export default function Map() {
   return (
@@ -11,7 +12,9 @@ export default function Map() {
   allowfullscreen=""
   loading="lazy"
   referrerpolicy="no-referrer-when-downgrade">
+  
 </iframe>
+
 
 
     </div>
