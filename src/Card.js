@@ -3,6 +3,7 @@ import React from "react";
 export default function Card(props) {
 
   return (
+    <div>
     <div className="card" onClick={props.onClick} >
       {/* Ha a modál nem nyitva, akkor látszik a kártya */}
 
@@ -14,6 +15,7 @@ export default function Card(props) {
             <h5>{props.felhasznalo.elerhetoseg}</h5>
             <p>Leírás: {props.felhasznalo.leiras}</p>
           </div>
+    </div>
     </div>
   );
 }

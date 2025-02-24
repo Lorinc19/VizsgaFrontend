@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";  // Az App.css importálása
 
-export default function Modal({ data, onClose }) {
+export default function Modal({ data, onClose, onCloseOverlay }) {
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-overlay" onClick={onCloseOverlay}>
+      <div className="modal-content-home">
         <button className="close-btn" onClick={onClose}>X</button>
         <h2>almafa</h2>
         <h3>katicaa</h3>

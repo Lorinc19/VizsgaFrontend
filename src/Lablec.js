@@ -3,7 +3,7 @@ import './App.css';
 
 function Footer() {
   return (
-    <footer className="footer">
+    <div className="footer">
       <div className="footer-content">
         <div className="footer-column">
           <p>&copy; 2025 Minden jog fenntartva.</p>
@@ -18,7 +18,7 @@ function Footer() {
           <p>Ez az oldal bemutatja a legjobb termékeket és szolgáltatásokat.</p>
         </div>
       </div>
-    </footer>
+    </div >
   );
 }
 

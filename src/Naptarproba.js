@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 export default function Naptar() {
+  
   const [ev, setEv] = useState(new Date().getFullYear());  // Aktuális év
   const [honap, setHonap] = useState(new Date().getMonth()); // Aktuális hónap
 
@@ -61,6 +62,7 @@ export default function Naptar() {
   };
 
   return (
+    <div className="column column-3">
     <div id="naptar-container">
       <div id="honap-ev-cim">
         <button onClick={elozoHonap}>&lt;</button>
@@ -84,6 +86,7 @@ export default function Naptar() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }
