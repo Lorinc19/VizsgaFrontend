@@ -16,13 +16,11 @@ namespace vizsga_backend.Controllers
             _context = context;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hirdete>>> GetHirdetesek([FromQuery] SzuresDto szures)
+        public async Task<ActionResult<IEnumerable<Hirdete>>> GetHirdetesek([FromQuery]SzuresDto szures)
         {
             //var lekerdezes =await  _context.Hirdetesadatoks.Where(x => x.Varmegye.Contains(szures.Varmegye) || x.Telepules.Contains(szures.Telepules) || x.Tipus.Contains(szures.Tipus) ||  .ToListAsync();
 
-            var varmegye = await _context.Hirdetesadatoks.Where(x => x.Varmegye.Contains(szures.Varmegye)).ToListAsync();
-
-            var telepulesek = varmegye.Where(x => x.Telepules.Contains(szures.Telepules)).ToList();
+            var varmegye = await _context.Hirdetesadatoks.Where(x => x.Varmegye.ToLower() == szures.Varmegye.ToLower() || x.Telepules.ToLower() == szures.Telepules.ToLower()).ToListAsync();
 
 
             return Ok(varmegye);

@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tanulo\\Desktop\\KM\\VizsgaFrontend\\vizsga_backend\\vizsga_backend.csproj": {}
+    "C:\\Users\\Tanulo\\Desktop\\km\\VizsgaFrontend\\vizsga_backend\\vizsga_backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tanulo\\Desktop\\KM\\VizsgaFrontend\\vizsga_backend\\vizsga_backend.csproj": {
+    "C:\\Users\\Tanulo\\Desktop\\km\\VizsgaFrontend\\vizsga_backend\\vizsga_backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tanulo\\Desktop\\KM\\VizsgaFrontend\\vizsga_backend\\vizsga_backend.csproj",
+        "projectUniqueName": "C:\\Users\\Tanulo\\Desktop\\km\\VizsgaFrontend\\vizsga_backend\\vizsga_backend.csproj",
         "projectName": "vizsga_backend",
-        "projectPath": "C:\\Users\\Tanulo\\Desktop\\KM\\VizsgaFrontend\\vizsga_backend\\vizsga_backend.csproj",
+        "projectPath": "C:\\Users\\Tanulo\\Desktop\\km\\VizsgaFrontend\\vizsga_backend\\vizsga_backend.csproj",
         "packagesPath": "C:\\Users\\Tanulo\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Tanulo\\Desktop\\KM\\VizsgaFrontend\\vizsga_backend\\obj\\",
         "projectStyle": "PackageReference",

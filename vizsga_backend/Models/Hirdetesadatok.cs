@@ -25,6 +25,7 @@ public partial class Hirdetesadatok
     public bool? Allatbarat { get; set; }
 
     public string? Kiadasiidotartam { get; set; }
+
     [JsonIgnore]
 
     public virtual Hirdete Hirdetes { get; set; } = null!;
