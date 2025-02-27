@@ -7,6 +7,7 @@ import NewHousePost from './NewHousePost';
 import Map from './Map';
 import Naptarproba from './Naptarproba';
 import Lablec from './Lablec';
+import Profil from './Profil';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
           <Route path='/regisztracio' element={<LoginRegister/>}/>
           <Route path='/ujhaz' element={<NewHousePost/>}/>
           <Route path='/map' element={<Map/>}/>
-          <Route path='/naptar' element={<Naptarproba/>}/>
+          <Route path='/profil' element={<Profil/>}/>
+
         </Routes>
 
         </BrowserRouter>

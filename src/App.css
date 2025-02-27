@@ -378,23 +378,23 @@ button.btn:hover {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  color: #333;
-  background-color: rgba(0, 0, 0, 0.5)
+  color: #010000;
+  background-color: rgb(255, 203, 203)
   
 }
 
 /* Modális tartalom (ablak) */
 .modal-content {
   background-color: #ffffff;
-  text-align: center;
+  text-align: left;
   border-radius: 15px;
   padding: 30px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  /* max-width: 500px; */
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 80%; /* Maximális szélesség */
+  max-width: 1000px; /* Maximális szélesség */
+  height: auto;
   position: relative;
   z-index: 1001;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -403,6 +403,30 @@ button.btn:hover {
   overflow: auto;
 }
 
+/* Bal oldali rész */
+.modal-left {
+  flex: 1;
+  padding-right: 20px; /* Távolság a képektől */
+}
+
+.modal-left h2 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.modal-left h3 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.modal-description {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -431,32 +455,14 @@ button.btn:hover {
   color: #000; /* Egér rávitelével sötétebb szín */
 }
 
-.modal-content h2 {
-  margin-top: 0;
-  font-size: 24px;
-  color: #333;
-  text-align: center;
-}
 
-.modal-content h3 {
-  font-size: 18px;
-  color: #555;
-  text-align: center;
-  margin-bottom: 20px;
-}
 
-.modal-description {
-  font-size: 16px;
-  color: #666;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-/* A modál képei */
-.modal-images {
+/* A modális képek jobb oldalon */
+.modal-right {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 

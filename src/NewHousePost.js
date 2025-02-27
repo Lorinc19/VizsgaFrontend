@@ -4,19 +4,19 @@ import "./App.css";
 
 export default function NewHousePost() {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    phone: "",
-    country: "",
-    county: "",
-    town: "",
-    streetNumber: "",
-    type: "",
-    price: "",
-    mikiado: false,
-    petFriendly: false,
-    rentalDuration: "",
-    image: null,
+    Hirdetesnev: "",
+    Leiras: "",
+    Elerhetoseg: "",
+    Orszag : "",
+    Varmegye: "",
+    Telepules: "",
+    Utcahazszam: "",
+    Tipus: "",
+    Ar: "",
+    Gyerekbarat: false,
+    Allatbarat: false,
+    Kiadasiidotartam: "",
+    KepURL: null,
   });
 
   const [errors, setErrors] = useState({});
@@ -33,18 +33,18 @@ export default function NewHousePost() {
   const validate = () => {
     let errors = {};
 
-    if (!formData.title.trim()) errors.title = "A cím szükséges!";
-    if (!formData.description.trim()) errors.description = "A leírás szükséges!";
-    if (!formData.phone || !/^\d{10}$/.test(formData.phone)) {
-      errors.phone = "Érvényes telefonszámot adj meg (11 számjegy).";
+    if (!formData.Hirdetesnev.trim()) errors.Hirdetesnev = "Hirdetés név szükséges!";
+    if (!formData.Leiras.trim()) errors.Leiras = "A leírás szükséges!";
+    if (!formData.Elerhetoseg || !/^\d{11}$/.test(formData.Elerhetoseg)) {
+      errors.Elerhetoseg = "Érvényes telefonszámot adj meg (11 számjegy).";
     }
-    if (!formData.country.trim()) errors.country = "Ország szükséges!";
-    if (!formData.county.trim()) errors.county = "Vármegye szükséges!";
-    if (!formData.town.trim()) errors.town = "Település szükséges!";
-    if (!formData.streetNumber.trim()) errors.streetNumber = "Utca és házszám szükséges!";
-    if (!formData.type.trim()) errors.type = "Típus szükséges!";
-    if (!formData.price || isNaN(formData.price)) errors.price = "Helyes árat kell megadni!";
-    if (!formData.image) errors.image = "Kép feltöltése kötelező!";
+    if (!formData.Orszag.trim()) errors.Orszag = "Ország szükséges!";
+    if (!formData.Varmegye.trim()) errors.Varmegye = "Vármegye szükséges!";
+    if (!formData.Telepules.trim()) errors.Telepules = "Település szükséges!";
+    if (!formData.Utcahazszam.trim()) errors.Utcahazszam = "Utca és házszám szükséges!";
+    if (!formData.Tipus.trim()) errors.Tipus = "Típus szükséges! (Pl: lakás, ház)";
+    if (!formData.Ar || isNaN(formData.price)) errors.Ar = "Helyes árat kell megadni!";
+    if (!formData.KepURL) errors.KepURL = "Kép feltöltése kötelező!";
     
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -55,19 +55,19 @@ export default function NewHousePost() {
     if (!validate()) return;
 
     const form = new FormData();
-    form.append("title", formData.title);
-    form.append("description", formData.description);
-    form.append("phone", formData.phone);
-    form.append("country", formData.country);
-    form.append("county", formData.county);
-    form.append("town", formData.town);
-    form.append("streetNumber", formData.streetNumber);
-    form.append("type", formData.type);
-    form.append("price", formData.price);
-    form.append("gyerekbarat", formData.gyerekbarat);
-    form.append("petFriendly", formData.petFriendly);
-    form.append("rentalDuration", formData.rentalDuration);
-    form.append("image", formData.image); // Kép feltöltése
+    form.append("Hirdetesnev", formData.Hirdetesnev);
+    form.append("Leiras", formData.Leiras);
+    form.append("Elerhetoseg", formData.Elerhetoseg);
+    form.append("Orszag", formData.Orszag);
+    form.append("Varmegye", formData.Varmegye);
+    form.append("Telepules", formData.Telepules);
+    form.append("Utcahazszam", formData.Utcahazszam);
+    form.append("Tipus", formData.Tipus);
+    form.append("Ar", formData.Ar);
+    form.append("Gyerekbarat", formData.Gyerekbarat);
+    form.append("Allatbarat", formData.Allatbarat);
+    form.append("Kiadasidotartam", formData.Kiadasiidotartam);
+    form.append("KepURL", formData.KepURL); // Kép feltöltése
 
     try {
       const response = await axios.post("https://localhost:7007/Hirdetés", form, {
@@ -88,134 +88,134 @@ export default function NewHousePost() {
         <div className="input-box">
           <input
             type="text"
-            name="title"
+            name="Hirdetesnev"
             required
-            value={formData.title}
+            value={formData.Hirdetesnev}
             onChange={handleChange}
           />
-          <label>Cím</label>
-          {errors.title && <p className="error-text">{errors.title}</p>}
+          <label>Hirdetés név</label>
+          {errors.Hirdetesnev && <p className="error-text">{errors.Hirdetesnev}</p>}
         </div>
 
         <div className="input-box">
           <textarea
-            name="description"
+            name="Leiras"
             required
-            value={formData.description}
+            value={formData.Leiras}
             onChange={handleChange}
           />
           <label>Leírás</label>
-          {errors.description && <p className="error-text">{errors.description}</p>}
+          {errors.Leiras && <p className="error-text">{errors.Leiras}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="phone"
-            value={formData.phone}
+            name="Elerhetoseg"
+            value={formData.Elerhetoseg}
             onChange={handleChange}
             placeholder="Telefonszám"
             required
           />
           <label>Telefonszám</label>
-          {errors.phone && <p className="error-text">{errors.phone}</p>}
+          {errors.Elerhetoseg && <p className="error-text">{errors.Elerhetoseg}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="country"
-            value={formData.country}
+            name="Orszag"
+            value={formData.Orszag}
             onChange={handleChange}
             placeholder="Ország"
             required
           />
           <label>Ország</label>
-          {errors.country && <p className="error-text">{errors.country}</p>}
+          {errors.Orszag && <p className="error-text">{errors.Orszag}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="county"
-            value={formData.county}
+            name="Varmegye"
+            value={formData.Varmegye}
             onChange={handleChange}
             placeholder="Vármegye"
             required
           />
           <label>Vármegye</label>
-          {errors.county && <p className="error-text">{errors.county}</p>}
+          {errors.Varmegye && <p className="error-text">{errors.Varmegye}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="town"
-            value={formData.town}
+            name="Telepules"
+            value={formData.Telepules}
             onChange={handleChange}
             placeholder="Település"
             required
           />
           <label>Település</label>
-          {errors.town && <p className="error-text">{errors.town}</p>}
+          {errors.Telepules && <p className="error-text">{errors.Telepules}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="streetNumber"
-            value={formData.streetNumber}
+            name="Utcahazszam"
+            value={formData.Utcahazszam}
             onChange={handleChange}
             placeholder="Utca és házszám"
             required
           />
           <label>Utca és házszám</label>
-          {errors.streetNumber && <p className="error-text">{errors.streetNumber}</p>}
+          {errors.Utcahazszam && <p className="error-text">{errors.Utcahazszam}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="type"
-            value={formData.type}
+            name="Tipus"
+            value={formData.Tipus}
             onChange={handleChange}
             placeholder="Típus"
             required
           />
           <label>Típus</label>
-          {errors.type && <p className="error-text">{errors.type}</p>}
+          {errors.Tipus && <p className="error-text">{errors.Tipus}</p>}
         </div>
 
         <div className="input-box">
           <input
-            type="number"
-            name="price"
-            value={formData.price}
+            type="decimal"
+            name="Ar"
+            value={formData.Ar}
             onChange={handleChange}
             placeholder="Ár"
             required
           />
           <label>Ár</label>
-          {errors.price && <p className="error-text">{errors.price}</p>}
+          {errors.Ar && <p className="error-text">{errors.Ar}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="file"
-            name="image"
-            accept="image/*"
+            name="KepURL"
+            accept="KepURL/*"
             onChange={handleChange}
             required
           />
           <label>Kép</label>
-          {errors.image && <p className="error-text">{errors.image}</p>}
+          {errors.KepURL && <p className="error-text">{errors.KepURL}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="checkbox"
             name="gyerekbarat"
-            checked={formData.mikiado}
+            checked={formData.Gyerekbarat}
             onChange={handleChange}
           />
           <label>Gyerek barát</label>
@@ -224,8 +224,8 @@ export default function NewHousePost() {
         <div className="input-box">
           <input
             type="checkbox"
-            name="petFriendly"
-            checked={formData.petFriendly}
+            name="Allatbarat"
+            checked={formData.Allatbarat}
             onChange={handleChange}
           />
           <label>Állatbarát</label>
@@ -234,8 +234,8 @@ export default function NewHousePost() {
         <div className="input-box">
           <input
             type="text"
-            name="rentalDuration"
-            value={formData.rentalDuration}
+            name="Kiadasidotartam"
+            value={formData.Kiadasiidotartam}
             onChange={handleChange}
             placeholder="Kiadási időtartam"
           />

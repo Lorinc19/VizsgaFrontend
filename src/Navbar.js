@@ -31,12 +31,15 @@ export default function Navbar() {
           <Link className={location.pathname === "/ujhaz" ? "active" : ""} to="/ujhaz">
             Új hirdetés feltöltése
           </Link>
-
+          </li>
+          <li>
           <Link className={location.pathname === "/map" ? "active" : ""} to="/map">
             terkep proba
           </Link>
-          <Link className={location.pathname === "/naptar" ? "active" : ""} to="/naptar">
-            naptar proba
+          </li>
+          <li>
+          <Link className={location.pathname === "/profil" ? "active" : ""} to="/profil">
+            Profil
           </Link>
 
 
