@@ -112,11 +112,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Orszag",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
         "Name": "Varmegye",
         "Type": "System.String",
         "IsRequired": false

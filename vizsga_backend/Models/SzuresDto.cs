@@ -2,7 +2,6 @@
 {
     public class SzuresDto
     {
-        public string? Orszag { get; set; }
         public string? Varmegye { get; set; }
         public string? Telepules { get; set; }
         public string? Tipus { get; set; }

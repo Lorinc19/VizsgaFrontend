@@ -18,33 +18,15 @@ namespace vizsga_backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hirdete>>> GetHirdetesek([FromQuery] SzuresDto szures)
         {
-            var lekerdezes = _context.Hirdetes.Include(h => h.Hirdetesadatok).AsQueryable();
+            //var lekerdezes =await  _context.Hirdetesadatoks.Where(x => x.Varmegye.Contains(szures.Varmegye) || x.Telepules.Contains(szures.Telepules) || x.Tipus.Contains(szures.Tipus) ||  .ToListAsync();
 
-            if (!string.IsNullOrEmpty(szures.Orszag))
-                lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Orszag == szures.Orszag);
+            var varmegye = await _context.Hirdetesadatoks.Where(x => x.Varmegye.Contains(szures.Varmegye)).ToListAsync();
 
-            if (!string.IsNullOrEmpty(szures.Varmegye))
-                lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Varmegye == szures.Varmegye);
+            var telepulesek = varmegye.Where(x => x.Telepules.Contains(szures.Telepules)).ToList();
 
-            if (!string.IsNullOrEmpty(szures.Telepules))
-                lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Telepules == szures.Telepules);
 
-            if (!string.IsNullOrEmpty(szures.Tipus))
-                lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Tipus == szures.Tipus);
-
-            if (szures.MinAr.HasValue)
-                lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Ar >= szures.MinAr.Value);
-
-            if (szures.MaxAr.HasValue)
-                lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Ar <= szures.MaxAr.Value);
-
-            if (szures.Allatbarat.HasValue)
-                lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Allatbarat == szures.Allatbarat);
-
-            if (szures.Gyerekbarat.HasValue)
-                lekerdezes = lekerdezes.Where(h => h.Hirdetesadatok.Gyerekbarat == szures.Gyerekbarat);
-
-            return Ok(await lekerdezes.ToListAsync());
+            return Ok(varmegye);
+            
         }
     }
 }
