@@ -18,7 +18,7 @@ export default function Profil({ id }) {
   return (
     <div>
       
-      <h1><strong>Vezeteéknév:</strong> {data.Csaladnev}</h1>
+      <h1><strong>Vezeteéqknév:</strong> {data.Csaladnev}</h1>
       <h1><strong>Keresztnév:</strong> {data.Vezeteknev}</h1>
       <p><strong>Életkor:</strong> {data.Kor}</p>
       <p><strong>Email:</strong> {data.Email}</p>

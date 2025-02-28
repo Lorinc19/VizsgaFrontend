@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";  // Az App.css importálása
-
+//model
 export default function Modal({ data, onClose, onCloseOverlay }) {
   return (
     <div className="modal-overlay" onClick={onCloseOverlay}>
