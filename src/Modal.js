@@ -9,7 +9,7 @@ export default function Modal({ data, onClose, onCloseOverlay }) {
         
         <div className="modal-left">
           <h2>almafa</h2>
-          <h3>katicaa</h3>
+          <h3>katiicaa</h3>
           <div className="modal-description">
             <p>1-2-3</p>
           </div>

@@ -15,7 +15,7 @@ function Footer() {
         </div>
         <div className="footer-column">
           <h4>Rólunk</h4>
-          <p>Ez az oldal bemutatja a legjobb termékeket és szolgáltatásokat.</p>
+          <p>Ez azt oldal bemutatja a legjobb termékeket és szolgáltatásokat.</p>
         </div>
       </div>
     </div >
