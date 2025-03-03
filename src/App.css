@@ -365,8 +365,7 @@ button.btn:hover {
   }
 }
 
-/*-------------------------*/
-/*Modal*/
+/*-------------------------*//*Modal*/
 /* Modal overlay (háttér) */
 .modal-overlay {
   position: fixed;
@@ -379,8 +378,10 @@ button.btn:hover {
   align-items: center;
   z-index: 1000;
   color: #010000;
-  background-color: rgb(255, 203, 203)
-  
+  background-color: rgb(255, 236, 236);
+  border: 2px solid #000;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #000;
 }
 
 /* Modális tartalom (ablak) */
@@ -392,49 +393,176 @@ button.btn:hover {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 80%; /* Maximális szélesség */
+  width: 85%; /* Maximális szélesség */
   max-width: 1000px; /* Maximális szélesség */
-  height: auto;
+  height: 85%; /* Korlátozzuk a magasságot */
   position: relative;
   z-index: 1001;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  border: 1px solid #e0e0e0;
+  border: 2px solid #000;
+  box-shadow: 0 0 30px #000;
   animation: fadeIn 0.3s ease-in-out;
-  overflow: auto;
+  overflow-y: auto; /* Görgetés engedélyezése vertikálisan */
+  margin-top: 50px; /* Magasabb margó a tetején */
 }
 
 /* Bal oldali rész */
 .modal-left {
   flex: 1;
-  padding-right: 20px; /* Távolság a képektől */
+  padding-right: 20px; /* Távolság a térképtől */
 }
 
 .modal-left h2 {
   margin-top: 0;
   font-size: 24px;
-  color: #333;
+  color: #000000;
 }
 
 .modal-left h3 {
   font-size: 18px;
-  color: #555;
+  color: #0c0b0b;
   margin-bottom: 20px;
 }
 
 .modal-description {
   font-size: 16px;
-  color: #666;
+  color: #1c1b1b;
   line-height: 1.5;
   margin-bottom: 20px;
 }
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+
+/* Kép beágyazott térkép jobb oldalon */
+.modal-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* A nagyított kép modális nézete */
+.image-modal {
+  position: fixed;
+  top: 53.5%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Középre igazítás */
+  width: 66%; /* A modális ablak 50%-ra van korlátozva */
+  height: 85%;
+  background-color: rgba(0, 0, 0, 0.8); /* Sötét háttér */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Elölre hozzuk, hogy a háttér ne takarja el */
+}
+
+/* A modális képek nagyított tartalma */
+.modal-image-large {
+  width: 100%; /* Kép a rendelkezésre álló helyet használja */
+  max-height: 100%;
+  border-radius: 10px;
+  object-fit: contain; /* A képek a képernyőhöz igazodjanak */
+}
+
+/* Navigációs gombok */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 100%;
+  z-index: 2100; /* A navigációs gombokat elölre hozzuk */
+  transform: translateY(-50%);
+}
+
+#prevBtn {
+  left: 10px;
+}
+
+#nextBtn {
+  right: 10px;
+}
+
+/* A háttér overlay és a tartalom */
+.modal-overlay {
+  z-index: 1000; /* Az alap modál ablak alacsonyabb z-index értéket kap */
+}
+
+/* Bezáró gomb */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2200; /* A bezáró gombot is előrébb hozzuk */
+}
+
+
+/* A térkép */
+.modal-map {
+  width: 44%;
+  height: 52%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #000;
+}
+
+.google-map {
+  width: 55%;
+  height: 50%;
+  border: none;
+}
+
+/* A modális képek */
+.modal-images {
+  display: flex;
+  justify-content: flex-start; /* A képek balra igazítása */
+  gap: 10px;
+  margin-top: 20px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #000;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+  flex-wrap: nowrap; /* Ne törje a sorokat, maradjanak egy sorban */
+  overflow-x: auto; /* Horizontális görgetés engedélyezése */
+  padding-bottom: 10px; /* Alul egy kis margó a görgetősáv miatt */
+}
+
+/* A képek */
+.modal-images img {
+  width: 30%; /* Három kép legyen egy sorban */
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #000;
+  box-shadow: 0 0 5px #000;
+  transition: transform 0.3s ease;
+}
+
+.modal-images img:hover {
+  transform: scale(1.05); /* Kép nagyítása hover hatásra */
+}
+
+/* Mobil nézet */
+@media (max-width: 768px) {
+  .modal-images img {
+    width: 45%; /* Két kép legyen egy sorban */
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+}
+
+/* Nagyobb mobil nézetek */
+@media (max-width: 480px) {
+  .modal-images img {
+    width: 90%; /* Egy kép egy sorban */
   }
 }
 
@@ -447,7 +575,7 @@ button.btn:hover {
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #333;
+  color: #ff0000;
   transition: color 0.3s ease;
 }
 
@@ -455,21 +583,79 @@ button.btn:hover {
   color: #000; /* Egér rávitelével sötétebb szín */
 }
 
-
-
-/* A modális képek jobb oldalon */
-.modal-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.modal-images img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
+/* Reszponzív módosítások */
+
+@media (max-width: 1024px) {
+  /* Táblagépek és kisebb képernyők */
+  .modal-content {
+    flex-direction: column; /* A bal és jobb oldali rész egy oszlopba kerül */
+    width: 90%; /* Kisebb szélesség */
+    padding: 20px;
+  }
+
+  .modal-left, .modal-right {
+    flex: none;
+    width: 100%; /* Mindkét rész szélessége 100% */
+    margin-bottom: 20px;
+  }
+
+  .modal-map {
+    height: 250px; /* A térkép kisebb lesz */
+  }
+
+  .modal-images {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .modal-images img {
+    max-width: 90%; /* A képek kisebbek lesznek, hogy jobban illeszkedjenek */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobil képernyők */
+  .modal-content {
+    width: 100%; /* Az ablak teljes szélességet foglal el */
+    padding: 15px;
+  }
+
+  .modal-left h2 {
+    font-size: 20px;
+  }
+
+  .modal-left h3 {
+    font-size: 16px;
+  }
+
+  .modal-description {
+    font-size: 14px;
+  }
+
+  .modal-map {
+    height: 200px; /* A térkép még kisebb lesz mobilon */
+  }
+
+  .modal-images img {
+    max-width: 100%; /* A képek a képernyő szélességére igazodnak */
+  }
+
+  .modal-images {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 /* Inaktív lefjo stílus */
@@ -477,9 +663,6 @@ button.btn:hover {
   opacity: 1;  /* Csökkentett átláthatóság, jelezve, hogy inaktív */
   pointer-events: none;  /* Megakadályozza, hogy kattinthass rá */
 }
-
-
-
 
 
 /*-----------*/
@@ -790,4 +973,40 @@ button.btn:hover {
   padding: 20px;
   box-sizing: border-box;
 }
-/*alma alma*/
+
+
+
+
+
+/* profil*/
+
+
+.profil-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh; /* A teljes képernyőt lefedi */
+}
+
+.profil-box {
+  background-color: #fff;
+  padding: 20px;
+  
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #000; /* Fekete keret */
+  max-width: 90%; /* Maximális szélesség, hogy ne legyen túl széles mobilon */
+  width: 400px; /* Fix szélesség a nagyobb képernyők számára */
+  box-sizing: border-box; /* A padding nem növeli a szélességet */
+}
+
+h1, p {
+  margin: 10px 0;
+  font-family: Arial, sans-serif; /* Választható betűtípus */
+}
+
+@media (max-width: 768px) {
+  .profil-box {
+    width: 80%; /* Mobilon kisebb lesz */
+  }
+}
