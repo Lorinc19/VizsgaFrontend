@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'; // Importáljuk a CSS fájlt
+import { Link } from 'react-router-dom';
 
 export default function Profil({ id }) {
     const [data, setData] = useState([]);
@@ -19,6 +20,9 @@ export default function Profil({ id }) {
                 <h1><strong>Keresztnév:</strong> {data.Vezeteknev}</h1>
                 <p><strong>Életkor:</strong> {data.Kor}</p>
                 <p><strong>Email:</strong> {data.Email}</p>
+                <Link to="/hirdetes">
+                  <button className='btn btn-warning'>Hirdetések</button>
+                </Link>
             </div>
         </div>
     )

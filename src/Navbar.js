@@ -38,7 +38,7 @@ export default function Navbar() {
           </Link>
           </li>
           <li>
-          <Link className={location.pathname === "/profil" ? "active" : ""} to="/profil">
+          <Link className={(location.pathname === "/profil" || location.pathname === "/hirdetes") ? "active" : ""} to="/profil">
             Profil
           </Link>
 

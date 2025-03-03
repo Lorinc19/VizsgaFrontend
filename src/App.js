@@ -8,6 +8,7 @@ import Map from './Map';
 import Naptarproba from './Naptarproba';
 import Lablec from './Lablec';
 import Profil from './Profil';
+import Hirdetes from './Hirdetes';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/ujhaz' element={<NewHousePost/>}/>
           <Route path='/map' element={<Map/>}/>
           <Route path='/profil' element={<Profil/>}/>
+          <Route path='/hirdetes' element={<Hirdetes/>}/>
 
         </Routes>
 
