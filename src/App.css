@@ -818,8 +818,8 @@ button.btn:hover {
 #naptar-container {
   width: 25%;
   padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: #ae19193d;
+  border: 1px solid #040404;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
@@ -838,11 +838,13 @@ button.btn:hover {
   grid-template-columns: repeat(7, 1fr);
   gap: 5px;
   text-align: center;
+  color:#000000;
   margin-bottom: 10px;
 }
 
 .het-nap {
   font-weight: bold;
+  
 }
 
 #napok {
@@ -850,16 +852,22 @@ button.btn:hover {
   grid-template-columns: repeat(7, 1fr);
   gap: 5px;
   text-align: center;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .nap {
   padding: 10px;
   cursor: default;
   font-size: 1vw;
+  background-color: #9b0000c5;
+  border: #000 solid 0.5px;
 }
 
+
+
 .nap.ures {
-  background-color: #f0f0f0;
+  background-color: #a0000074;
 }
 
 .nap:hover {
@@ -911,6 +919,11 @@ button.btn:hover {
   }
 
  
+}
+.nap.ma {
+  background-color: #ff0000; /* Citromsárga */
+  color: #ffffff; /* Fekete szöveg a jobb láthatóság érdekében */
+  font-weight: bold;
 }
 
 

@@ -8,6 +8,10 @@ function Footer() {
         <div className="footer-column">
           <p>&copy; 2025 Minden jog fenntartva.</p>
           <a href="https://adatjog.hu/adatvedelmi-tajekoztato" target="_blank">Adatvédelmi nyilatkozat</a>
+         {/*} <p>&copy; Rejtett játék 
+  <a href="Rejtettjatekugralohaz.html" id="showInfo" style="color: blue; text-decoration: underline; cursor: pointer;">További információ</a>
+</p>{*/}
+
 
         </div>
         <div className="footer-column">

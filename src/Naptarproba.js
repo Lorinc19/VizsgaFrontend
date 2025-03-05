@@ -5,8 +5,10 @@ export default function Naptar() {
   
   const [ev, setEv] = useState(new Date().getFullYear());  // Aktuális év
   const [honap, setHonap] = useState(new Date().getMonth()); // Aktuális hónap
+  const [napok, setNapok] = useState([]); // Napok
 
-  const hetNapjai = ["Hét", "Ked", "Sze", "Csü", "Pé", "Szo","Vas"]; // Hét napjai
+  const hetNapjai = ["Hét", "Ked", "Sze", "Csü", "Pé", "Szo", "Vas"]; // Hét napjai
+  const maiDatum = new Date(); // Mai dátum
 
   const generaldNaptarat = () => {
     const elsoNap = new Date(ev, honap, 1); // Az adott hónap első napja
@@ -15,17 +17,18 @@ export default function Naptar() {
 
     const napokArray = [];
 
-    // Előző hónap napjainak 
+    // Előző hónap napjainak
     for (let i = elsoNapIndex - 1; i >= 0; i--) {
       napokArray.push({ day: "", isEmpty: true });
     }
 
-    // Az adott hónap napjainak 
+    // Az adott hónap napjainak
     for (let nap = 1; nap <= napokSzama; nap++) {
-      napokArray.push({ day: nap, isEmpty: false });
+      const isToday = ev === maiDatum.getFullYear() && honap === maiDatum.getMonth() && nap === maiDatum.getDate();
+      napokArray.push({ day: nap, isEmpty: false, isToday });
     }
 
-    // Az utolsó hét napjainak 
+    // Az utolsó hét napjainak
     const utolsoNapIndex = (elsoNapIndex + napokSzama) % 7;
     for (let i = 1; i <= (7 - utolsoNapIndex) % 7; i++) {
       napokArray.push({ day: "", isEmpty: true });
@@ -34,14 +37,10 @@ export default function Naptar() {
     setNapok(napokArray);
   };
 
-  const [napok, setNapok] = useState([]);
-
-  // a hónap változásakor
   useEffect(() => {
     generaldNaptarat();
   }, [ev, honap]);
 
-  // Előző hónap
   const elozoHonap = () => {
     if (honap === 0) {
       setHonap(11);
@@ -51,7 +50,6 @@ export default function Naptar() {
     }
   };
 
-  // Következő hónap
   const kovetkezoHonap = () => {
     if (honap === 11) {
       setHonap(0);
@@ -63,30 +61,30 @@ export default function Naptar() {
 
   return (
     <div className="column column-3">
-    <div id="naptar-container">
-      <div id="honap-ev-cim">
-        <button onClick={elozoHonap}>&lt;</button>
-        {new Date(ev, honap).toLocaleString("hu", { month: "long" })} {ev}
-        <button onClick={kovetkezoHonap}>&gt;</button>
-      </div>
+      <div id="naptar-container">
+        <div id="honap-ev-cim">
+          <button onClick={elozoHonap}>&lt;</button>
+          {new Date(ev, honap).toLocaleString("hu", { month: "long" })} {ev}
+          <button onClick={kovetkezoHonap}>&gt;</button>
+        </div>
 
-      <div id="het-napjai">
-        {hetNapjai.map((nap, index) => (
-          <div key={index} className="het-nap">{nap}</div>
-        ))}
-      </div>
+        <div id="het-napjai">
+          {hetNapjai.map((nap, index) => (
+            <div key={index} className="het-nap">{nap}</div>
+          ))}
+        </div>
 
-      <div id="napok">
-        {napok.map((nap, index) => (
-          <div
-            key={index}
-            className={`nap ${nap.isEmpty ? "ures" : ""}`}
-          >
-            {nap.isEmpty ? "" : nap.day}
-          </div>
-        ))}
+        <div id="napok">
+          {napok.map((nap, index) => (
+            <div
+              key={index}
+              className={`nap ${nap.isEmpty ? "ures" : ""} ${nap.isToday ? "ma" : ""}`}
+            >
+              {nap.isEmpty ? "" : nap.day}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 }

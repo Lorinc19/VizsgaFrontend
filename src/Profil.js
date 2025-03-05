@@ -18,10 +18,11 @@ export default function Profil({ id }) {
             <div className="profil-box">
                 <h1><strong>Vezetéknév:</strong> {data.Csaladnev}</h1>
                 <h1><strong>Keresztnév:</strong> {data.Vezeteknev}</h1>
+                <h3>Felhasznalónév: {data.felhasznalonev}</h3>
                 <p><strong>Életkor:</strong> {data.Kor}</p>
                 <p><strong>Email:</strong> {data.Email}</p>
                 <Link to="/hirdetes">
-                  <button className='btn btn-warning'>Hirdetések</button>
+                  <button className='btn btn-warning'>Hirdetéseim</button>
                 </Link>
             </div>
         </div>

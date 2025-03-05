@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Házikó Ugráló</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7fdff;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            background-color: #8ce4ff;
+            margin: auto;
+        }
+        #gameOver {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+        #score {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: dotted;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameOver">Game Over! Nyomj F5-öt az újrakezdéshez!</div>
+    <div id="score">Pontszám: 0</div>
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let character = { x: 50, y: 350, width: 30, height: 30, dy: 0, jumping: false };
+        let houses = [];
+        let score = 0; // Pontszám változó
+        let gameActive = true;
+        let speed = 3; // Kezdő sebesség
+
+        function createHouse() {
+            houses.push({ x: canvas.width, y: 300, width: 50, height: 50 });
+        }
+
+        function drawCharacter() {
+            ctx.fillStyle = "black";
+            ctx.fillRect(character.x, character.y, character.width, character.height);
+        }
+
+        function drawHouses() {
+            houses.forEach(house => {
+                // Ház alap (négyzet)
+                ctx.fillStyle = "yellow";
+                ctx.fillRect(house.x, house.y + 30, house.width, house.height);
+
+                // Ház teteje (háromszög)
+                ctx.fillStyle = "red";
+                ctx.beginPath();
+                ctx.moveTo(house.x, house.y + 30); // Bal sarok
+                ctx.lineTo(house.x + house.width / 2, house.y); // Csúcs
+                ctx.lineTo(house.x + house.width, house.y + 30); // Jobb sarok
+                ctx.closePath();
+                ctx.fill();
+            });
+        }
+
+        function updateHouses() {
+            houses.forEach((house, index) => {
+                house.x -= 5;
+                if (house.x + house.width < 0) {
+                    houses.splice(index, 1);
+                    score++; // Pontszám növelése házikó elkerülése esetén
+                    document.getElementById("score").textContent = `Pontszám: ${score}`;
+                }
+                if (
+                    character.x < house.x + house.width &&
+                    character.x + character.width > house.x &&
+                    character.y + character.height > house.y + 30
+                ) {
+                    endGame();
+                }
+            });
+        }
+
+        function jump() {
+            if (!character.jumping) {
+                character.dy = -12;
+                character.jumping = true;
+            }
+        }
+
+        function gravity() {
+            character.y += character.dy;
+            character.dy += 0.5;
+            if (character.y >= 350) {
+                character.y = 350;
+                character.jumping = false;
+            }
+        }
+
+        function endGame() {
+            gameActive = false;
+            document.getElementById("gameOver").style.display = "block";
+        }
+
+        function gameLoop() {
+            if (gameActive) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                drawCharacter();
+                drawHouses();
+
+                gravity();
+                updateHouses();
+
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        setInterval(() => {
+            if (gameActive) createHouse();
+        }, 2000);
+
+        document.addEventListener("keydown", (e) => {
+            if (e.code === "ArrowUp") jump();
+        });
+
+        gameLoop();
+    </script>
+</body>
+</html>
