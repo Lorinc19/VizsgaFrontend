@@ -105,58 +105,58 @@
   },
   {
     "ContainingType": "vizsga_backend.Controllers.SzuresController",
-    "Method": "GetHirdetesek",
-    "RelativePath": "Szures",
+    "Method": "hirdetesadatoks",
+    "RelativePath": "SzuresController/Szures",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Varmegye",
+        "Name": "orszag",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "Telepules",
+        "Name": "varmegye",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "Tipus",
+        "Name": "telepules",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "MinAr",
+        "Name": "utcanev",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "tipus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ar",
         "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
-        "Name": "MaxAr",
-        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "Gyerekbarat",
+        "Name": "gyerekbarat",
         "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
-        "Name": "Allatbarat",
+        "Name": "allatbarat",
         "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "kiadasiIdo",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[vizsga_backend.Models.Hirdete, vizsga_backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   }
 ]

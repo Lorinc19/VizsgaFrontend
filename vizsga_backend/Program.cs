@@ -17,6 +17,9 @@ builder.Services.AddScoped<IEmail, Email>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
+builder.Services.AddScoped<SzuresService>();
+builder.Services.AddControllers();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",

@@ -2,29 +2,35 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vizsga_backend.Models;
+using vizsga_backend.Service;
 
 namespace vizsga_backend.Controllers
 {
-    [Route("Szures")]
+    [Route("SzuresController")]
     [ApiController]
     public class SzuresController : ControllerBase
     {
-        private readonly SzakmaivizsgaContext _context;
+        private readonly SzuresService _szuresService;
 
-        public SzuresController(SzakmaivizsgaContext context)
+        public SzuresController(SzuresService szuresService)
         {
-            _context = context;
+            _szuresService = szuresService;
+
         }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hirdete>>> GetHirdetesek([FromQuery]SzuresDto szures)
+        [HttpGet("Szures")]
+        public IActionResult hirdetesadatoks([FromQuery] string orszag = null,
+        [FromQuery] string varmegye = null,
+        [FromQuery] string telepules = null,
+        [FromQuery] string tipus = null,
+        [FromQuery] decimal? ar = null,
+        [FromQuery] bool? gyerekbarat = null,
+        [FromQuery] bool? allatbarat = null,
+        [FromQuery] string kiadasiIdo = null)
+
         {
-            //var lekerdezes =await  _context.Hirdetesadatoks.Where(x => x.Varmegye.Contains(szures.Varmegye) || x.Telepules.Contains(szures.Telepules) || x.Tipus.Contains(szures.Tipus) ||  .ToListAsync();
-
-            var varmegye = await _context.Hirdetesadatoks.Where(x => x.Varmegye.ToLower() == szures.Varmegye.ToLower() || x.Telepules.ToLower() == szures.Telepules.ToLower()).ToListAsync();
-
-
-            return Ok(varmegye);
-            
+            var szuresI = _szuresService.hirdetesadatoks(orszag, varmegye, telepules, tipus, ar, gyerekbarat, allatbarat, kiadasiIdo);
+            return Ok(szuresI);
         }
+       
     }
 }

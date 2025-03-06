@@ -1,0 +1,50 @@
+﻿using vizsga_backend.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
+namespace vizsga_backend.Service
+{
+    public class SzuresService
+    {
+        private readonly SzakmaivizsgaContext _context;
+
+        public SzuresService(SzakmaivizsgaContext context)
+        {
+            _context = context;
+        }
+
+        public IEnumerable<Hirdetesadatok> hirdetesadatoks(string orszag = null, string varmegye = null, string telepules = null, string utcanev = null,
+        string tipus = null, decimal? ar = null, bool? gyerekbarat = null, bool? allatbarat = null, string kiadasiIdo = null)
+        {
+            var lekerdezes = _context.Hirdetesadatoks.AsQueryable();
+            if (!string.IsNullOrEmpty(orszag))
+                lekerdezes = lekerdezes.Where(i => i.Orszag.Contains(orszag));
+
+            if (!string.IsNullOrEmpty(varmegye))
+                lekerdezes = lekerdezes.Where(i => i.Varmegye.Contains(varmegye));
+
+            if (!string.IsNullOrEmpty(telepules))
+                lekerdezes = lekerdezes.Where(i => i.Telepules.Contains(telepules));
+
+            if (!string.IsNullOrEmpty(utcanev))
+                lekerdezes = lekerdezes.Where(i => i.Utcahazszam.Contains(utcanev));
+
+            if (!string.IsNullOrEmpty(tipus))
+                lekerdezes = lekerdezes.Where(i => i.Tipus.Contains(tipus));
+
+            if (ar.HasValue)
+                lekerdezes = lekerdezes.Where(i => i.Ar <=ar.Value);
+
+            if (gyerekbarat.HasValue)
+                lekerdezes = lekerdezes.Where(i => i.Gyerekbarat == gyerekbarat.Value);
+
+            if (allatbarat.HasValue)
+                lekerdezes = lekerdezes.Where(i => i.Allatbarat == allatbarat.Value);
+
+            if (!string.IsNullOrEmpty(kiadasiIdo))
+                lekerdezes = lekerdezes.Where(i => i.Kiadasiidotartam.Contains(kiadasiIdo));
+
+            return lekerdezes.ToList();
+        }
+
+    }
+}
