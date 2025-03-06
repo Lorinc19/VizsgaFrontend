@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 20. 08:05
+-- Létrehozás ideje: 2025. Már 06. 12:06
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.0.30
 
@@ -90,7 +90,13 @@ INSERT INTO `hirdetes` (`ID`, `FelhasznaloID`, `Leiras`, `Elerhetoseg`, `Hirdete
 (2, 2, 'Budapest', '+36-30-517-2022', '4 szobás/200m²', 'kepek/hirdetes2.jpg'),
 (3, 3, 'Debrecen', '+36-20-654-7021', '3 szobás/160m²', 'kepek/hirdetes3.jpg'),
 (4, 4, 'Kecskemét', '+36-70-554-2435', '1 szobás/60m²', 'kepek/hirdetes4.jpg'),
-(5, 5, 'Parasznya', '+36-30-466-2238', '5 szobás/250m²', 'kepek/hirdetes5.jpg');
+(5, 5, 'Parasznya', '+36-30-466-2238', '5 szobás/250m²', 'kepek/hirdetes5.jpg'),
+(6, 1, 'alma', 'alma', 'alma14', 'alma.png'),
+(7, 1, 'alma', 'alma', 'alma19', 'alma.png'),
+(8, 5, 'alma', 'alma', 'alma88', 'alma.png'),
+(9, 5, 'Eladó lakás, tökéletes állapotban', '+36705082546', 'Eladó Lakás', 'https://images.zenga.hu/thumbs/user_442885/ad_8445758/elado-teglalakas-kecskemet-homokbanya-111456953-t1.webp'),
+(10, 16, 'Eladó nagy családi ház Angliában', '+3030306332', 'Eladó ház', 'https://media.realigro.com/th/an/200x0/335082.jpeg'),
+(11, 16, 'Eladó nagy családi ház Angliában', '+3030306332', 'Eladó ház', 'https://media.realigro.com/th/an/200x0/335082.jpeg');
 
 -- --------------------------------------------------------
 
@@ -110,6 +116,20 @@ CREATE TABLE `hirdetesadatok` (
   `Allatbarat` tinyint(1) DEFAULT NULL,
   `Kiadasiidotartam` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `hirdetesadatok`
+--
+
+INSERT INTO `hirdetesadatok` (`HirdetesID`, `Orszag`, `Varmegye`, `Telepules`, `Utcahazszam`, `Tipus`, `Ar`, `Gyerekbarat`, `Allatbarat`, `Kiadasiidotartam`) VALUES
+(1, 'Magyar', 'BAZ', 'Miskolc', 'K u.2', 'Lakás', 3.00, 0, 1, '3 hónap'),
+(2, 'Magyar', 'BAZ', 'Szerencs', 'K u.2', 'Lakás', 3.00, 0, 1, '3 hónap'),
+(6, 'Magyarország', 'Hajdu-Bihar', 'Debrecen', '1', 'ház', 1000.00, 1, 1, 'holnap'),
+(7, 'Magyarország', 'Hajdu-Bihar', 'Kisvárda', '1', 'ház', 10000.00, 1, 1, 'holnap'),
+(8, 'Magyarország', 'Szabolcs-Szatmár-Bereg', 'Tiregyháza', '7', 'ház', 100000.00, 1, 1, 'holnap'),
+(9, 'Magyarország', 'Bács-Kiskun', 'Kecskemét', '70', 'Lakás', 22000000.00, 1, 0, 'Ma'),
+(10, 'UK', 'East Midlands', 'Nottingham', '39', 'Családiház', 99999999.99, 1, 1, 'Jövőhéten'),
+(11, 'UK', 'East Midlands', 'Nottingham', '39', 'Családiház', 99999999.99, 1, 1, 'Jövőhéten');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -148,7 +168,13 @@ ALTER TABLE `felhasznalo`
 -- AUTO_INCREMENT a táblához `hirdetes`
 --
 ALTER TABLE `hirdetes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT a táblához `hirdetesadatok`
+--
+ALTER TABLE `hirdetesadatok`
+  MODIFY `HirdetesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Megkötések a kiírt táblákhoz
