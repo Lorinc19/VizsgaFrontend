@@ -56,7 +56,9 @@ export default function Modal({ data, onClose, onCloseOverlay }) {
           </div>
 
           {/* Képek sorba */}
-          <div className="modal-images">
+
+        </div>
+                  <div className="modal-images row">
             {images.map((image, index) => (
               <img
                 key={index}
@@ -66,7 +68,6 @@ export default function Modal({ data, onClose, onCloseOverlay }) {
               />
             ))}
           </div>
-        </div>
       </div>
 
       {/* Ha van aktív kép, akkor jelenjen meg a nagyított kép modál */}

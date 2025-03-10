@@ -22,7 +22,7 @@ export default function Profil({ id }) {
                 <p><strong>Életkor:</strong> {data.Kor}</p>
                 <p><strong>Email:</strong> {data.Email}</p>
                 <Link to="/hirdetes">
-                  <button className='btn btn-warning'>Hirdetéseim</button>
+                  <button id='alma'>Hirdetéseim</button>
                 </Link>
             </div>
         </div>
