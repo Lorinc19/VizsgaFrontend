@@ -28,7 +28,7 @@ namespace vizsga_backend.Controllers
         [FromQuery] string kiadasiIdo = null)
 
         {
-            var szuresI = _szuresService.hirdetesadatoks(orszag, varmegye, telepules, tipus, ar, gyerekbarat, allatbarat, kiadasiIdo);
+            var szuresI = _szuresService.hirdetesadatoks(orszag: orszag, varmegye: varmegye, telepules: telepules, tipus:tipus, ar:ar, gyerekbarat:gyerekbarat, allatbarat:allatbarat, kiadasiIdo:kiadasiIdo);
             return Ok(szuresI);
         }
        
