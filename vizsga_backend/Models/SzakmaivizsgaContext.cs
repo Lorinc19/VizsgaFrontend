@@ -17,7 +17,7 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
     {
     }
 
- 
+    public DbSet<ApplicationUser> applicationUsers { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

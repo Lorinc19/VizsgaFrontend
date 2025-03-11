@@ -1,14 +1,23 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Configuration;
 using System.Text;
 using vizsga_backend.Models;
 using vizsga_backend.Service;
+using vizsga_backend.Service.IAuthService;
 using vizsga_backend.Service.IEmailService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<SzakmaivizsgaContext>();
+
+builder.Services.AddScoped<IAuth, Auth>();
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<SzakmaivizsgaContext>()
+              .AddDefaultTokenProviders();
 
 
 
@@ -17,6 +26,14 @@ builder.Services.AddDbContext<SzakmaivizsgaContext>(option =>
     var connectionString = builder.Configuration.GetConnectionString("MySql");
     option.UseMySQL(connectionString);
 });
+
+
+
+
+
+
+
+
 
 var settingsSection = builder.Configuration.GetSection("AuthSettings:JwtOptions");
 
