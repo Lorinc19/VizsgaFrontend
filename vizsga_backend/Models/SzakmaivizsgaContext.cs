@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace vizsga_backend.Models;
 
-public partial class SzakmaivizsgaContext : DbContext
+public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
 {
     public SzakmaivizsgaContext()
     {
@@ -14,6 +16,19 @@ public partial class SzakmaivizsgaContext : DbContext
         : base(options)
     {
     }
+
+ 
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            string conn = "Server=localhost;Port=3306;Database=szakmaivizsga;user=root;password=";
+
+            optionsBuilder.UseMySQL(conn);
+        }
+    }
+
 
     public virtual DbSet<Felhasznalo> Felhasznalos { get; set; }
 
@@ -25,6 +40,9 @@ public partial class SzakmaivizsgaContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<IdentityUserLogin<string>>().HasNoKey();
+
+
         modelBuilder.Entity<Felhasznalo>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
