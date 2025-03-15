@@ -40,7 +40,14 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<IdentityUserLogin<string>>().HasNoKey();
+                base.OnModelCreating(modelBuilder);
+
+        
+        modelBuilder.Entity<IdentityUserRole<string>>(entity =>
+        {
+            entity.HasKey(e => new { e.UserId, e.RoleId });
+        });
+
 
 
         modelBuilder.Entity<Felhasznalo>(entity =>
