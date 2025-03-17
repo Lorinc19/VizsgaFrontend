@@ -7,7 +7,8 @@ namespace vizsga_backend.Service.IAuthService
     {
         Task<object> Regiszter(RegiszterRequestDto regiszterRequestDto);
         Task<object> Login(LoginRequestDto loginRequestDto);
-        
+
+        Task<object> AssignRole(string UserName, string roleName);
     
     }
 }

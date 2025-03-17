@@ -23,6 +23,24 @@ namespace vizsga_backend.Service
             this.tokenGernerator = tokenGernerator;
         }
 
+        public async Task<object> AssignRole(string UserName, string roleName)
+        {
+            var user = await szakmaivizsgaContext.applicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == UserName.ToUpper());
+
+            if (user != null)
+            {
+                if (!roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
+                {
+                    roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
+
+                }
+                await userManager.AddToRoleAsync(user, roleName);
+                return new { result = user, message = "Sikeres Hozzárendelés" };
+
+            }
+            return new { result = "", message = "Sikertelen hozzárendelés" };
+        }
+
         public async Task<object> Login(LoginRequestDto loginRequestDto)
         {
             var user = await szakmaivizsgaContext.applicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == loginRequestDto.UserName.ToUpper());

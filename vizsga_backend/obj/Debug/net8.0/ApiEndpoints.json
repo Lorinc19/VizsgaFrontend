@@ -1,8 +1,45 @@
 [
   {
     "ContainingType": "vizsga_backend.Controllers.AuthController",
+    "Method": "AddRole",
+    "RelativePath": "Auth/hozz\u00E1rendel\u00E9s",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga_backend.Controllers.AuthController",
+    "Method": "LoginUser",
+    "RelativePath": "Auth/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginRequestDto",
+        "Type": "vizsga_backend.Service.Dtoos.LoginRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga_backend.Controllers.AuthController",
     "Method": "AddNewUser",
-    "RelativePath": "Auth",
+    "RelativePath": "Auth/Regisztr\u00E1ci\u00F3",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

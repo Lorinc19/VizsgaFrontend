@@ -16,7 +16,7 @@ namespace vizsga_backend.Controllers
             this.auth = auth;
         }
 
-        [HttpPost]
+        [HttpPost("Regisztráció")]
         public async Task<ActionResult> AddNewUser(RegiszterRequestDto regiszterRequestDto)
         {
             var user = auth.Regiszter(regiszterRequestDto);
@@ -27,6 +27,32 @@ namespace vizsga_backend.Controllers
                 return StatusCode(201, user);
             }
             return BadRequest(new { result = "", message = "Siekrtelen regisztráció." });
+        }
+
+
+        [HttpPost("Login")]
+        public async Task<ActionResult> LoginUser (LoginRequestDto loginRequestDto)
+        {
+            var res = await auth.Login(loginRequestDto);
+            if (res != null)
+            {
+                return StatusCode(200, res);
+
+            }
+            return NotFound(res);
+        }
+
+        [HttpPost("hozzárendelés")]
+        public async Task<ActionResult> AddRole(string UserName, string roleName)
+        {
+            var res = await auth.AssignRole(UserName, roleName);
+
+            if (res != null)
+            {
+                return Ok(res);
+            }
+
+            return BadRequest(res);
         }
     }
 }
