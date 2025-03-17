@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import './App.css';
+import './Profil.css';
 
 
 export default function LoginRegister() {

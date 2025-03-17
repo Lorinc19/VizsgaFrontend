@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import './App.css'; // Importáljuk a CSS fájlt
+import './App.css';
+import './Profil.css'; // Importáljuk a CSS fájlt
 import { Link } from 'react-router-dom';
 
 export default function Profil({ id }) {

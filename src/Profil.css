@@ -1,0 +1,139 @@
+/* profil*/
+
+
+.profil-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh; /* A teljes képernyőt lefedi */
+  }
+  
+  .profil-box {
+    background-color: #fff;
+    padding: 20px;
+    
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #000; /* Fekete keret */
+    max-width: 90%; /* Maximális szélesség, hogy ne legyen túl széles mobilon */
+    width: 400px; /* Fix szélesség a nagyobb képernyők számára */
+    box-sizing: border-box; /* A padding nem növeli a szélességet */
+  }
+  
+  h1, p {
+    margin: 10px 0;
+    font-family: Arial, sans-serif; /* Választható betűtípus */
+  }
+  
+  @media (max-width: 768px) {
+    .profil-box {
+      width: 80%; /* Mobilon kisebb lesz */
+    }
+  }
+  
+  
+  #alma,button::after{
+    padding: 10px 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    color: red;
+    background-color: transparent;
+    position: relative;
+  }
+  
+  #alma::after{
+    --move1: inset(50% 50% 50% 50%);
+    --move2: inset(31% 0 40% 0);
+    --move3: inset(39% 0 15% 0);
+    --move4: inset(45% 0 40% 0);
+    --move5: inset(45% 0 6% 0);
+    --move6: inset(14% 0 61% 0);
+    clip-path: var(--move1);
+    content: 'Hirdetéseim';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+  }
+  
+  
+  #alma:hover::after{
+    animation: glitch_4011 1s;
+    text-shadow: 10 10px 10px black;
+    animation-timing-function: steps(2, end);
+    text-shadow: -3px -3px 0px red, 3px 3px 0px white;
+    background-color: transparent;
+    border: 3px solid red; 
+  }
+  
+  #alma:hover{
+    text-shadow: -1px -1px 0px red, 1px 1px 0px red;
+  }
+  
+  #alma:hover{
+    background-color: transparent;
+    border: 1px solid red;
+    box-shadow: 0px 10px 10px -10px red;
+  }
+  
+  @keyframes glitch_4011 {
+    0% {
+      clip-path: var(--move1);
+      transform: translate(0px,-10px);
+    }
+  
+    10% {
+      clip-path: var(--move2);
+      transform: translate(-10px,10px);
+    }
+  
+    20% {
+      clip-path: var(--move3);
+      transform: translate(10px,0px);
+    }
+  
+    30% {
+      clip-path: var(--move4);
+      transform: translate(-10px,10px);
+    }
+  
+    40% {
+      clip-path: var(--move5);
+      transform: translate(10px,-10px);
+    }
+  
+    50% {
+      clip-path: var(--move6);
+      transform: translate(-10px,10px);
+    }
+  
+    60% {
+      clip-path: var(--move1);
+      transform: translate(10px,-10px);
+    }
+  
+    70% {
+      clip-path: var(--move3);
+      transform: translate(-10px,10px);
+    }
+  
+    80% {
+      clip-path: var(--move2);
+      transform: translate(10px,-10px);
+    }
+  
+    90% {
+      clip-path: var(--move4);
+      transform: translate(-10px,10px);
+    }
+  
+    100% {
+      clip-path: var(--move1);
+      transform: translate(0);
+    }
+  
+  }
+  
