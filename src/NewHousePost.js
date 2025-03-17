@@ -3,21 +3,47 @@ import axios from "axios";
 import "./App.css";
 
 export default function NewHousePost() {
+  // localStorage-ból userId, azt is küldeni kell
   const [formData, setFormData] = useState({
-    Hirdetesnev: "",
-    Leiras: "",
-    Elerhetoseg: "",
-    Orszag : "",
-    Varmegye: "",
-    Telepules: "",
-    Utcahazszam: "",
-    Tipus: "",
-    Ar: "",
-    Gyerekbarat: false,
-    Allatbarat: false,
-    Kiadasiidotartam: "",
-    KepURL: null,
+    
+  felhasznaloID: 0,
+  leiras: " ",
+  elerhetoseg: " ",
+  hirdetesnev: " ",
+  kepURL: " ",
+  hirdetesAdatok: {
+    orszag: " ",
+    varmegye: " ",
+    telepules: " ",
+    utcahazszam: " ",
+    tipus: " ",
+    ar: 0,
+    gyerekbarat: false,
+    allatbarat: false,
+    kiadasiidotartam: " ",
+  }
   });
+
+  /*
+  {
+  "felhasznaloID": 0,
+  "leiras": "string",
+  "elerhetoseg": "string",
+  "hirdetesnev": "string",
+  "kepURL": "string",
+  "hirdetesAdatok": {
+    "orszag": "string",
+    "varmegye": "string",
+    "telepules": "string",
+    "utcahazszam": "string",
+    "tipus": "string",
+    "ar": 0,
+    "gyerekbarat": true,
+    "allatbarat": true,
+    "kiadasiidotartam": "string"
+  }
+}
+  */
 
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
@@ -26,25 +52,25 @@ export default function NewHousePost() {
     const { name, value, type, checked, files } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "file" ? files[0] : type === "checkbox" ? checked : value,
+      [name]: type === "file" ? files : type === "checkbox" ? checked : value,
     });
   };
 
   const validate = () => {
     let errors = {};
 
-    if (!formData.Hirdetesnev.trim()) errors.Hirdetesnev = "Hirdetés név szükséges!";
-    if (!formData.Leiras.trim()) errors.Leiras = "A leírás szükséges!";
-    if (!formData.Elerhetoseg || !/^\d{11}$/.test(formData.Elerhetoseg)) {
-      errors.Elerhetoseg = "Érvényes telefonszámot adj meg (11 számjegy).";
+    if (!formData.hirdetesnev.trim()) errors.hirdetesnev = "Hirdetés név szükséges!";
+    if (!formData.leiras.trim()) errors.leiras = "A leírás szükséges!";
+    if (!formData.elerhetoseg || !/^\d{11}$/.test(formData.elerhetoseg)) {
+      errors.elerhetoseg = "Érvényes telefonszámot adj meg (11 számjegy).";
     }
-    if (!formData.Orszag.trim()) errors.Orszag = "Ország szükséges!";
-    if (!formData.Varmegye.trim()) errors.Varmegye = "Vármegye szükséges!";
-    if (!formData.Telepules.trim()) errors.Telepules = "Település szükséges!";
-    if (!formData.Utcahazszam.trim()) errors.Utcahazszam = "Utca és házszám szükséges!";
-    if (!formData.Tipus.trim()) errors.Tipus = "Típus szükséges! (Pl: lakás, ház)";
-    if (!formData.Ar || isNaN(formData.price)) errors.Ar = "Helyes árat kell megadni!";
-    if (!formData.KepURL) errors.KepURL = "Kép feltöltése kötelező!";
+    if (!formData.orszag.trim()) errors.orszag = "Ország szükséges!";
+    if (!formData.varmegye.trim()) errors.varmegye = "Vármegye szükséges!";
+    if (!formData.telepules.trim()) errors.telepules = "Település szükséges!";
+    if (!formData.utcahazszam.trim()) errors.utcahazszam = "Utca és házszám szükséges!";
+    if (!formData.tipus.trim()) errors.tipus = "Típus szükséges! (Pl: lakás, ház)";
+    if (!formData.ar) errors.ar = "Helyes árat kell megadni!";
+    if (!formData.kepURL) errors.kepURL = "Kép feltöltése kötelező!";
     
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -55,19 +81,19 @@ export default function NewHousePost() {
     if (!validate()) return;
 
     const form = new FormData();
-    form.append("Hirdetesnev", formData.Hirdetesnev);
-    form.append("Leiras", formData.Leiras);
-    form.append("Elerhetoseg", formData.Elerhetoseg);
-    form.append("Orszag", formData.Orszag);
-    form.append("Varmegye", formData.Varmegye);
-    form.append("Telepules", formData.Telepules);
-    form.append("Utcahazszam", formData.Utcahazszam);
-    form.append("Tipus", formData.Tipus);
-    form.append("Ar", formData.Ar);
-    form.append("Gyerekbarat", formData.Gyerekbarat);
-    form.append("Allatbarat", formData.Allatbarat);
-    form.append("Kiadasidotartam", formData.Kiadasiidotartam);
-    form.append("KepURL", formData.KepURL); // Kép feltöltése
+    form.append("hirdetesnev", formData.hirdetesnev);
+    form.append("leiras", formData.leiras);
+    form.append("elerhetoseg", formData.elerhetoseg);
+    form.append("orszag", formData.orszag);
+    form.append("varmegye", formData.varmegye);
+    form.append("telepules", formData.telepules);
+    form.append("utcahazszam", formData.utcahazszam);
+    form.append("tipus", formData.tipus);
+    form.append("ar", formData.ar);
+    form.append("gyerekbarat", formData.gyerekbarat);
+    form.append("allatbarat", formData.allatbarat);
+    form.append("kiadasiidotartam", formData.kiadasiidotartam);
+    form.append("kepURL", formData.kepURL); // Kép feltöltése
 
     try {
       const response = await axios.post("https://localhost:7007/Hirdetés", form, {
@@ -88,134 +114,146 @@ export default function NewHousePost() {
         <div className="input-box">
           <input
             type="text"
-            name="Hirdetesnev"
+            name="hirdetesnev"
             required
-            value={formData.Hirdetesnev}
+            value={formData.hirdetesnev}
             onChange={handleChange}
           />
           <label>Hirdetés név</label>
-          {errors.Hirdetesnev && <p className="error-text">{errors.Hirdetesnev}</p>}
+          {errors.hirdetesnev && <p className="error-text">{errors.hirdetesnev}</p>}
         </div>
 
         <div className="input-box">
           <textarea
-            name="Leiras"
+            name="leiras"
             required
-            value={formData.Leiras}
+            value={formData.leiras}
             onChange={handleChange}
           />
           <label>Leírás</label>
-          {errors.Leiras && <p className="error-text">{errors.Leiras}</p>}
+          {errors.leiras && <p className="error-text">{errors.leiras}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="Elerhetoseg"
-            value={formData.Elerhetoseg}
+            name="elerhetoseg"
+            value={formData.elerhetoseg}
             onChange={handleChange}
             placeholder="Telefonszám"
             required
           />
           <label>Telefonszám</label>
-          {errors.Elerhetoseg && <p className="error-text">{errors.Elerhetoseg}</p>}
+          {errors.elerhetoseg && <p className="error-text">{errors.elerhetoseg}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="Orszag"
-            value={formData.Orszag}
+            name="orszag"
+            value={formData.hirdetesAdatok.orszag}
             onChange={handleChange}
             placeholder="Ország"
             required
           />
           <label>Ország</label>
-          {errors.Orszag && <p className="error-text">{errors.Orszag}</p>}
+          {errors.orszag && <p className="error-text">{errors.orszag}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="Varmegye"
-            value={formData.Varmegye}
+            name="varmegye"
+            value={formData.hirdetesAdatok.varmegye}
             onChange={handleChange}
             placeholder="Vármegye"
             required
           />
           <label>Vármegye</label>
-          {errors.Varmegye && <p className="error-text">{errors.Varmegye}</p>}
+          {errors.varmegye && <p className="error-text">{errors.varmegye}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="Telepules"
-            value={formData.Telepules}
+            name="telepules"
+            value={formData.hirdetesAdatok.telepules}
             onChange={handleChange}
             placeholder="Település"
             required
           />
           <label>Település</label>
-          {errors.Telepules && <p className="error-text">{errors.Telepules}</p>}
+          {errors.telepules && <p className="error-text">{errors.telepules}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="Utcahazszam"
-            value={formData.Utcahazszam}
+            name="utcahazszam"
+            value={formData.hirdetesAdatok.utcahazszam}
             onChange={handleChange}
             placeholder="Utca és házszám"
             required
           />
           <label>Utca és házszám</label>
-          {errors.Utcahazszam && <p className="error-text">{errors.Utcahazszam}</p>}
+          {errors.utcahazszam && <p className="error-text">{errors.utcahazszam}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="text"
-            name="Tipus"
-            value={formData.Tipus}
+            name="tipus"
+            value={formData.hirdetesAdatok.tipus}
             onChange={handleChange}
             placeholder="Típus"
             required
           />
           <label>Típus</label>
-          {errors.Tipus && <p className="error-text">{errors.Tipus}</p>}
+          {errors.tipus && <p className="error-text">{errors.tipus}</p>}
         </div>
 
         <div className="input-box">
           <input
-            type="decimal"
-            name="Ar"
-            value={formData.Ar}
+            type="number"
+            name="ar"
+            value={formData.hirdetesAdatok.ar}
             onChange={handleChange}
             placeholder="Ár"
             required
           />
           <label>Ár</label>
-          {errors.Ar && <p className="error-text">{errors.Ar}</p>}
+          {errors.ar && <p className="error-text">{errors.ar}</p>}
         </div>
 
         <div className="input-box">
           <input
             type="file"
-            name="KepURL"
-            accept="KepURL/*"
+            name="kepURL"
+            accept="kepURL/*"
             onChange={handleChange}
             required
           />
           <label>Kép</label>
-          {errors.KepURL && <p className="error-text">{errors.KepURL}</p>}
+          {errors.kepURL && <p className="error-text">{errors.kepURL}</p>}
+        </div>
+
+        <div className="input-box">
+        <input
+            type="text"
+            name="kiadasiidotartam"
+            value={formData.hirdetesAdatok.Kiadasiidotartam}
+            onChange={handleChange}
+            placeholder="Kiadasi idotartam"
+            required
+          />
+          <label>Kiadási időtartam</label>
         </div>
 
         <div className="input-box">
           <input
             type="checkbox"
             name="gyerekbarat"
-            checked={formData.Gyerekbarat}
+            checked={formData.hirdetesAdatok.gyerekbarat}
             onChange={handleChange}
           />
           <label>Gyerek barát</label>
@@ -224,23 +262,14 @@ export default function NewHousePost() {
         <div className="input-box">
           <input
             type="checkbox"
-            name="Allatbarat"
-            checked={formData.Allatbarat}
+            name="allatbarat"
+            checked={formData.hirdetesAdatok.allatbarat}
             onChange={handleChange}
           />
           <label>Állatbarát</label>
         </div>
 
-        <div className="input-box">
-          <input
-            type="text"
-            name="Kiadasidotartam"
-            value={formData.Kiadasiidotartam}
-            onChange={handleChange}
-            placeholder="Kiadási időtartam"
-          />
-          <label>Kiadási időtartam</label>
-        </div>
+
 
         <button type="submit" className="btn">Hirdetés felvétel</button>
       </form>

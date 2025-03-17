@@ -1,21 +1,93 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./App.css";
 import "./Modal.css";
 import { Links } from 'react-router-dom';
 
 export default function Map() {
-  return (
+  // Állapotok a beviteli mezők tárolására
+  const [orszag, setOrszag] = useState('');
+  const [varmegye, setVarmegye] = useState('');
+  const [telepules, setTelepules] = useState('');
+  const [utcahazszam, setUtcahazszam] = useState('');
+  const [mapUrl, setMapUrl] = useState(''); // Térkép URL-je
+
+  // Űrlap elküldésekor a Google Maps URL generálása
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Ne töltsük újra az oldalt
+
+    // A cím összefűzése
+    const address = `${utcahazszam} ${telepules}, ${varmegye}, ${orszag}`;
     
+    // A cím kódolása URL-formátumba
+    const encodedAddress = encodeURIComponent(address);
+    
+    // Google Maps Embed API link létrehozása
+    const generatedMapUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${encodedAddress}`;
+
+    // Az URL beállítása az iframe src attribútumhoz
+    setMapUrl(generatedMapUrl);
+  };
+
+  return (
     <div>
-<iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2653.266957184086!2d20.615783376308148!3d48.3169482712639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473f7098749f634d%3A0xcf7b5a5d609c05a4!2sKurity%C3%A1n%2C%20Kossuth%20Lajos%20%C3%BAt%20202%2C%203732!5e0!3m2!1shu!2shu!4v1739953824353!5m2!1shu!2shu"
-  class="google-map"
-  allowfullscreen=""
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
+      {/* Form inputok a cím megadásához */}
+      <form onSubmit={handleSubmit}>
+        <label>
+          Ország:
+          <input
+            type="text"
+            value={orszag}
+            onChange={(e) => setOrszag(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Vármegye:
+          <input
+            type="text"
+            value={varmegye}
+            onChange={(e) => setVarmegye(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Település:
+          <input
+            type="text"
+            value={telepules}
+            onChange={(e) => setTelepules(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Utcaházszám:
+          <input
+            type="text"
+            value={utcahazszam}
+            onChange={(e) => setUtcahazszam(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <button type="submit">Térkép Megjelenítése</button>
+      </form>
 
-
+      {/* Dinamikusan frissített iframe, ha van Google Maps URL */}
+      {mapUrl && (
+        <div>
+          <iframe
+            src={mapUrl}
+            className="google-map"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      )}
     </div>
-  )
+  );
 }
+

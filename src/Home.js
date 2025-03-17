@@ -3,6 +3,7 @@ import Card from "./Card";
 import Modal from "./Modal";
 import Naptar from "./Naptarproba";
 import Footer from "./Lablec";
+import axios from "axios";
 
 export default function Home() {
   const [database, setdatabase] = useState([]);
@@ -14,9 +15,9 @@ export default function Home() {
   }, []);
 
   function Get() {
-    fetch("https://localhost:7007/Hirdetés/Hirdetes")
-      .then((response) => response.json())
-      .then((data) => setdatabase(data))
+    axios.get("https://localhost:7007/Hirdetés/Hirdetes")
+      
+      .then((data) => setdatabase(data.data))
       .catch((error) => console.error("Hiba: ", error));
   }
 
