@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "vizsga_backend.Controllers.AuthController",
+    "Method": "AddNewUser",
+    "RelativePath": "Auth",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "regiszterRequestDto",
+        "Type": "vizsga_backend.Service.Dtoos.RegiszterRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "vizsga_backend.Controllers.EmailController",
     "Method": "SendNewMail",
     "RelativePath": "Email",
@@ -123,11 +139,6 @@
       },
       {
         "Name": "telepules",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "utcanev",
         "Type": "System.String",
         "IsRequired": false
       },

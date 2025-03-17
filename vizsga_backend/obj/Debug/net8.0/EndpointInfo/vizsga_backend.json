@@ -5,6 +5,37 @@
     "version": "1.0"
   },
   "paths": {
+    "/Auth": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegiszterRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegiszterRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegiszterRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Email": {
       "post": {
         "tags": [
@@ -184,42 +215,42 @@
         }
       }
     },
-    "/Szures": {
+    "/SzuresController/Szures": {
       "get": {
         "tags": [
           "Szures"
         ],
         "parameters": [
           {
-            "name": "Orszag",
+            "name": "orszag",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "Varmegye",
+            "name": "varmegye",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "Telepules",
+            "name": "telepules",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "Tipus",
+            "name": "tipus",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "MinAr",
+            "name": "ar",
             "in": "query",
             "schema": {
               "type": "number",
@@ -227,57 +258,30 @@
             }
           },
           {
-            "name": "MaxAr",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "Gyerekbarat",
+            "name": "gyerekbarat",
             "in": "query",
             "schema": {
               "type": "boolean"
             }
           },
           {
-            "name": "Allatbarat",
+            "name": "allatbarat",
             "in": "query",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "kiadasiIdo",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Hirdete"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Hirdete"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Hirdete"
-                  }
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
@@ -530,9 +534,36 @@
           "kiadasiidotartam": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegiszterRequestDto": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "nullable": true
           },
-          "hirdetes": {
-            "$ref": "#/components/schemas/Hirdete"
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "keresztnev": {
+            "type": "string",
+            "nullable": true
+          },
+          "vezeteknev": {
+            "type": "string",
+            "nullable": true
+          },
+          "kor": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

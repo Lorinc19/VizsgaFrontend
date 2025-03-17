@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Configuration;
@@ -16,9 +17,13 @@ builder.Services.AddDbContext<SzakmaivizsgaContext>();
 
 builder.Services.AddScoped<IAuth, Auth>();
 
+builder.Services.AddScoped<ITokenGernerator, TokenGenerator>();
+
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<SzakmaivizsgaContext>()
               .AddDefaultTokenProviders();
 
+
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("AuthSettings:JwtOptions"));
 
 
 builder.Services.AddDbContext<SzakmaivizsgaContext>(option =>

@@ -1,9 +1,13 @@
-﻿using vizsga_backend.Service.Dtoos;
+﻿using Microsoft.AspNetCore.Identity.Data;
+using vizsga_backend.Service.Dtoos;
 
 namespace vizsga_backend.Service.IAuthService
 {
     public interface IAuth
     {
-        Task<object> Regiszter(RegiszterRequsetDto regiszterRequsetDto);
+        Task<object> Regiszter(RegiszterRequestDto regiszterRequestDto);
+        Task<object> Login(LoginRequestDto loginRequestDto);
+        
+    
     }
 }
