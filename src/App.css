@@ -913,7 +913,8 @@ button.btn:hover {
   width: 280px;
   max-width: 100%;
   padding: 15px;
-  background-color: #fff;
+  color: white;
+  background-color: #b31818ae;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -934,10 +935,14 @@ button.btn:hover {
 #honap-ev-cim button {
   background: none;
   border: none;
+  border-radius: 30px;
   font-size: 18px;
   cursor: pointer;
   padding: 5px;
   transition: transform 0.2s ease-in-out;
+  color: #000;
+  font-weight: bold;
+  background-color: white;
 }
 
 #honap-ev-cim button:hover {
@@ -954,10 +959,14 @@ button.btn:hover {
 
 .het-nap {
   font-weight: bold;
+  color: rgb(255, 255, 255);
+  
+
 }
 
 .nap {
   padding: 8px;
+  font-weight: bold;
   cursor: default;
   text-align: center;
   font-size: 14px;
@@ -966,12 +975,13 @@ button.btn:hover {
   align-items: center;
   min-width: 30px;
   min-height: 30px;
+  color: #ffffff;
   aspect-ratio: 1 / 1;
 }
 
 .nap.ma {
 
-  background: #228B22;
+  background: #8a0d0d;
   color: white;
 }
 
@@ -980,7 +990,7 @@ button.btn:hover {
 }
 
 .nap:hover {
-  background-color: #e0e0e0;
+  background-color: #a70303a9;
 }
 
 .napok {
