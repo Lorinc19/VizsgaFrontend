@@ -23,7 +23,7 @@ export default function Navbar() {
         <li>
           <Link
             className={location.pathname === "/belepes" ? "active" : ""} to="/belepes">
-            Profil
+            Bejelentkezés/Regisztráció
           </Link>
           </li>
           <li>
