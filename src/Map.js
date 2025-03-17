@@ -1,5 +1,6 @@
 import React from 'react'
 import "./App.css";
+import "./Modal.css";
 import { Links } from 'react-router-dom';
 
 export default function Map() {

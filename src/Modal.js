@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./App.css";  // Az App.css importálása
+import "./App.css"; 
+import "./Modal.css"; // Az .css importálása
 
 export default function Modal({ data, onClose, onCloseOverlay }) {
   // Képindex állapot (hogy melyik kép legyen aktív a modálban)
