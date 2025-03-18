@@ -15,6 +15,7 @@ namespace vizsga_backend.Controllers
         {
             this.szakmaivizsgaContext = szakmaivizsgaContext;
         }
+        //ID alapon lekérdezés a userekről
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Aspnetuser>> GetByID(string id)

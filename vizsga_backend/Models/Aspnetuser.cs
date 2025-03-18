@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace vizsga_backend.Models;
 
+
+
 public partial class Aspnetuser
 {
     public string Id { get; set; } = null!;
