@@ -35,7 +35,7 @@ namespace vizsga_backend.Controllers
                 Leiras = hirdetesDto.Leiras,
                 Elerhetoseg = hirdetesDto.Elerhetoseg,
                 Hirdetesnev = hirdetesDto.Hirdetesnev,
-                KepURL = hirdetesDto.KepURL
+                KepUrl = hirdetesDto.KepURL
             };
 
             szakmaivizsgaContext.Hirdetes.Add(hird);

@@ -13,6 +13,12 @@ using vizsga_backend.Service.IEmailService;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<SzakmaivizsgaContext>(option =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("MySql");
+    option.UseMySQL(connectionString);
+});
+
 builder.Services.AddDbContext<SzakmaivizsgaContext>();
 
 builder.Services.AddScoped<IAuth, Auth>();
@@ -26,11 +32,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFramework
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("AuthSettings:JwtOptions"));
 
 
-builder.Services.AddDbContext<SzakmaivizsgaContext>(option =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("MySql");
-    option.UseMySQL(connectionString);
-});
+
+
+
+
 
 
 

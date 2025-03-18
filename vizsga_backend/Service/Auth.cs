@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 using vizsga_backend.Models;
 using vizsga_backend.Service.Dtoos;
 using vizsga_backend.Service.IAuthService;
@@ -60,7 +59,7 @@ namespace vizsga_backend.Service
 
         public async Task<object> Regiszter(RegiszterRequestDto regiszterRequestDto)
         {
-            ApplicationUser user = new()
+            var user = new ApplicationUser()
             {
                 UserName = regiszterRequestDto.UserName,
                 Email = regiszterRequestDto.Email,
@@ -70,7 +69,7 @@ namespace vizsga_backend.Service
 
             };
 
-            var result = await userManager.CreateAsync(user,    regiszterRequestDto.Password);
+            var result = await userManager.CreateAsync(user,regiszterRequestDto.Password);
 
             if (result.Succeeded)
             {

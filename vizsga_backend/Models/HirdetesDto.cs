@@ -4,7 +4,7 @@
     {
        
         
-            public int FelhasznaloID { get; set; }
+            public string FelhasznaloID { get; set; }
             public string Leiras { get; set; }
             public string Elerhetoseg { get; set; }
             public string Hirdetesnev { get; set; }

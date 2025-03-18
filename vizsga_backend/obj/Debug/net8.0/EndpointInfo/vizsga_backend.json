@@ -126,94 +126,6 @@
         }
       }
     },
-    "/Felhasznaló/FElhasznalo": {
-      "post": {
-        "tags": [
-          "Felhasznalo"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreatedFelhasznaloDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreatedFelhasznaloDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreatedFelhasznaloDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Felhasznalo"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Felhasznalo"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Felhasznalo"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/Felhasznaló/{id}": {
-      "get": {
-        "tags": [
-          "Felhasznalo"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Felhasznalo"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Felhasznalo"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Felhasznalo"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/Hirdetés/Hirdetes": {
       "get": {
         "tags": [
@@ -344,14 +256,57 @@
           }
         }
       }
+    },
+    "/User/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aspnetuser"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aspnetuser"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aspnetuser"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "CreatedFelhasznaloDto": {
+      "Aspnetuser": {
         "type": "object",
         "properties": {
-          "csaladnev": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "keresztnev": {
             "type": "string",
             "nullable": true
           },
@@ -359,22 +314,69 @@
             "type": "string",
             "nullable": true
           },
-          "elado": {
-            "type": "boolean"
-          },
-          "berlo": {
-            "type": "boolean"
-          },
           "kor": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedUserName": {
+            "type": "string",
+            "nullable": true
           },
           "email": {
             "type": "string",
             "nullable": true
           },
-          "jelszo": {
+          "normalizedEmail": {
             "type": "string",
+            "nullable": true
+          },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
+          "passwordHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "securityStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "concurrencyStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberConfirmed": {
+            "type": "boolean"
+          },
+          "twoFactorEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lockoutEnabled": {
+            "type": "boolean"
+          },
+          "accessFailedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hirdetes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Hirdete"
+            },
             "nullable": true
           }
         },
@@ -398,52 +400,6 @@
         },
         "additionalProperties": false
       },
-      "Felhasznalo": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "csaladnev": {
-            "type": "string",
-            "nullable": true
-          },
-          "vezeteknev": {
-            "type": "string",
-            "nullable": true
-          },
-          "elado": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "berlo": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "kor": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "jelszo": {
-            "type": "string",
-            "nullable": true
-          },
-          "hirdetes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Hirdete"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "Hirdete": {
         "type": "object",
         "properties": {
@@ -452,8 +408,7 @@
             "format": "int32"
           },
           "felhasznaloId": {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "nullable": true
           },
           "leiras": {
@@ -468,12 +423,12 @@
             "type": "string",
             "nullable": true
           },
-          "kepURL": {
+          "kepUrl": {
             "type": "string",
             "nullable": true
           },
           "felhasznalo": {
-            "$ref": "#/components/schemas/Felhasznalo"
+            "$ref": "#/components/schemas/Aspnetuser"
           },
           "hirdetesadatok": {
             "$ref": "#/components/schemas/Hirdetesadatok"
@@ -525,8 +480,8 @@
         "type": "object",
         "properties": {
           "felhasznaloID": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "leiras": {
             "type": "string",
@@ -593,6 +548,9 @@
           "kiadasiidotartam": {
             "type": "string",
             "nullable": true
+          },
+          "hirdetes": {
+            "$ref": "#/components/schemas/Hirdete"
           }
         },
         "additionalProperties": false
@@ -618,10 +576,6 @@
             "type": "string",
             "nullable": true
           },
-          "password": {
-            "type": "string",
-            "nullable": true
-          },
           "email": {
             "type": "string",
             "nullable": true
@@ -637,6 +591,10 @@
           "kor": {
             "type": "integer",
             "format": "int32"
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
