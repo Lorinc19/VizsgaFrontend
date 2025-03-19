@@ -6,20 +6,37 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Configuration;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using vizsga_backend.Models;
 using vizsga_backend.Service;
 using vizsga_backend.Service.IAuthService;
 using vizsga_backend.Service.IEmailService;
 
 var builder = WebApplication.CreateBuilder(args);
-
+/*
 builder.Services.AddDbContext<SzakmaivizsgaContext>(option =>
 {
     var connectionString = builder.Configuration.GetConnectionString("MySql");
     option.UseMySQL(connectionString);
 });
+*/
+builder.Services.AddDbContext<SzakmaivizsgaContext>(options =>
+    options.UseMySQL(builder.Configuration.GetConnectionString("MySql")));
+
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    });
+
+
+
 
 builder.Services.AddDbContext<SzakmaivizsgaContext>();
+
 
 builder.Services.AddScoped<IAuth, Auth>();
 

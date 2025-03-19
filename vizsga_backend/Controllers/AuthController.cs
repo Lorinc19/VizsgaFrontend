@@ -19,7 +19,7 @@ namespace vizsga_backend.Controllers
         [HttpPost("Regisztráció")]
         public async Task<ActionResult> AddNewUser(RegiszterRequestDto regiszterRequestDto)
         {
-            var user = auth.Regiszter(regiszterRequestDto);
+            var user = await auth.Regiszter(regiszterRequestDto);
 
 
             if (user != null)
