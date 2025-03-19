@@ -3,6 +3,7 @@ import './App.css';
 import './Profil.css'; // Importáljuk a CSS fájlt
 import { Link } from 'react-router-dom';
 
+
 export default function Profil({ id }) {
     const [data, setData] = useState([]);
 

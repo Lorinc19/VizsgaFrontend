@@ -1,0 +1,72 @@
+.filter-container {
+    width: 250px; /* Panel szélességét kisebbre állítjuk */
+    padding: 10px;
+    background-color: #7f0000dd;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+  }
+  
+  .filter-container h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-decoration:underline;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .input-group input,
+  .input-group select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .input-group input[type="number"] {
+    -webkit-appearance: none; /* Eltüntetjük a növekvő és csökkenő nyilakat a szám inputban */
+    -moz-appearance: textfield;
+  }
+  
+  .input-group input[type="checkbox"] {
+    margin-top: 8px;
+  }
+  
+  .input-group input[type="range"] {
+    width: 100%;
+  }
+  
+
+  .input-group {
+    display: flex;
+    justify-content: center; /* Ez középre helyezi a gombot vízszintesen */
+    margin-top: 10px; /* Igény szerint állítható */
+  }
+  
+  .input-group button {
+    width: 50%;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    cursor: pointer;
+    font-weight: bold;
+    transform: scale(1.2);
+    border-radius: 30px;
+    
+  }
+  
+  .input-group button:hover {
+    background-color: #00000071;
+  }
