@@ -62,5 +62,36 @@ namespace vizsga_backend.Controllers
         }
 
 
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var os = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(h => h.Id == id);
+
+            if (os != null)
+            {
+                szakmaivizsgaContext.Hirdetes.Remove(os);
+                await szakmaivizsgaContext.SaveChangesAsync();
+                return Ok(new { message = "Sikeres törlés!" });
+            }
+
+            return NotFound(new { message = "Nincs ilyen találat." });
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var hirdetes = await szakmaivizsgaContext.Hirdetes
+                .FirstOrDefaultAsync(h => h.Id == id);
+
+            if (hirdetes == null)
+            {
+                return NotFound(new { message = "Nincs ilyen találat." });
+            }
+
+            return Ok(hirdetes);
+        }
+
+
     }
 }

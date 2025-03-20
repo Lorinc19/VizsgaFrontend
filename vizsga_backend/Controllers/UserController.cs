@@ -34,5 +34,20 @@ namespace vizsga_backend.Controllers
         {
             return Ok(await szakmaivizsgaContext.Aspnetusers.ToListAsync());
         }
+
+        [HttpDelete("{id}/UserAdmin")]
+        public async Task<ActionResult> Delete(string id)
+        {
+            var os = await szakmaivizsgaContext.Aspnetusers.FirstOrDefaultAsync(o => o.Id == id);
+
+            if (os != null)
+            {
+                szakmaivizsgaContext.Aspnetusers.Remove(os);
+                await szakmaivizsgaContext.SaveChangesAsync();
+                return Ok(new { message = "Sikeres törlés!" });
+            }
+
+            return NotFound(new { message = "Nincs ilyen találat." });
+        }
     }
 }
