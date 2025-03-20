@@ -84,7 +84,7 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
             entity.HasIndex(e => e.FelhasznaloId, "hirdetes_ibfk_1");
 
             entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
+                .HasColumnType("char(36)")
                 .HasColumnName("ID");
             entity.Property(e => e.Elerhetoseg)
                 .HasMaxLength(100)
@@ -113,7 +113,7 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
             entity.ToTable("hirdetesadatok");
 
             entity.Property(e => e.HirdetesId)
-                .HasColumnType("int(11)")
+                .HasColumnType("char(36)")
                 .HasColumnName("HirdetesID");
             entity.Property(e => e.Allatbarat).HasDefaultValueSql("'0'");
             entity.Property(e => e.Ar)

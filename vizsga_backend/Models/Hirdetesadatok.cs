@@ -5,7 +5,7 @@ namespace vizsga_backend.Models;
 
 public partial class Hirdetesadatok
 {
-    public int HirdetesId { get; set; }
+    public Guid HirdetesId { get; set; }
 
     public string Orszag { get; set; } = null!;
 

@@ -64,7 +64,7 @@ namespace vizsga_backend.Controllers
 
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(Guid id)
         {
             var os = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(h => h.Id == id);
 
@@ -79,17 +79,16 @@ namespace vizsga_backend.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult<Hirdete>> GetByyID(Guid id)
         {
-            var hirdetes = await szakmaivizsgaContext.Hirdetes
-                .FirstOrDefaultAsync(h => h.Id == id);
+            var os = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(os => os.Id == id);
 
-            if (hirdetes == null)
+            if (os != null)
             {
-                return NotFound(new { message = "Nincs ilyen találat." });
+                return Ok(os);
             }
 
-            return Ok(hirdetes);
+            return NotFound();
         }
 
 

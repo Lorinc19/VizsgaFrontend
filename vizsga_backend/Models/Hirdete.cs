@@ -5,7 +5,7 @@ namespace vizsga_backend.Models;
 
 public partial class Hirdete
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     public string? FelhasznaloId { get; set; }
 
