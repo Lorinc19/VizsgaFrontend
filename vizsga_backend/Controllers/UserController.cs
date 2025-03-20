@@ -29,5 +29,10 @@ namespace vizsga_backend.Controllers
 
             return NotFound();
         }
+        [HttpGet("Adminfelhaszn")]
+        public async Task<ActionResult<Aspnetuser>> AdminUserGet()
+        {
+            return Ok(await szakmaivizsgaContext.Aspnetusers.ToListAsync());
+        }
     }
 }
