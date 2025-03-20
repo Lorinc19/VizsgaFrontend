@@ -9,6 +9,7 @@ import Naptarproba from './Naptarproba';
 import Lablec from './Lablec';
 import Profil from './Profil';
 import Hirdetes from './Hirdetes';
+import Admin from './Admin';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/map' element={<Map/>}/>
           <Route path='/profil' element={<Profil/>}/>
           <Route path='/hirdetes' element={<Hirdetes/>}/>
+          <Route path='/admin' element={<Admin/>}/>
 
         </Routes>
 
