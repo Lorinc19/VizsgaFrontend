@@ -4,7 +4,9 @@ export default function Card(props) {
 
   return (
     <div>
-    <div className="card" onClick={props.onClick} >
+    <div className="card" onClick={function () {
+      props.handleCardClick(props.felhasznalo)
+    }} >
       {/* Ha a modál nem nyitva, akkor látszik a kártya */}
 
           <div className="image-box" >
