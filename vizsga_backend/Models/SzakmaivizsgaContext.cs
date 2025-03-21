@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace vizsga_backend.Models;
@@ -16,19 +16,15 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
         : base(options)
     {
     }
-    public DbSet<ApplicationUser> applicationUsers { get; set; } = null!;
 
+    public DbSet<ApplicationUser> applicationUsers { get; set; } = null!;
     public virtual DbSet<Aspnetuser> Aspnetusers { get; set; }
 
     public virtual DbSet<Hirdete> Hirdetes { get; set; }
 
-    public virtual DbSet<Hirdetesadatok> Hirdetesadatoks { get; set; }
-
-
-
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
         base.OnModelCreating(modelBuilder);
 
 
@@ -36,7 +32,6 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
         {
             entity.HasKey(e => new { e.UserId, e.RoleId });
         });
-
 
         modelBuilder.Entity<Aspnetuser>(entity =>
         {
@@ -81,65 +76,29 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
 
             entity.ToTable("hirdetes");
 
-            entity.HasIndex(e => e.FelhasznaloId, "hirdetes_ibfk_1");
+            entity.HasIndex(e => e.FelhasznaloId, "FelhasznaloID");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("char(36)")
-                .HasColumnName("ID");
-            entity.Property(e => e.Elerhetoseg)
-                .HasMaxLength(100)
-                .HasDefaultValueSql("'''NULL'''");
-            entity.Property(e => e.FelhasznaloId)
-                .HasDefaultValueSql("'''NULL'''")
-                .HasColumnName("FelhasznaloID");
-            entity.Property(e => e.Hirdetesnev).HasDefaultValueSql("'NULL'");
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Allatbarat).HasColumnType("tinyint(4)");
+            entity.Property(e => e.Ar).HasColumnType("int(100)");
+            entity.Property(e => e.Elerhetoseg).HasMaxLength(50);
+            entity.Property(e => e.FelhasznaloId).HasColumnName("FelhasznaloID");
+            entity.Property(e => e.Gyerekbarat).HasColumnType("tinyint(4)");
+            entity.Property(e => e.Hirdetesnev).HasMaxLength(50);
             entity.Property(e => e.KepUrl)
-                .HasDefaultValueSql("'NULL'")
+                .HasColumnType("text")
                 .HasColumnName("KepURL");
-            entity.Property(e => e.Leiras)
-                .HasDefaultValueSql("'''NULL'''")
-                .HasColumnType("text");
+            entity.Property(e => e.Kiadasiidotartam).HasMaxLength(50);
+            entity.Property(e => e.Leiras).HasMaxLength(500);
+            entity.Property(e => e.Orszag).HasMaxLength(50);
+            entity.Property(e => e.Telepules).HasMaxLength(50);
+            entity.Property(e => e.Tipus).HasMaxLength(50);
+            entity.Property(e => e.Utcahazszam).HasMaxLength(100);
+            entity.Property(e => e.Varmegye).HasMaxLength(50);
 
             entity.HasOne(d => d.Felhasznalo).WithMany(p => p.Hirdetes)
                 .HasForeignKey(d => d.FelhasznaloId)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("hirdetes_ibfk_1");
-        });
-
-        modelBuilder.Entity<Hirdetesadatok>(entity =>
-        {
-            entity.HasKey(e => e.HirdetesId).HasName("PRIMARY");
-
-            entity.ToTable("hirdetesadatok");
-
-            entity.Property(e => e.HirdetesId)
-                .HasColumnType("char(36)")
-                .HasColumnName("HirdetesID");
-            entity.Property(e => e.Allatbarat).HasDefaultValueSql("'0'");
-            entity.Property(e => e.Ar)
-                .HasPrecision(10)
-                .HasDefaultValueSql("'NULL'");
-            entity.Property(e => e.Gyerekbarat).HasDefaultValueSql("'0'");
-            entity.Property(e => e.Kiadasiidotartam)
-                .HasMaxLength(50)
-                .HasDefaultValueSql("'''NULL'''");
-            entity.Property(e => e.Orszag).HasMaxLength(50);
-            entity.Property(e => e.Telepules)
-                .HasMaxLength(50)
-                .HasDefaultValueSql("'''NULL'''");
-            entity.Property(e => e.Tipus)
-                .HasMaxLength(50)
-                .HasDefaultValueSql("'''NULL'''");
-            entity.Property(e => e.Utcahazszam)
-                .HasMaxLength(100)
-                .HasDefaultValueSql("'''NULL'''");
-            entity.Property(e => e.Varmegye)
-                .HasMaxLength(50)
-                .HasDefaultValueSql("'''NULL'''");
-
-            entity.HasOne(d => d.Hirdetes).WithOne(p => p.Hirdetesadatok)
-                .HasForeignKey<Hirdetesadatok>(d => d.HirdetesId)
-                .HasConstraintName("hirdetesadatok_ibfk_1");
         });
 
         OnModelCreatingPartial(modelBuilder);

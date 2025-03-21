@@ -7,17 +7,33 @@ public partial class Hirdete
 {
     public Guid Id { get; set; }
 
-    public string? FelhasznaloId { get; set; }
+    public string FelhasznaloId { get; set; } = null!;
 
-    public string? Leiras { get; set; }
+    public string Hirdetesnev { get; set; } = null!;
 
-    public string? Elerhetoseg { get; set; }
+    public string Leiras { get; set; } = null!;
 
-    public string? Hirdetesnev { get; set; }
+    public int Ar { get; set; }
 
-    public string? KepUrl { get; set; }
+    public string Elerhetoseg { get; set; } = null!;
 
-    public virtual Aspnetuser? Felhasznalo { get; set; }
+    public string Orszag { get; set; } = null!;
 
-    public virtual Hirdetesadatok? Hirdetesadatok { get; set; }
+    public string Varmegye { get; set; } = null!;
+
+    public string Telepules { get; set; } = null!;
+
+    public string Utcahazszam { get; set; } = null!;
+
+    public string Tipus { get; set; } = null!;
+
+    public string Kiadasiidotartam { get; set; } = null!;
+
+    public sbyte Gyerekbarat { get; set; }
+
+    public sbyte Allatbarat { get; set; }
+
+    public string KepUrl { get; set; } = null!;
+
+    public virtual Aspnetuser Felhasznalo { get; set; } = null!;
 }
