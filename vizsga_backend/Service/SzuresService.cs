@@ -12,10 +12,10 @@ namespace vizsga_backend.Service
             _context = context;
         }
 
-        public IEnumerable<Hirdetesadatok> hirdetesadatoks(string orszag = null, string varmegye = null, string telepules = null, string utcanev = null,
+        public IEnumerable<Hirdete> hirdetes(string orszag = null, string varmegye = null, string telepules = null, string utcanev = null,
         string tipus = null, decimal? ar = null, bool? gyerekbarat = null, bool? allatbarat = null, string kiadasiIdo = null)
         {
-            var lekerdezes = _context.Hirdetesadatoks.AsQueryable();
+            var lekerdezes = _context.Hirdetes.AsQueryable();
             if (!string.IsNullOrEmpty(orszag))
                 lekerdezes = lekerdezes.Where(i => i.Orszag.Contains(orszag));
 

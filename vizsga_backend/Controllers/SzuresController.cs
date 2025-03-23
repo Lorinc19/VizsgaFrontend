@@ -18,7 +18,7 @@ namespace vizsga_backend.Controllers
 
         }
         [HttpGet("Szures")]
-        public IActionResult hirdetesadatoks([FromQuery] string orszag = null,
+        public IActionResult hirdetes ([FromQuery] string orszag = null,
         [FromQuery] string varmegye = null,
         [FromQuery] string telepules = null,
         [FromQuery] string tipus = null,
@@ -28,7 +28,7 @@ namespace vizsga_backend.Controllers
         [FromQuery] string kiadasiIdo = null)
 
         {
-            var szuresI = _szuresService.hirdetesadatoks(orszag: orszag, varmegye: varmegye, telepules: telepules, tipus:tipus, ar:ar, gyerekbarat:gyerekbarat, allatbarat:allatbarat, kiadasiIdo:kiadasiIdo);
+            var szuresI = _szuresService.hirdetes(orszag: orszag, varmegye: varmegye, telepules: telepules, tipus:tipus, ar:ar, gyerekbarat:gyerekbarat, allatbarat:allatbarat, kiadasiIdo:kiadasiIdo);
             return Ok(szuresI);
         }
        

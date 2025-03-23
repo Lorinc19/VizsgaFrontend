@@ -148,7 +148,7 @@
   },
   {
     "ContainingType": "vizsga_backend.Controllers.SzuresController",
-    "Method": "hirdetesadatoks",
+    "Method": "hirdetes",
     "RelativePath": "SzuresController/Szures",
     "HttpMethod": "GET",
     "IsController": true,

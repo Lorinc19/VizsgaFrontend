@@ -29,9 +29,9 @@ public partial class Hirdete
 
     public string Kiadasiidotartam { get; set; } = null!;
 
-    public sbyte Gyerekbarat { get; set; }
+    public bool Gyerekbarat { get; set; }
 
-    public sbyte Allatbarat { get; set; }
+    public bool Allatbarat { get; set; }
 
     public string KepUrl { get; set; } = null!;
 

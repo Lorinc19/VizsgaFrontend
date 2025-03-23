@@ -523,34 +523,22 @@
             "type": "string",
             "nullable": true
           },
+          "hirdetesnev": {
+            "type": "string",
+            "nullable": true
+          },
           "leiras": {
             "type": "string",
             "nullable": true
+          },
+          "ar": {
+            "type": "integer",
+            "format": "int32"
           },
           "elerhetoseg": {
             "type": "string",
             "nullable": true
           },
-          "hirdetesnev": {
-            "type": "string",
-            "nullable": true
-          },
-          "kepUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "felhasznalo": {
-            "$ref": "#/components/schemas/Aspnetuser"
-          },
-          "hirdetesadatok": {
-            "$ref": "#/components/schemas/Hirdetesadatok"
-          }
-        },
-        "additionalProperties": false
-      },
-      "HirdetesAdatokDto": {
-        "type": "object",
-        "properties": {
           "orszag": {
             "type": "string",
             "nullable": true
@@ -571,9 +559,9 @@
             "type": "string",
             "nullable": true
           },
-          "ar": {
-            "type": "number",
-            "format": "double"
+          "kiadasiidotartam": {
+            "type": "string",
+            "nullable": true
           },
           "gyerekbarat": {
             "type": "boolean"
@@ -581,9 +569,12 @@
           "allatbarat": {
             "type": "boolean"
           },
-          "kiadasiidotartam": {
+          "kepUrl": {
             "type": "string",
             "nullable": true
+          },
+          "felhasznalo": {
+            "$ref": "#/components/schemas/Aspnetuser"
           }
         },
         "additionalProperties": false
@@ -611,19 +602,6 @@
             "type": "string",
             "nullable": true
           },
-          "hirdetesAdatok": {
-            "$ref": "#/components/schemas/HirdetesAdatokDto"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Hirdetesadatok": {
-        "type": "object",
-        "properties": {
-          "hirdetesId": {
-            "type": "string",
-            "format": "uuid"
-          },
           "orszag": {
             "type": "string",
             "nullable": true
@@ -645,24 +623,18 @@
             "nullable": true
           },
           "ar": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
+            "type": "integer",
+            "format": "int32"
           },
           "gyerekbarat": {
-            "type": "boolean",
-            "nullable": true
+            "type": "boolean"
           },
           "allatbarat": {
-            "type": "boolean",
-            "nullable": true
+            "type": "boolean"
           },
           "kiadasiidotartam": {
             "type": "string",
             "nullable": true
-          },
-          "hirdetes": {
-            "$ref": "#/components/schemas/Hirdete"
           }
         },
         "additionalProperties": false

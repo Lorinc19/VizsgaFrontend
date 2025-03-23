@@ -35,28 +35,21 @@ namespace vizsga_backend.Controllers
                 Leiras = hirdetesDto.Leiras,
                 Elerhetoseg = hirdetesDto.Elerhetoseg,
                 Hirdetesnev = hirdetesDto.Hirdetesnev,
-                KepUrl = hirdetesDto.KepURL
+                KepUrl = hirdetesDto.KepURL,
+                Orszag = hirdetesDto.Orszag,
+                Varmegye = hirdetesDto.Varmegye,
+                Telepules = hirdetesDto.Telepules,
+                Utcahazszam = hirdetesDto.Utcahazszam,
+                Tipus = hirdetesDto.Tipus,
+                Ar = hirdetesDto.Ar,
+                Gyerekbarat = hirdetesDto.Gyerekbarat,
+                Allatbarat = hirdetesDto.Allatbarat,
+                Kiadasiidotartam = hirdetesDto.Kiadasiidotartam
+
             };
 
             szakmaivizsgaContext.Hirdetes.Add(hird);
             await szakmaivizsgaContext.SaveChangesAsync();
-
-            var hirdadat = new Hirdetesadatok
-            {
-                HirdetesId = hird.Id,
-                Orszag = hirdetesDto.HirdetesAdatok.Orszag,
-                Varmegye = hirdetesDto.HirdetesAdatok.Varmegye,
-                Telepules = hirdetesDto.HirdetesAdatok.Telepules,
-                Utcahazszam = hirdetesDto.HirdetesAdatok.Utcahazszam,
-                Tipus = hirdetesDto.HirdetesAdatok.Tipus,
-                Ar = hirdetesDto.HirdetesAdatok.Ar,
-                Gyerekbarat = hirdetesDto.HirdetesAdatok.Gyerekbarat,
-                Allatbarat = hirdetesDto.HirdetesAdatok.Allatbarat,
-                Kiadasiidotartam = hirdetesDto.HirdetesAdatok.Kiadasiidotartam
-            };
-            szakmaivizsgaContext.Hirdetesadatoks.Add(hirdadat);
-            await szakmaivizsgaContext.SaveChangesAsync();
-
 
             return CreatedAtRoute("GetHirdetes", new { id = hird.Id }, hird);
         }
@@ -66,7 +59,7 @@ namespace vizsga_backend.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(Guid id)
         {
-            var os = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(h => h.Id == id);
+            var os = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(o => o.Id == id);
 
             if (os != null)
             {
