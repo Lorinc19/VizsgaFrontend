@@ -1,280 +1,272 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./App.css";
 
 export default function NewHousePost() {
-  // localStorage-ból userId, azt is küldeni kell
-  const [formData, setFormData] = useState({
-    
-  felhasznaloID: 0,
-  leiras: " ",
-  elerhetoseg: " ",
-  hirdetesnev: " ",
-  kepURL: " ",
-  hirdetesAdatok: {
-    orszag: " ",
-    varmegye: " ",
-    telepules: " ",
-    utcahazszam: " ",
-    tipus: " ",
-    ar: 0,
-    gyerekbarat: false,
-    allatbarat: false,
-    kiadasiidotartam: " ",
-  }
-  });
-
-  /*
-  {
-  "felhasznaloID": 0,
-  "leiras": "string",
-  "elerhetoseg": "string",
-  "hirdetesnev": "string",
-  "kepURL": "string",
-  "hirdetesAdatok": {
-    "orszag": "string",
-    "varmegye": "string",
-    "telepules": "string",
-    "utcahazszam": "string",
-    "tipus": "string",
-    "ar": 0,
-    "gyerekbarat": true,
-    "allatbarat": true,
-    "kiadasiidotartam": "string"
-  }
-}
-  */
-
-  const [errors, setErrors] = useState({});
-  const [message, setMessage] = useState("");
-
-  const handleChange = (e) => {
-    const { name, value, type, checked, files } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "file" ? files : type === "checkbox" ? checked : value,
+  
+    const [message, setMessage] = useState("");
+    const [formData, setFormData] = useState({
+      FelhasznaloID: "",
+      Leiras: "",
+      Elerhetoseg: "",
+      Hirdetesnev: "",
+      KepURL: "",
+      Orszag: "",
+      Varmegye: "",
+      Telepules: "",
+      Utcahazszam: "",
+      Tipus: "",
+      Ar: 0,
+      Gyerekbarat: false,
+      Allatbarat: false,
+      Kiadasiidotartam: "",
     });
-  };
+    const [errors, setErrors] = useState({});
 
-  const validate = () => {
-    let errors = {};
-
-    if (!formData.hirdetesnev.trim()) errors.hirdetesnev = "Hirdetés név szükséges!";
-    if (!formData.leiras.trim()) errors.leiras = "A leírás szükséges!";
-    if (!formData.elerhetoseg || !/^\d{11}$/.test(formData.elerhetoseg)) {
-      errors.elerhetoseg = "Érvényes telefonszámot adj meg (11 számjegy).";
-    }
-    if (!formData.orszag.trim()) errors.orszag = "Ország szükséges!";
-    if (!formData.varmegye.trim()) errors.varmegye = "Vármegye szükséges!";
-    if (!formData.telepules.trim()) errors.telepules = "Település szükséges!";
-    if (!formData.utcahazszam.trim()) errors.utcahazszam = "Utca és házszám szükséges!";
-    if (!formData.tipus.trim()) errors.tipus = "Típus szükséges! (Pl: lakás, ház)";
-    if (!formData.ar) errors.ar = "Helyes árat kell megadni!";
-    if (!formData.kepURL) errors.kepURL = "Kép feltöltése kötelező!";
-    
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    const form = new FormData();
-    form.append("hirdetesnev", formData.hirdetesnev);
-    form.append("leiras", formData.leiras);
-    form.append("elerhetoseg", formData.elerhetoseg);
-    form.append("orszag", formData.orszag);
-    form.append("varmegye", formData.varmegye);
-    form.append("telepules", formData.telepules);
-    form.append("utcahazszam", formData.utcahazszam);
-    form.append("tipus", formData.tipus);
-    form.append("ar", formData.ar);
-    form.append("gyerekbarat", formData.gyerekbarat);
-    form.append("allatbarat", formData.allatbarat);
-    form.append("kiadasiidotartam", formData.kiadasiidotartam);
-    form.append("kepURL", formData.kepURL); // Kép feltöltése
-
-    try {
-      const response = await axios.post("https://localhost:7007/Hirdetés", form, {
-        headers: { "Content-Type": "multipart/form-data" },
+    const handleChange = (e) => {
+      const { name, value, type, checked } = e.target;
+      setFormData({
+        ...formData,
+        [name]: type === "checkbox" ? checked : value,
       });
-      setMessage("Sikeres hirdetés felvétel!");
-      console.log("Hirdetés sikeres:", response.data);
-    } catch (error) {
-      setMessage("Hiba történt a hirdetés felvétele során.");
-      console.error("Hirdetés hiba:", error.response?.data || error.message);
-    }
-  };
+    };
 
+    const validate = () => {
+      let errors = {};
+      
+      if (!formData.FelhasznaloID.trim()) errors.FelhasznaloID = "Vezetéknév szükséges!";
+      setErrors(errors);
+      return Object.keys(errors).length === 0;
+    };
+
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      try {
+        const response = await axios.post("https://localhost:7007/Hirdetés/Post", formData);
+        setMessage("Sikeres regisztráció! Jelentkezz be.");
+        console.log("Regisztráció sikeres:", response.data);
+      } catch (error) {
+        setMessage("Hiba történt a regisztráció során!");
+        console.error("Regisztrációs hiba:", error.response?.data || error.message);
+      }
+    };
+      
+    
   return (
-    <div className="new-listing-form">
-      <h2>Új hirdetés felvétele</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="input-box">
-          <input
-            type="text"
-            name="hirdetesnev"
-            required
-            value={formData.hirdetesnev}
-            onChange={handleChange}
-          />
-          <label>Hirdetés név</label>
-          {errors.hirdetesnev && <p className="error-text">{errors.hirdetesnev}</p>}
+
+    <div className="p-5 content bg-whitesmoke text-center">
+      <h2>Új hirdetés</h2>
+      
+       <form onSubmit={handleSubmit}>
+        
+
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Felhasznaló id:</label>
+          <div className="col-sm-9">
+            <input 
+              type="text" 
+              name="felhasznaloID"  
+              required 
+              value={formData.FelhasznaloID}
+              onChange={handleChange} 
+              className="form-control" 
+            />
+          </div>
         </div>
 
-        <div className="input-box">
-          <textarea
-            name="leiras"
-            required
-            value={formData.leiras}
-            onChange={handleChange}
-          />
-          <label>Leírás</label>
-          {errors.leiras && <p className="error-text">{errors.leiras}</p>}
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Leírás:</label>
+          <div className="col-sm-9">
+            <input 
+              type="text" 
+              name="leiras" 
+              required 
+              value={formData.Leiras} 
+              onChange={handleChange} 
+              className="form-control" 
+            />
+          </div>
         </div>
 
-        <div className="input-box">
-          <input
-            type="text"
-            name="elerhetoseg"
-            value={formData.elerhetoseg}
-            onChange={handleChange}
-            placeholder="Telefonszám"
-            required
-          />
-          <label>Telefonszám</label>
-          {errors.elerhetoseg && <p className="error-text">{errors.elerhetoseg}</p>}
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Elérhetőség:</label>
+          <div className="col-sm-9">
+            <input 
+              type="text" 
+              name="elerhetoseg"  
+              required 
+              value={formData.Elerhetoseg} 
+              onChange={handleChange} 
+              className="form-control" 
+            />
+          </div>
         </div>
 
-        <div className="input-box">
-          <input
-            type="text"
-            name="orszag"
-            value={formData.hirdetesAdatok.orszag}
-            onChange={handleChange}
-            placeholder="Ország"
-            required
-          />
-          <label>Ország</label>
-          {errors.orszag && <p className="error-text">{errors.orszag}</p>}
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Hirdetesnev:</label>
+          <div className="col-sm-9">
+            <input 
+            type="text" 
+            name="hirdetesnev"  
+            required 
+            value={formData.Hirdetesnev} 
+            onChange={handleChange} 
+            className="form-control" 
+            />
+          </div>
         </div>
 
-        <div className="input-box">
-          <input
-            type="text"
-            name="varmegye"
-            value={formData.hirdetesAdatok.varmegye}
-            onChange={handleChange}
-            placeholder="Vármegye"
-            required
-          />
-          <label>Vármegye</label>
-          {errors.varmegye && <p className="error-text">{errors.varmegye}</p>}
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">KépURL:</label>
+          <div className="col-sm-9">
+            <input 
+            type="text" 
+            name="kepURL"  
+            required 
+            value={formData.KepURL} 
+            onChange={handleChange} 
+            className="form-control" 
+            />
+          </div>
         </div>
 
-        <div className="input-box">
-          <input
-            type="text"
-            name="telepules"
-            value={formData.hirdetesAdatok.telepules}
-            onChange={handleChange}
-            placeholder="Település"
-            required
-          />
-          <label>Település</label>
-          {errors.telepules && <p className="error-text">{errors.telepules}</p>}
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Orszag:</label>
+          <div className="col-sm-9">
+            <input 
+            type="text" 
+            name="orszag"  
+            required 
+            value={formData.Orszag} 
+            onChange={handleChange} 
+            className="form-control" 
+            />
+          </div>
         </div>
 
-        <div className="input-box">
-          <input
-            type="text"
-            name="utcahazszam"
-            value={formData.hirdetesAdatok.utcahazszam}
-            onChange={handleChange}
-            placeholder="Utca és házszám"
-            required
-          />
-          <label>Utca és házszám</label>
-          {errors.utcahazszam && <p className="error-text">{errors.utcahazszam}</p>}
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Vármegye:</label>
+          <div className="col-sm-9">
+            <input 
+            type="text" 
+            name="varmegye"  
+            required 
+            value={formData.Varmegye} 
+            onChange={handleChange} 
+            className="form-control" 
+            />
+          </div>
         </div>
 
-        <div className="input-box">
-          <input
-            type="text"
-            name="tipus"
-            value={formData.hirdetesAdatok.tipus}
-            onChange={handleChange}
-            placeholder="Típus"
-            required
-          />
-          <label>Típus</label>
-          {errors.tipus && <p className="error-text">{errors.tipus}</p>}
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Település:</label>
+          <div className="col-sm-9">
+            <input 
+            type="text" 
+            name="telepules"  
+            required 
+            value={formData.Telepules} 
+            onChange={handleChange} 
+            className="form-control" 
+            />
+          </div>
         </div>
 
-        <div className="input-box">
-          <input
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Utca házszám:</label>
+          <div className="col-sm-9">
+            <input 
+            type="text" 
+            name="utcahazszam"  
+            required 
+            value={formData.Utcahazszam} 
+            onChange={handleChange} 
+            className="form-control" 
+            />
+          </div>
+        </div>
+
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Ház típusa:</label>
+          <div className="col-sm-9">
+            <input 
+            type="text" 
+            name="tipus"  
+            required 
+            value={formData.Tipus} 
+            onChange={handleChange} 
+            className="form-control" 
+            />
+          </div>
+        </div>
+
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Ár:</label>
+          <div className="col-sm-9">
+            <input
             type="number"
             name="ar"
-            value={formData.hirdetesAdatok.ar}
-            onChange={handleChange}
-            placeholder="Ár"
             required
-          />
-          <label>Ár</label>
-          {errors.ar && <p className="error-text">{errors.ar}</p>}
+            value={formData.Ar}
+            onChange={handleChange}
+            className="form-control" 
+            />
+          </div>
         </div>
 
-        <div className="input-box">
-          <input
-            type="file"
-            name="kepURL"
-            accept="kepURL/*"
-            onChange={handleChange}
-            required
-          />
-          <label>Kép</label>
-          {errors.kepURL && <p className="error-text">{errors.kepURL}</p>}
-        </div>
-
-        <div className="input-box">
-        <input
-            type="text"
-            name="kiadasiidotartam"
-            value={formData.hirdetesAdatok.Kiadasiidotartam}
-            onChange={handleChange}
-            placeholder="Kiadasi idotartam"
-            required
-          />
-          <label>Kiadási időtartam</label>
-        </div>
-
-        <div className="input-box">
-          <input
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Gyerek barát:</label>
+          <div className="col-sm-9">
+            <input
             type="checkbox"
             name="gyerekbarat"
-            checked={formData.hirdetesAdatok.gyerekbarat}
+            required
+            checked={formData.Gyerekbarat}
             onChange={handleChange}
-          />
-          <label>Gyerek barát</label>
+            className="form-control"
+            />
+          </div>
         </div>
 
-        <div className="input-box">
-          <input
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Állatbarát:</label>
+          <div className="col-sm-9">
+            <input
             type="checkbox"
             name="allatbarat"
-            checked={formData.hirdetesAdatok.allatbarat}
+            required
+            checked={formData.Allatbarat}
             onChange={handleChange}
-          />
-          <label>Állatbarát</label>
+            className="form-control"
+            />
+          </div>
+        </div>
+
+        <div className="form-group row pb-3">
+          <label className="col-sm-3 col-form-label">Kiadás idő tartalma(hó):</label>
+          <div className="col-sm-9">
+            <input
+            type="text"
+            name="kiadasiidotartam"
+            required
+            value={formData.Kiadasiidotartam}
+            onChange={handleChange}
+            className="form-control"
+            />
+          </div>
         </div>
 
 
 
-        <button type="submit" className="btn">Hirdetés felvétel</button>
+        <button type="submit" className="btn btn-success">
+          Küldés
+        </button>
       </form>
-
-      {message && <p className="message">{message}</p>}
+      {message && <p>{message}</p>}
     </div>
-  );
+  )
+
 }

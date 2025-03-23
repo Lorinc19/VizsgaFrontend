@@ -9,12 +9,11 @@ export default function LoginRegister() {
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     Vezeteknev: "",
-    Csaladnev:"",
+    Keresztnev:"",
     Email: "",
-    Jelszo: "",
+    Password: "",
     Kor:"",
-    elado:false,
-    berlo:false
+    UserName:""
   });
   const [errors, setErrors] = useState({});
 
@@ -31,9 +30,9 @@ export default function LoginRegister() {
     let errors = {};
     
     if (!formData.Vezeteknev.trim()) errors.Vezeteknev = "Vezetéknév szükséges!";
-    if (!formData.Csaladnev.trim()) errors.Csaladnev = "Keresztnév szükséges!";
+    if (!formData.Keresztnev.trim()) errors.Csaladnev = "Keresztnév szükséges!";
     if (!formData.Email.includes("@")) errors.Email = "Érvénytelen email!";
-    if (formData.Jelszo.length < 6) errors.Jelszo = "A jelszónak legalább 6 karakter hosszúnak kell lennie!";
+    if (formData.Password.length < 6) errors.Password = "A jelszónak legalább 6 karakter hosszúnak kell lennie!";
     if (!formData.Kor || isNaN(formData.Kor) || formData.Kor < 18) errors.Kor = "Minimum életkor 18 év!";
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -48,7 +47,7 @@ export default function LoginRegister() {
     } else {
       console.log("Regisztráció:", formData);
       try {
-        const response = await axios.post("https://localhost:7007/Felhasznaló/Felhasznalo", formData);
+        const response = await axios.post("https://localhost:7007/Auth/Regisztráció", formData);
         setMessage("Sikeres regisztráció! Jelentkezz be.");
         console.log("Regisztráció sikeres:", response.data);
       } catch (error) {
@@ -112,6 +111,18 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="text"
+              name="UserName"
+              required 
+              value={formData.UserName} 
+              onChange={handleChange}
+            />
+            <label>Felhasználó Név</label>
+            
+          </div>
+
+          <div className="input-box">
+            <input
+              type="text"
               name="Vezeteknev"
               required
               value={formData.Vezeteknev}
@@ -124,7 +135,7 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="text"
-              name="Csaladnev"
+              name="Keresztnev"
               required
               value={formData.Csaladnev}
               onChange={handleChange}
@@ -147,13 +158,13 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="password"
-              name="Jelszo"
+              name="Password"
               required
-              value={formData.Jelszo}
+              value={formData.Password}
               onChange={handleChange}
             />
             <label>Jelszó</label>
-            {errors.Jelszo && <p className="error-text">{errors.Jelszo}</p>}
+            {errors.Password && <p className="error-text">{errors.Password}</p>}
           </div>
           <div className="input-box">
             <input
@@ -166,32 +177,6 @@ export default function LoginRegister() {
             <label>Életkor</label>
             {errors.Kor && <p className="error-text">{errors.Kor}</p>}
           </div>
-
-          <div className="input-box">
-            <input
-              type="checkbox"
-              name="elado"
-              required
-              value={formData.elado}
-              onChange={handleChange}
-            />
-            <label>Eladó</label>
-            {errors.elado && <p className="error-text">{errors.elado}</p>}
-          </div>
-          
-          <div className="input-box">
-            <input
-              type="checkbox"
-              name="berlo"
-              required
-              value={formData.berlo}
-              onChange={handleChange}
-            />
-            <label>Bérlő</label>
-            {errors.berlo && <p className="error-text">{errors.berlo}</p>}
-          </div>
-
-
           
           <button type="submit" className="btn">Regisztráció</button>
           <p className="register-link">
