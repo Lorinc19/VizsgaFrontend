@@ -1,109 +1,77 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Admin.css'; // CSS fájl importálása
+import axios from 'axios';
+import Carda from './Carda';
+import Cardh from './Cardh';
 
-const Admin = () => {
-  // Adatok hirdetésekről
-  const [hirdetesek, setHirdetesek] = useState([
-    {
-      hirdetesNev: "Eladó ház",
-      elerhetoseg: "123-456-789",
-      leiras: "Szép ház, jó helyen",
-    },
-    {
-      hirdetesNev: "Bérlésre kiadó lakás",
-      elerhetoseg: "987-654-321",
-      leiras: "Csendes környéken, jó közlekedéssel",
-    },
-  ]);
 
-  // Adatok felhasználókról
-  const [felhasznalok, setFelhasznalok] = useState([
-    {
-      nev: "János",
-      felhasznalonev: "janos123",
-      elerhetoseg: "janos@mail.com",
-    },
-    {
-      nev: "Anna",
-      felhasznalonev: "anna456",
-      elerhetoseg: "anna@mail.com",
-    },
-  ]);
+export default function Admin() {
 
-  // Állapot a gombokhoz
-  const [megtekintett, setMegtekintett] = useState(null);
+  //Usestat
+  const [adminf, setadminf] = useState([])
+  const [hird, sethird] = useState([])
+  const [selectedBtn, setselectedBtn] = useState(null)
 
-  // Gomb kattintás kezelése
-  const kezeloGombKattintas = (megjelenitett) => {
-    setMegtekintett(megjelenitett);
-  };
+  //useeffect
 
-  // Hirdetés törlés
-  const hirdetesTorles = (hirdetes) => {
-    setHirdetesek(hirdetesek.filter(item => item !== hirdetes));
-  };
 
-  // Felhasználó törlés
-  const felhasznaloTorles = (felhasznalo) => {
-    setFelhasznalok(felhasznalok.filter(item => item !== felhasznalo));
-  };
+
+
+  //Function
+
+  const handleClick = async () => {
+    axios.get('https://localhost:7007/User/Adminfelhaszn')
+      .then((res) => {
+        setadminf(res.data)
+        console.log(res.data);
+        setselectedBtn("Felh");
+      })
+
+  }
+
+  const handleClick2 = async () => {
+    axios.get('https://localhost:7007/Hirdetés/Hirdetes')
+      .then((res) => {
+        sethird(res.data)
+        console.log(res.data);
+        setselectedBtn("Hird")
+      })
+
+  }
+
+
 
   return (
     <div className="admin-felület">
       <div className="gombok-tartó">
-        <button className="gomb" onClick={() => kezeloGombKattintas('hirdetesek')}>Hirdetések</button>
-        <button className="gomb" onClick={() => kezeloGombKattintas('felhasznalok')}>Felhasználók</button>
+        <button className="gomb" onClick={handleClick}>Felhasználók</button>
+        <button className="gomb" onClick={handleClick2}>Hirdetések</button>
       </div>
 
       <div className="tartalom">
-        {megtekintett === 'hirdetesek' && (
-          <div className="szekcio">
-            <h2>Hirdetések</h2>
-            <div className="kartya-kontener">
-              {hirdetesek.map((hirdetes, index) => (
-                <div key={index} className="minimalis-kartya">
-                  <div className="kartya-tartalom">
-                    <h4>{hirdetes.hirdetesNev}</h4>
-                    <p>{hirdetes.elerhetoseg}</p>
-                    <p>{hirdetes.leiras}</p>
-                  </div>
-                  <button className="torles-gomb" onClick={() => hirdetesTorles(hirdetes)}>
-                    Törlés
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
-        {megtekintett === 'felhasznalok' && (
-          <div className="szekcio">
-            <h2>Felhasználók</h2>
-            <div className="kartya-kontener">
-              {felhasznalok.map((felhasznalo, index) => (
-                <div key={index} className="minimalis-kartya">
-                  <div className="kartya-tartalom">
-                    <h4>{felhasznalo.nev}</h4>
-                    <p>{felhasznalo.felhasznalonev}</p>
-                  </div>
-                  <button className="torles-gomb" onClick={() => felhasznaloTorles(felhasznalo)}>
-                    Törlés
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        
+          {selectedBtn === "Felh" ? (
+            <div className="szekcio">
+              <h2>Felhasználók</h2>
+                {
+                  adminf.map(adminfs => (<Carda key={adminfs.id} felhasz={adminfs} admingetf={handleClick} />))
 
-        {megtekintett === null && (
-          <div className="szekcio">
-            <h2>Admin Felület</h2>
-            <p>Kérlek válassz egy lehetőséget a fenti gombok közül!</p>
-          </div>
-        )}
+                }
+            </div>
+          ) : selectedBtn ==="Hird" ? (
+            <div className="szekcio">
+              <h2>Hirdetések</h2>
+                {
+                  hird.map(hirdet => (<Cardh key={hirdet.id} hirdetes={hirdet} hirdgetfv={handleClick2} />))
+                }
+            </div>
+          ) : null}
+
+        </div>
+
       </div>
-    </div>
   );
 };
 
-export default Admin;
+
