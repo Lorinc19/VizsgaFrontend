@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import './App.css';
 import './LoginRegister.css';
+import { useNavigate } from "react-router-dom";
 
 
 export default function LoginRegister() {
@@ -16,6 +17,7 @@ export default function LoginRegister() {
     UserName:""
   });
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
 
   const handleChange = (e) => {
@@ -28,22 +30,39 @@ export default function LoginRegister() {
 
   const validate = () => {
     let errors = {};
+    if (!isLogin) {
+            if (!formData.Vezeteknev.trim()) errors.Vezeteknev = "Vezetéknév szükséges!";
+            if (!formData.Keresztnev.trim()) errors.Csaladnev = "Keresztnév szükséges!";
+            if (!formData.Email.includes("@")) errors.Email = "Érvénytelen email!";
+            if (!formData.Kor || isNaN(formData.Kor) || formData.Kor < 18) errors.Kor = "Minimum életkor 18 év!";
+            if (formData.Password.length < 6) errors.Password = "A jelszónak legalább 6 karakter hosszúnak kell lennie!";
+    }
     
-    if (!formData.Vezeteknev.trim()) errors.Vezeteknev = "Vezetéknév szükséges!";
-    if (!formData.Keresztnev.trim()) errors.Csaladnev = "Keresztnév szükséges!";
-    if (!formData.Email.includes("@")) errors.Email = "Érvénytelen email!";
-    if (formData.Password.length < 6) errors.Password = "A jelszónak legalább 6 karakter hosszúnak kell lennie!";
-    if (!formData.Kor || isNaN(formData.Kor) || formData.Kor < 18) errors.Kor = "Minimum életkor 18 év!";
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validate()) {
+      return;
+    }
 
     if (isLogin) {
       console.log("Bejelentkezés:", formData);
+      try {
+        const response = await axios.post("https://localhost:7007/Auth/Login", {userName: formData.UserName, password: formData.Password});
+        setMessage("Sikeres belépés!");
+        console.log("Belépés sikeres", response);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userName", response.data.result.userName);
+        localStorage.setItem("email", response.data.result.email);
+        navigate("/")
+
+      } catch (error) {
+        setMessage("Hiba történt a belépés során!");
+        console.error("Belépési hiba:", error.response?.data || error.message);
+      }
     } else {
       console.log("Regisztráció:", formData);
       try {
@@ -67,22 +86,22 @@ export default function LoginRegister() {
         <form onSubmit={handleSubmit}>
           <div className="input-box">
             <input
-              type="email"
-              name="email"
+              type="text"
+              name="UserName"
               required
-              value={formData.email}
+              value={formData.UserName}
               onChange={handleChange}
             />
-            <label>Email</label>
-            {errors.email && <p className="error-text">{errors.email}</p>}
+            <label>Felhasználónév</label>
+            {errors.UserName && <p className="error-text">{errors.UserName}</p>}
           </div>
 
           <div className="input-box">
             <input
               type="password"
-              name="password"
+              name="Password"
               required
-              value={formData.password}
+              value={formData.Password}
               onChange={handleChange}
             />
             <label>Jelszó</label>
