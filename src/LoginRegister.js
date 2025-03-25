@@ -51,7 +51,7 @@ export default function LoginRegister() {
     if (isLogin) {
       console.log("Bejelentkezés:", formData);
       try {
-        const response = await axios.post("https://localhost:7007/Auth/Login", {userName: formData.UserName, password: formData.Password});
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Login`, {userName: formData.UserName, password: formData.Password});
         setMessage("Sikeres belépés!");
         console.log("Belépés sikeres", response);
         localStorage.setItem("token", response.data.token);
@@ -66,7 +66,7 @@ export default function LoginRegister() {
     } else {
       console.log("Regisztráció:", formData);
       try {
-        const response = await axios.post("https://localhost:7007/Auth/Regisztráció", formData);
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Regisztráció`, formData);
         setMessage("Sikeres regisztráció! Jelentkezz be.");
         console.log("Regisztráció sikeres:", response.data);
       } catch (error) {

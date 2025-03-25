@@ -4,9 +4,7 @@ import React from 'react'
 export default function Carda(props) {
 
     function userDelete(id){
-        axios.delete('https://localhost:7007/User/'+id,{
-            method: "DELETE"
-        })
+        axios.delete(`${process.env.REACT_APP_API_URL}/User/${id}`)
         .then(function(response){
             console.log(response);
             alert("Sikeres törlés");

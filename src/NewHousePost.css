@@ -1,0 +1,66 @@
+.new-house-form {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    border: 2px solid #000;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .new-house-form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #740000;
+  }
+  
+  .new-house-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .new-house-form label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .new-house-form input,
+  .new-house-form select,
+  .new-house-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+  }
+  
+  .new-house-form input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+  }
+  
+  .new-house-form .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .new-house-form .btn-success {
+    background-color: #740000;
+    border: none;
+    color: white;
+  }
+  
+  .new-house-form .btn-success:hover {
+    background-color: #a31c1c;
+  }
+  
+  .error-text {
+    font-size: 13px;
+    color: red;
+    margin-top: 4px;
+  }
+  

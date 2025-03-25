@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import Modal from "./Modal";
 import Naptar from "./Naptarproba";
-import Footer from "./Lablec";
 import axios from "axios";
 import Filter from "./Filter"; // Importáld a szűrés komponenst!
 
@@ -10,50 +9,62 @@ export default function Home() {
   const [database, setdatabase] = useState([]); // Az adatok tárolása
   const [selectedCard, setSelectedCard] = useState(null); // Kiválasztott kártya tárolása
   const [isModalOpen, setIsModalOpen] = useState(false); // A modal nyitott állapota
-  const [filters, setFilters] = useState({
-    country: '',
-    county: '',
-    city: '',
-    propertyType: '',
-    minPrice: '',
-    maxPrice: '',
-    isKidFriendly: false,
-    isPetFriendly: false,
-    rentalTime: ''
-  });
-
-  // Adatok lekérése alapból, a szűrőktől függetlenül, ha üresek
-  useEffect(() => {
-    Get(); // Alapból minden adat betöltése
-  }, []); // Csak egyszer, az oldal betöltődésekor
+  const [isLoading, setIsLoading] = useState(false);
+  const [filters, setFilters] = useState({});
+  const [noResult, setNoResult] = useState(false);
 
   // Adatok lekérése a szűrők változása szerint
   useEffect(() => {
-    // Ha nem üresek a szűrők, akkor csak azokkal kérjük le az adatokat
-    if (Object.values(filters).some(val => val !== '')) {
-      Get(filters); // Ha a szűrőkben van valami, akkor szűrt kérés
-    } else {
-      Get(); // Ha a szűrők üresek, akkor alapból minden adat
-    }
-  }, [filters]); // A szűrők változása esetén újra hívódik
+    Get(filters); // gombra kattintás után szűr
+  }, [filters]); // Ha a szűrők változnak
 
   // Adatok lekérése
   function Get(filters = {}) {
-    axios.get("https://localhost:7007/Hirdetés/Hirdetes", {
-        params: filters // Szűrési paraméterek átadása a GET kérésnek
-      })
+    setIsLoading(true);
+    axios.get(`${process.env.REACT_APP_API_URL}/Hirdetés/Hirdetes`)
       .then((response) => {
-
         if (!(response.status < 300)) {
-          throw new Error()
+          throw new Error();
         }
 
-        setdatabase(response.data); // Ha nincs adat, üres tömböt adunk vissza
-       
+        let result = response.data;
+
+        if (Object.keys(filters).length > 0) {
+          result = result.filter((hirdetes) => {
+            return (
+              (!filters.orszag ||
+                hirdetes.orszag
+                  ?.toLowerCase()
+                  .includes(filters.orszag.toLowerCase())) &&
+              (!filters.varmegye ||
+                hirdetes.varmegye
+                  ?.toLowerCase()
+                  .includes(filters.varmegye.toLowerCase())) &&
+              (!filters.telepules ||
+                hirdetes.telepules
+                  ?.toLowerCase()
+                  .includes(filters.telepules.toLowerCase())) &&
+              (!filters.tipus ||
+                hirdetes.tipus
+                  ?.toLowerCase()
+                  .includes(filters.tipus.toLowerCase())) &&
+              (!filters.gyerekbarat || hirdetes.gyerekbarat === true) &&
+              (!filters.allatbarat || hirdetes.allatbarat === true) &&
+              (!filters.kiadasiidotartam ||
+                hirdetes.kiadasiidotartam === filters.kiadasiidotartam) &&
+              (!filters.minAr || hirdetes.ar >= Number(filters.minAr)) &&
+              (!filters.maxAr || hirdetes.ar <= Number(filters.maxAr))
+            );
+          });
+        }
+
+        setdatabase(result);
+        setNoResult(result.length === 0);
       })
       .catch((error) => {
         console.error("Hiba: ", error);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   // Kattintásra megnyitjuk a modált
@@ -74,42 +85,32 @@ export default function Home() {
     }
   };
 
-  // Frissíti a szűrőket
-  const updateFilter = (newFilters) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      ...newFilters
-    }));
-  };
-
   return (
     <div className="content">
-      <div className="naptar-container">
-        <Naptar />
-      </div>
-
       {/* Szűrési komponens hozzáadása */}
-      <div>
-        <Filter updateFilter={updateFilter} /> {/* A Filter komponens most frissíti a szűrőt */}
+      <div className="filter-container">
+        <Filter onApply={setFilters} />
       </div>
 
-      <div className="cards-container">
-        {/* Ellenőrzés, hogy van-e adat */}
-        {database.length > 0 ? (
-          database.map((data) => (
-            <Card
-              key={data.id}
-              felhasznalo={data}
-              getFv={Get}
-              handleCardClick={handleCardClick}
-            />
-          ))
-        ) : (
-          <p>Nincsenek elérhető hirdetések.</p> // Ha nincs adat
-        )}
+      <div className="card-container">
+      {isLoading ? (
+        <div className="text-center">Betöltés...</div>
+      ) : noResult ? (
+            <p className="text-danger fw-bold mt-3">
+              Nincs a feltételeknek megfelelő hirdetés.
+            </p>
+          ) : (
+            database.map((data) => (
+              <Card
+                key={data.id}
+                felhasznalo={data}
+                getFv={Get}
+                handleCardClick={handleCardClick}
+              />
+            ))
+          )}
       </div>
 
-      {console.log(selectedCard)}
       {isModalOpen && (
         <Modal
           data={selectedCard}
@@ -117,6 +118,10 @@ export default function Home() {
           onCloseOverlay={handleCloseOverlay}
         />
       )}
+
+      <div className="naptar-container">
+        <Naptar />
+      </div>
     </div>
   );
 }

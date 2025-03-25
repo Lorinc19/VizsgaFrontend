@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import "./App.css";
 import "./Modal.css";
-import { Links } from 'react-router-dom';
 
 export default function Map() {
   // Állapotok a beviteli mezők tárolására

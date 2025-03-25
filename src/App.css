@@ -1,3 +1,15 @@
+/* --- Alapbeállítások --- */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
 .App {
   text-align: center;
 }
@@ -17,15 +29,7 @@
   color: #61dafb;
 }
 
-/* Alap stílusok */
-
-html {
-  scrollbar-gutter: stable;
-}
-
-body {
-  background-color: #f8f9fa;
-}
+/* --- Fejléc --- */
 
 .header {
   padding: 10px;
@@ -37,22 +41,11 @@ body {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .header h1 {
-  display: inline-block;
   font-family: fantasy;
   font-size: 100px;
-  
+  display: inline-block;
+  animation: jump 3s infinite ease-in-out;
 }
 
 .header h1 .jump {
@@ -60,36 +53,43 @@ body {
   animation: jump 3s infinite ease-in-out;
 }
 
-/* Ugráló animáció */
-@keyframes jump {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-    color: #f4a261;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes jump {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); color: #f4a261; }
+}
+
+/* --- Fő tartalom elrendezés --- */
+
 .content {
+  padding: 20px;
   min-height: calc(100vh - 80px);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  padding: 20px;
-  gap: 50px;
-  position: relative;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.filter-container {
+  flex: 1;
+  max-width: 250px;
 }
 
 .cards-container {
+  flex: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
+}
+
+.naptar-container {
+  flex: 1;
+  max-width: 280px;
 }
 
 .ad-box {
@@ -191,30 +191,22 @@ ul.topnav li.right {
 
 /* cardok */
 .card {
-  width: 560px;
+  width: 100%;
+  max-width: 560px;
   aspect-ratio: 1 / 0.7;
   position: relative;
-  cursor: pointer;
   background: #fff;
   border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 0 0 20px #000;
+  padding: 20px;
+  margin: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease-in-out;
-  padding: 20px;
-  margin: 20px;
-
-}
-
-.card .image-box {
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  position: relative;
-  z-index: 1;
 }
 
 .card .image-box img {
@@ -225,10 +217,21 @@ ul.topnav li.right {
   transition: 0.5s ease-in-out;
 }
 
-.feljo{
-  text-align: center;
+.card .image-box {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  position: relative;
+  z-index: 1;
+}
 
-  color: #fff;
+.card:hover {
+  transform: scale(1.01);
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover img {
+  filter: grayscale(1) brightness(0.4);
 }
 
 .card::after {
@@ -239,15 +242,6 @@ ul.topnav li.right {
   border-radius: inherit;
   opacity: 0;
   transition: 0.4s ease-in-out;
-}
-
-.card:hover {
-  transform: scale(1.01);
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
-}
-
-.card:hover img {
-  filter: grayscale(1) brightness(0.4);
 }
 
 .card:hover::after {
@@ -266,15 +260,13 @@ ul.topnav li.right {
   visibility: hidden;
   z-index: 2;
   transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+  color: white;
 }
 
 .card:hover .feljo {
   opacity: 1;
   visibility: visible;
 }
-
-
-
 
 
 /*-----------*/
@@ -425,17 +417,7 @@ ul.topnav li.right {
 
 
 /* Naptár konténer */
-.naptar-container {
-  position: absolute;
-										   
-  top: 20px;
-  right: 20px;
-  width: 280px;
-  max-width: 100%;
-						 
-					 
-}
- 
+
 #naptar-container {
   width: 280px;
   max-width: 100%;
@@ -446,8 +428,6 @@ ul.topnav li.right {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-						 
-			   
 }
 
 #honap-ev-cim {
@@ -691,4 +671,19 @@ ul.topnav li.right {
   flex: 1;
   padding: 20px;
   box-sizing: border-box;
+}
+
+
+.filter-container {
+  flex: 1;
+  max-width: 300px;
+}
+
+.cards-container {
+  flex: 2;
+}
+
+.naptar-container {
+  flex: 1;
+  max-width: 300px;
 }
