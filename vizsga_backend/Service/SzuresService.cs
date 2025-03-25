@@ -12,7 +12,7 @@ namespace vizsga_backend.Service
             _context = context;
         }
 
-        public IEnumerable<Hirdete> hirdetes(string orszag = null, string varmegye = null, string telepules = null, string utcanev = null,
+        public IEnumerable<Hirdete> hirdetes(string orszag = null, string varmegye = null, string telepules = null,
         string tipus = null, decimal? ar = null, bool? gyerekbarat = null, bool? allatbarat = null, string kiadasiIdo = null)
         {
             var lekerdezes = _context.Hirdetes.AsQueryable();
@@ -24,9 +24,6 @@ namespace vizsga_backend.Service
 
             if (!string.IsNullOrEmpty(telepules))
                 lekerdezes = lekerdezes.Where(i => i.Telepules.Contains(telepules));
-
-            if (!string.IsNullOrEmpty(utcanev))
-                lekerdezes = lekerdezes.Where(i => i.Utcahazszam.Contains(utcanev));
 
             if (!string.IsNullOrEmpty(tipus))
                 lekerdezes = lekerdezes.Where(i => i.Tipus.Contains(tipus));

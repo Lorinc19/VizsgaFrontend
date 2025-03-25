@@ -551,10 +551,6 @@
             "type": "string",
             "nullable": true
           },
-          "utcahazszam": {
-            "type": "string",
-            "nullable": true
-          },
           "tipus": {
             "type": "string",
             "nullable": true
@@ -570,6 +566,14 @@
             "type": "boolean"
           },
           "kepUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "utca": {
+            "type": "string",
+            "nullable": true
+          },
+          "hazszam": {
             "type": "string",
             "nullable": true
           },
@@ -614,7 +618,11 @@
             "type": "string",
             "nullable": true
           },
-          "utcahazszam": {
+          "utca": {
+            "type": "string",
+            "nullable": true
+          },
+          "hazszam": {
             "type": "string",
             "nullable": true
           },

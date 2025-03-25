@@ -17,12 +17,14 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
     {
     }
 
-    public DbSet<ApplicationUser> applicationUsers { get; set; } = null!;
+
+    public DbSet<ApplicationUser> applicationUsers { get; set; } = null;
     public virtual DbSet<Aspnetuser> Aspnetusers { get; set; }
 
     public virtual DbSet<Hirdete> Hirdetes { get; set; }
 
-    
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -32,6 +34,7 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
         {
             entity.HasKey(e => new { e.UserId, e.RoleId });
         });
+
 
         modelBuilder.Entity<Aspnetuser>(entity =>
         {
@@ -79,11 +82,12 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
             entity.HasIndex(e => e.FelhasznaloId, "FelhasznaloID");
 
             entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.Allatbarat).HasColumnType("tinyint(4)");
             entity.Property(e => e.Ar).HasColumnType("int(100)");
             entity.Property(e => e.Elerhetoseg).HasMaxLength(50);
             entity.Property(e => e.FelhasznaloId).HasColumnName("FelhasznaloID");
-            entity.Property(e => e.Gyerekbarat).HasColumnType("tinyint(4)");
+            entity.Property(e => e.Hazszam)
+                .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'");
             entity.Property(e => e.Hirdetesnev).HasMaxLength(50);
             entity.Property(e => e.KepUrl)
                 .HasColumnType("text")
@@ -93,7 +97,9 @@ public partial class SzakmaivizsgaContext : IdentityDbContext<ApplicationUser, I
             entity.Property(e => e.Orszag).HasMaxLength(50);
             entity.Property(e => e.Telepules).HasMaxLength(50);
             entity.Property(e => e.Tipus).HasMaxLength(50);
-            entity.Property(e => e.Utcahazszam).HasMaxLength(100);
+            entity.Property(e => e.Utca)
+                .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'");
             entity.Property(e => e.Varmegye).HasMaxLength(50);
 
             entity.HasOne(d => d.Felhasznalo).WithMany(p => p.Hirdetes)

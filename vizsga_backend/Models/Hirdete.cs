@@ -23,8 +23,6 @@ public partial class Hirdete
 
     public string Telepules { get; set; } = null!;
 
-    public string Utcahazszam { get; set; } = null!;
-
     public string Tipus { get; set; } = null!;
 
     public string Kiadasiidotartam { get; set; } = null!;
@@ -34,6 +32,10 @@ public partial class Hirdete
     public bool Allatbarat { get; set; }
 
     public string KepUrl { get; set; } = null!;
+
+    public string? Utca { get; set; }
+
+    public string? Hazszam { get; set; }
 
     public virtual Aspnetuser Felhasznalo { get; set; } = null!;
 }

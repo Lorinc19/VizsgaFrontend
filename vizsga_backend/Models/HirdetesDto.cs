@@ -12,7 +12,8 @@
             public string Orszag { get; set; }
             public string Varmegye { get; set; }
             public string Telepules { get; set; }
-            public string Utcahazszam { get; set; }
+            public string Utca { get; set; }
+            public string Hazszam { get; set; }
             public string Tipus { get; set; }
             public int Ar { get; set; }
             public bool Gyerekbarat { get; set; }

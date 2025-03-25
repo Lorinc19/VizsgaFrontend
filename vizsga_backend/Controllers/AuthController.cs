@@ -26,7 +26,7 @@ namespace vizsga_backend.Controllers
             {
                 return StatusCode(201, user);
             }
-            return BadRequest(new { result = "", message = "Siekrtelen regisztráció." });
+            return BadRequest(new { result = "", message = "Sikertelen regisztráció." });
         }
 
 
@@ -42,7 +42,7 @@ namespace vizsga_backend.Controllers
             return NotFound(res);
         }
 
-        [HttpPost("hozzárendelés")]
+        [HttpPost("Hozzárendelés")]
         public async Task<ActionResult> AddRole(string UserName, string roleName)
         {
             var res = await auth.AssignRole(UserName, roleName);
