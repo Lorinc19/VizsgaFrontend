@@ -1,6 +1,0 @@
-@mandula_HostAddress = http://localhost:5169
-
-GET {{mandula_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
