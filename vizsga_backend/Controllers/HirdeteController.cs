@@ -23,29 +23,29 @@ namespace vizsga_backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Ujhird([FromBody] HirdetesDto hirdetesDto)
+        public async Task<IActionResult> Ujhird(CreateHirdetesDto createHirdetesDto)
         {
-            if (hirdetesDto == null)
+            if (createHirdetesDto == null)
             {
                 return BadRequest("A hirdetés adatainak megadása szükséges.");
             }
             var hird = new Hirdete
             {
-                FelhasznaloId = hirdetesDto.FelhasznaloID,
-                Leiras = hirdetesDto.Leiras,
-                Elerhetoseg = hirdetesDto.Elerhetoseg,
-                Hirdetesnev = hirdetesDto.Hirdetesnev,
-                KepUrl = hirdetesDto.KepURL,
-                Orszag = hirdetesDto.Orszag,
-                Varmegye = hirdetesDto.Varmegye,
-                Telepules = hirdetesDto.Telepules,
-                Utca = hirdetesDto.Utca,
-                Hazszam = hirdetesDto.Hazszam,
-                Tipus = hirdetesDto.Tipus,
-                Ar = hirdetesDto.Ar,
-                Gyerekbarat = hirdetesDto.Gyerekbarat,
-                Allatbarat = hirdetesDto.Allatbarat,
-                Kiadasiidotartam = hirdetesDto.Kiadasiidotartam
+                FelhasznaloId = createHirdetesDto.FelhasznaloID,
+                Leiras = createHirdetesDto.Leiras,
+                Elerhetoseg = createHirdetesDto.Elerhetoseg,
+                Hirdetesnev = createHirdetesDto.Hirdetesnev,
+                KepUrl = createHirdetesDto.KepURL,
+                Orszag = createHirdetesDto.Orszag,
+                Varmegye = createHirdetesDto.Varmegye,
+                Telepules = createHirdetesDto.Telepules,
+                Utca = createHirdetesDto.Utca,
+                Hazszam = createHirdetesDto.Hazszam,
+                Tipus = createHirdetesDto.Tipus,
+                Ar = createHirdetesDto.Ar,
+                Gyerekbarat = createHirdetesDto.Gyerekbarat,
+                Allatbarat = createHirdetesDto.Allatbarat,
+                Kiadasiidotartam = createHirdetesDto.Kiadasiidotartam
 
             };
 
