@@ -5,21 +5,21 @@ import "./NewHousePost.css";
 export default function NewHousePost() {
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
-    FelhasznaloID: "",
-    Leiras: "",
-    Elerhetoseg: "",
-    Hirdetesnev: "",
-    KepURL: "",
-    Orszag: "",
-    Varmegye: "",
-    Telepules: "",
-    Utca: "",
-    Hazszam: 1,
-    Tipus: "",
-    Ar: 0,
-    Gyerekbarat: false,
-    Allatbarat: false,
-    Kiadasiidotartam: "",
+    felhasznaloID: "",
+    lLeiras: "",
+    elerhetoseg: "",
+    hirdetesnev: "",
+    kepURL: "",
+    orszag: "",
+    varmegye: "",
+    telepules: "",
+    utca: "",
+    hazszam: 1,
+    tipus: "",
+    ar: 0,
+    gyerekbarat: false,
+    allatbarat: false,
+    kiadasiidotartam: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -34,8 +34,8 @@ export default function NewHousePost() {
   const validate = () => {
     let errors = {};
 
-    if (!formData.FelhasznaloID.trim())
-      errors.FelhasznaloID = "Vezetéknév szükséges!";
+    if (!formData.felhasznaloID.trim())
+      errors.felhasznaloID = "Vezetéknév szükséges!";
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -72,7 +72,7 @@ export default function NewHousePost() {
               type="text"
               name="Leiras"
               required
-              value={formData.Leiras}
+              value={formData.leiras}
               onChange={handleChange}
               className="form-control"
             />
@@ -86,7 +86,7 @@ export default function NewHousePost() {
               type="text"
               name="Elerhetoseg"
               required
-              value={formData.Elerhetoseg}
+              value={formData.elerhetoseg}
               onChange={handleChange}
               className="form-control"
             />
@@ -100,7 +100,7 @@ export default function NewHousePost() {
               type="text"
               name="Hirdetesnev"
               required
-              value={formData.Hirdetesnev}
+              value={formData.hirdetesnev}
               onChange={handleChange}
               className="form-control"
             />
@@ -114,7 +114,7 @@ export default function NewHousePost() {
               type="text"
               name="KepURL"
               required
-              value={formData.KepURL}
+              value={formData.kepURL}
               onChange={handleChange}
               className="form-control"
             />
@@ -128,7 +128,7 @@ export default function NewHousePost() {
               type="text"
               name="Orszag"
               required
-              value={formData.Orszag}
+              value={formData.orszag}
               onChange={handleChange}
               className="form-control"
             />
@@ -142,7 +142,7 @@ export default function NewHousePost() {
               type="text"
               name="Varmegye"
               required
-              value={formData.Varmegye}
+              value={formData.varmegye}
               onChange={handleChange}
               className="form-control"
             />
@@ -156,7 +156,7 @@ export default function NewHousePost() {
               type="text"
               name="Telepules"
               required
-              value={formData.Telepules}
+              value={formData.telepules}
               onChange={handleChange}
               className="form-control"
             />
@@ -170,7 +170,7 @@ export default function NewHousePost() {
               type="text"
               name="Utca"
               required
-              value={formData.Utca}
+              value={formData.utca}
               onChange={handleChange}
               className="form-control"
             />
@@ -185,7 +185,7 @@ export default function NewHousePost() {
               name="Hazszam"
               required
               min={1}
-              value={formData.Hazszam}
+              value={formData.hazszam}
               onChange={handleChange}
               className="form-control"
             />
@@ -197,7 +197,7 @@ export default function NewHousePost() {
           <div className="col-sm-9">
             <select
               name="Tipus"
-              value={formData.Tipus}
+              value={formData.tipus}
               onChange={handleChange}
               className="form-control"
             >
@@ -215,7 +215,7 @@ export default function NewHousePost() {
               type="number"
               name="Ar"
               required
-              value={formData.Ar}
+              value={formData.ar}
               onChange={handleChange}
               className="form-control"
             />
@@ -228,7 +228,7 @@ export default function NewHousePost() {
             <input
               type="checkbox"
               name="Gyerekbarat"
-              checked={formData.Gyerekbarat}
+              checked={formData.gyerekbarat}
               onChange={handleChange}
               className="form-control"
             />
@@ -241,7 +241,7 @@ export default function NewHousePost() {
             <input
               type="checkbox"
               name="Allatbarat"
-              checked={formData.Allatbarat}
+              checked={formData.allatbarat}
               onChange={handleChange}
               className="form-control"
             />
@@ -257,7 +257,7 @@ export default function NewHousePost() {
               type="text"
               name="Kiadasiidotartam"
               required
-              value={formData.Kiadasiidotartam}
+              value={formData.kiadasiidotartam}
               onChange={handleChange}
               className="form-control"
             />
