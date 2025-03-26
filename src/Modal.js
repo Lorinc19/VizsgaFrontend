@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css"; 
-import "./Modal.css";
+import "./Modal.css"; // Az .css importálása
 
 export default function Modal({ data, onClose, onCloseOverlay }) {
   // Képindex állapot (hogy melyik kép legyen aktív a modálban)
@@ -38,10 +38,10 @@ export default function Modal({ data, onClose, onCloseOverlay }) {
         <button className="close-btn" onClick={onClose}>X</button>
         
         <div className="modal-left">
-          <h2><strong>{data?.hirdetesnev}</strong></h2>
-          <h3>{data?.elerhetoseg}</h3>
+          <h2><strong>almafa</strong></h2>
+          <h3>katiicaa</h3>
           <div className="modal-description">
-            <p>{data?.leiras}</p>
+            <p>1-2-3</p>
           </div>
         </div>
 

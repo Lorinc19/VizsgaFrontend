@@ -29,7 +29,7 @@ function App() {
         </Routes>
 
         </BrowserRouter>
-        <Lablec />
+        <Lablec />  {/* Itt hívjuk meg a Footer komponenst */}
        
     </div>
     

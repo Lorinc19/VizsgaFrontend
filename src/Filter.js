@@ -1,57 +1,30 @@
-import React, { useState } from "react";
-import "./Filter.css";
+import React from 'react';  // Csak egyszer importáljuk a React-ot
+import './App.css';
+import './Filter.css';
 
-const Filter = ({ onApply }) => {
-  const [filtersTemp, setFiltersTemp] = useState({
-    orszag: "",
-    varmegye: "",
-    telepules: "",
-    tipus: "",
-    minAr: "",
-    maxAr: "",
-    gyerekbarat: false,
-    allatbarat: false,
-    kiadasiidotartam: "",
-  });
-  const [isOpen, setIsOpen] = useState(true);
-
-  const toggleFilter = () => setIsOpen(!isOpen);
-
+const Filter = ({ updateFilter }) => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFiltersTemp((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+    updateFilter({
+      [name]: type === "checkbox" ? checked : value
+    });
   };
 
   const handleFilterSubmit = (e) => {
     e.preventDefault();
-
-    if (Number(filtersTemp.minAr) > Number(filtersTemp.maxAr)) {
-      alert("A minimum ár nem lehet nagyobb, mint a maximum ár!");
-      return;
-    }
-
-    onApply(filtersTemp); // Szűrés alkalmazása
+    updateFilter(); // Szűrés alkalmazása
   };
 
   return (
-    <div className={`filter-panel ${isOpen ? '' : 'closed'}`}>
-      {isOpen ? (
-        <>
-            <div className="filter-header">
+    <div className="filter-container">
       <h2>Szűrés</h2>
-      <button className="close-btn" onClick={toggleFilter}>×</button>
-      </div>
       <form onSubmit={handleFilterSubmit}>
         {/* Szűrési inputok */}
         <div className="input-group">
           <label>Ország</label>
           <input
             type="text"
-            name="orszag"
-            value={filtersTemp.orszag}
+            name="country"
             onChange={handleChange}
             placeholder="Ország"
           />
@@ -60,8 +33,7 @@ const Filter = ({ onApply }) => {
           <label>Vármegye</label>
           <input
             type="text"
-            name="varmegye"
-            value={filtersTemp.varmegye}
+            name="county"
             onChange={handleChange}
             placeholder="Vármegye"
           />
@@ -70,19 +42,14 @@ const Filter = ({ onApply }) => {
           <label>Település</label>
           <input
             type="text"
-            name="telepules"
-            value={filtersTemp.telepules}
+            name="city"
             onChange={handleChange}
             placeholder="Település"
           />
         </div>
         <div className="input-group">
           <label>Ingatlan típusa</label>
-          <select
-            name="tipus"
-            onChange={handleChange}
-            value={filtersTemp.tipus}
-          >
+          <select name="propertyType" onChange={handleChange}>
             <option value="">Válassz...</option>
             <option value="lakás">Lakás</option>
             <option value="ház">Ház</option>
@@ -93,52 +60,43 @@ const Filter = ({ onApply }) => {
           <label>Ár (min)</label>
           <input
             type="number"
-            name="minAr"
-            value={filtersTemp.minAr}
+            name="minPrice"
             onChange={handleChange}
-            placeholder="Minimum ár (Ft)"
-            title="Add meg a minimum árat forintban"
+            placeholder="Min ár"
           />
         </div>
         <div className="input-group">
           <label>Ár (max)</label>
           <input
             type="number"
-            name="maxAr"
-            value={filtersTemp.maxAr}
+            name="maxPrice"
             onChange={handleChange}
-            placeholder="Maximum ár (Ft)"
-            title="Add meg a maximum árat forintban"
+            placeholder="Max ár"
           />
         </div>
         <div className="input-group">
           <label>Gyerekbarát</label>
           <input
-            className="form-check form-switch"
             type="checkbox"
-            name="gyerekbarat"
+            name="isKidFriendly"
             onChange={handleChange}
-            checked={filtersTemp.gyerekbarat}
           />
         </div>
         <div className="input-group">
           <label>Állatbarát</label>
           <input
-            className="form-check form-switch"
             type="checkbox"
-            name="allatbarat"
+            name="isPetFriendly"
             onChange={handleChange}
-            checked={filtersTemp.allatbarat}
           />
         </div>
         <div className="input-group">
-          <label>Kiadási idő (hó)</label>
+          <label>Kiadási idő</label>
           <input
             type="number"
-            name="kiadasiidotartam"
+            name="rentalTime"
             min="1"
             max="12"
-            value={filtersTemp.kiadasiidotartam}
             onChange={handleChange}
             placeholder="Kiadási idő hónapokban"
           />
@@ -151,11 +109,8 @@ const Filter = ({ onApply }) => {
           </button>
         </div>
       </form>
-      </>
-      ) : (<button className="open-icon" onClick={toggleFilter}>→</button>
-      )}
     </div>
   );
 };
 
-export default Filter;
+export default Filter;  // A helyes export 
