@@ -72,7 +72,7 @@ namespace vizsga_backend.Controllers
             return NotFound(new { message = "Nincs ilyen találat." });
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getid")]
         public async Task<ActionResult<Hirdete>> GetByyID(Guid id)
         {
             var os = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(os => os.Id == id);
@@ -83,6 +83,35 @@ namespace vizsga_backend.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpPut("puthird")]
+        public async Task<ActionResult<Hirdete>> HirdetesPut(Guid id, UpdateHirdetesDto updateHirdetesDto)
+        {
+            var uphird = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(os => os.Id == id);
+
+            if (uphird != null)
+            {
+                uphird.Leiras = updateHirdetesDto.Leiras;
+                uphird.Elerhetoseg=updateHirdetesDto.Elerhetoseg;
+                uphird.Hirdetesnev = updateHirdetesDto.Hirdetesnev;
+                uphird.KepUrl = updateHirdetesDto.KepURL;
+                uphird.Orszag=updateHirdetesDto.Orszag;
+                uphird.Varmegye = updateHirdetesDto.Varmegye;
+                uphird.Telepules = updateHirdetesDto.Telepules;
+                uphird.Utca = updateHirdetesDto.Utca;
+                uphird.Hazszam=updateHirdetesDto.Hazszam;
+                uphird.Tipus = updateHirdetesDto.Tipus;
+                uphird.Ar=updateHirdetesDto.Ar;
+                uphird.Gyerekbarat=updateHirdetesDto.Gyerekbarat;
+                uphird.Allatbarat=updateHirdetesDto.Allatbarat;
+                uphird.Kiadasiidotartam=updateHirdetesDto.Kiadasiidotartam;
+                szakmaivizsgaContext.Hirdetes.Update(uphird);
+                await szakmaivizsgaContext.SaveChangesAsync();
+                return Ok(uphird);
+
+            }
+            return NotFound(new { message = "Nincs ilyen találat." });
         }
 
 

@@ -67,7 +67,7 @@
         }
       }
     },
-    "/Auth/hozzárendelés": {
+    "/Auth/Hozzárendelés": {
       "post": {
         "tags": [
           "Auth"
@@ -164,17 +164,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/HirdetesDto"
+                "$ref": "#/components/schemas/CreateHirdetesDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/HirdetesDto"
+                "$ref": "#/components/schemas/CreateHirdetesDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/HirdetesDto"
+                "$ref": "#/components/schemas/CreateHirdetesDto"
               }
             }
           }
@@ -184,9 +184,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/Hirdetés/{id}": {
+      },
       "delete": {
         "tags": [
           "Hirdete"
@@ -194,8 +192,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -207,7 +204,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/Hirdetés/getid": {
       "get": {
         "tags": [
           "Hirdete"
@@ -215,14 +214,71 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "string",
               "format": "uuid"
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hirdete"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hirdete"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hirdete"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Hirdetés/puthird": {
+      "put": {
+        "tags": [
+          "Hirdete"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHirdetesDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHirdetesDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHirdetesDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -494,6 +550,70 @@
         },
         "additionalProperties": false
       },
+      "CreateHirdetesDto": {
+        "type": "object",
+        "properties": {
+          "felhasznaloID": {
+            "type": "string",
+            "nullable": true
+          },
+          "leiras": {
+            "type": "string",
+            "nullable": true
+          },
+          "elerhetoseg": {
+            "type": "string",
+            "nullable": true
+          },
+          "hirdetesnev": {
+            "type": "string",
+            "nullable": true
+          },
+          "kepURL": {
+            "type": "string",
+            "nullable": true
+          },
+          "orszag": {
+            "type": "string",
+            "nullable": true
+          },
+          "varmegye": {
+            "type": "string",
+            "nullable": true
+          },
+          "telepules": {
+            "type": "string",
+            "nullable": true
+          },
+          "utca": {
+            "type": "string",
+            "nullable": true
+          },
+          "hazszam": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipus": {
+            "type": "string",
+            "nullable": true
+          },
+          "ar": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gyerekbarat": {
+            "type": "boolean"
+          },
+          "allatbarat": {
+            "type": "boolean"
+          },
+          "kiadasiidotartam": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "EmailRequestDto": {
         "type": "object",
         "properties": {
@@ -583,13 +703,53 @@
         },
         "additionalProperties": false
       },
-      "HirdetesDto": {
+      "LoginRequestDto": {
         "type": "object",
         "properties": {
-          "felhasznaloID": {
+          "userName": {
             "type": "string",
             "nullable": true
           },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegiszterRequestDto": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "keresztnev": {
+            "type": "string",
+            "nullable": true
+          },
+          "vezeteknev": {
+            "type": "string",
+            "nullable": true
+          },
+          "kor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateHirdetesDto": {
+        "type": "object",
+        "properties": {
           "leiras": {
             "type": "string",
             "nullable": true
@@ -641,50 +801,6 @@
             "type": "boolean"
           },
           "kiadasiidotartam": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "LoginRequestDto": {
-        "type": "object",
-        "properties": {
-          "userName": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RegiszterRequestDto": {
-        "type": "object",
-        "properties": {
-          "userName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "keresztnev": {
-            "type": "string",
-            "nullable": true
-          },
-          "vezeteknev": {
-            "type": "string",
-            "nullable": true
-          },
-          "kor": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "password": {
             "type": "string",
             "nullable": true
           }
