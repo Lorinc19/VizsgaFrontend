@@ -52,12 +52,12 @@ namespace vizsga_backend.Controllers
             szakmaivizsgaContext.Hirdetes.Add(hird);
             await szakmaivizsgaContext.SaveChangesAsync();
 
-            return CreatedAtRoute("GetHirdetes", new { id = hird.Id }, hird);
+            return StatusCode(201,hird);
         }
 
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<ActionResult> Delete(Guid id)
         {
             var os = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(o => o.Id == id);
