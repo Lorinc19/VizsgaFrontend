@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react'
 import './App.css';
 import './Profil.css'; // Importáljuk a CSS fájlt
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function Profil({ id }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch(`https://localhost:7007/User/${id}`)
-            .then(response => response.json()) // JSON formátumra alakítjuk
-            .then(data => {
-                setData(data); // Az adatokat beállítjuk a state-be
+        axios.get(`${process.env.REACT_APP_API_URL}/User/${id}`)
+            .then(response => {
+                setData(response.data);
             })
     }, [id]);
 

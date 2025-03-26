@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
         <BrowserRouter>
-        <Navbar/>
+        <Navbar label={"hello"}/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/belepes' element={<LoginRegister/>}/>
@@ -29,7 +29,7 @@ function App() {
         </Routes>
 
         </BrowserRouter>
-        <Lablec />  {/* Itt hívjuk meg a Footer komponenst */}
+        <Lablec />
        
     </div>
     

@@ -1,23 +1,18 @@
-.filter-container {
-    width: 250px; /* Panel szélességét kisebbre állítjuk */
-    padding: 10px;
-    background-color: #7f0000dd;
-    box-shadow: 0 0 10px rgb(0, 0, 0);
-    border-radius: 8px;
-    color: rgb(255, 255, 255);
-  }
-  
-  .filter-container h2 {
+
+  .filter-panel h2 {
     font-size: 20px;
     margin-bottom: 10px;
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: #fff;
     text-decoration:underline;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
   
   .input-group {
     margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
   }
   
   .input-group label {
@@ -48,25 +43,64 @@
     width: 100%;
   }
   
-
-  .input-group {
-    display: flex;
-    justify-content: center; /* Ez középre helyezi a gombot vízszintesen */
-    margin-top: 10px; /* Igény szerint állítható */
-  }
-  
-  .input-group button {
+  .input-group .filter-btn {
     width: 50%;
     background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    box-shadow: 0 0 10px rgb(0, 0, 0);
+    color: black;
+    box-shadow: 0 0 10px black;
     cursor: pointer;
     font-weight: bold;
     transform: scale(1.2);
     border-radius: 30px;
-    
+    transition: background-color 0.3s ease;
+  }
+
+  .filter-panel {
+    position: relative;
+    background-color: #7f0000dd;
+    color: white;
+    padding: 15px;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: 1;
   }
   
-  .input-group button:hover {
-    background-color: #00000071;
+  .filter-panel.closed {
+    transform: translateX(-90%);
+  }
+  
+  .filter-panel .open-icon {
+    position: absolute;
+    top: 10px;
+    left: 100%;
+    background: #740000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    box-shadow: 0 0 8px black;
+  }
+  
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .input-group .filter-btn:hover {
+    background-color: #370101;
+    color: white;
   }
