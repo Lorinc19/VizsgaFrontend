@@ -44,6 +44,12 @@ namespace vizsga_backend.Service
         {
             var user = await szakmaivizsgaContext.applicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == loginRequestDto.UserName.ToUpper());
 
+            if (user == null)
+            {
+                return null;
+            }
+
+
             bool isValid = await userManager.CheckPasswordAsync(user,loginRequestDto.Password);
 
             if (isValid)
@@ -54,7 +60,7 @@ namespace vizsga_backend.Service
                 return new { result = new { user.UserName, user.Email }, message = "Sikeres bejelentkezés", token= jwtToken };
 
 ;           }
-            return new { result = "", message = "Sikertelen a belépés", token = ""};
+            return null;
         }
 
         public async Task<object> Regiszter(RegiszterRequestDto regiszterRequestDto)

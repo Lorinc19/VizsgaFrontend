@@ -1,0 +1,6 @@
+@repa_HostAddress = http://localhost:5001
+
+GET {{repa_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
