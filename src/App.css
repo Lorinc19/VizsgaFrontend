@@ -337,15 +337,20 @@ ul.topnav li.right {
   color: #007bff;
 }
 
-.error-text {
+.message-box .error-text {
+ margin-top: 10px;
+  padding: 5px;
+  background-color: rgba(255, 0, 0, 0.381);
   color: red;
-  font-size: 12px;
-  margin-top: 5px;
+  text-align: center;
+  
+  font-size: 100%;
+  border-radius: 5px;
 }
 
 
 
-.message {
+.message-box .success-text {
   margin-top: 20px;
   padding: 10px;
   background-color: #e0ffe0;

@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import './App.css';
 import './LoginRegister.css';
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
-export default function LoginRegister() {
+export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
   const [isLogin, setIsLogin] = useState(true);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({text: "", status: ""});
   const [formData, setFormData] = useState({
     vezeteknev: "",
     keresztnev:"",
@@ -49,25 +50,48 @@ export default function LoginRegister() {
       console.log("Bejelentkezés:", formData);
       try {
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Login`, {userName: formData.userName, password: formData.password});
-        setMessage("Sikeres belépés!");
+
+        if(response.status !== 200) {
+          throw new Error();
+        }
+
+        setMessage({text: "Sikeres belépés!", status: "success"});
         console.log("Belépés sikeres", response);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userName", response.data.result.userName);
         localStorage.setItem("email", response.data.result.email);
-        navigate("/")
+        localStorage.setItem("role", jwtDecode(response.data.token).role);
+        console.log(localStorage.getItem("role"));
+        setIsLoggedIn(true)
+        setTimeout(() => {
+          navigate("/")
+        }, 2000);
+        
 
       } catch (error) {
-        setMessage("Hiba történt a belépés során!");
+        setMessage({text: "Hiba történt a belépés során!", status: "error"});
         console.error("Belépési hiba:", error.response?.data || error.message);
       }
     } else {
-      console.log("Regisztráció:", formData);
+      
+
+      const regData = {
+        ...formData,
+        kor: Number(formData.kor)
+      }
+
+      console.log("Regisztráció:", regData);
+
       try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Register`, formData);
-        setMessage("Sikeres regisztráció! Jelentkezz be.");
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Register`, regData);
+        
+        setMessage({text: "Sikeres regisztráció! Jelentkezz be.", status: "success"});
         console.log("Regisztráció sikeres:", response.data);
+        setTimeout(() => {
+          setIsLogin(true)
+        }, 2000);
       } catch (error) {
-        setMessage("Hiba történt a regisztráció során!");
+        setMessage({text: "Hiba történt a regisztráció során!", status: "error"});
         console.error("Regisztrációs hiba:", error.response?.data || error.message);
       }
     }
@@ -91,7 +115,7 @@ export default function LoginRegister() {
               onChange={handleChange}
             />
             <label>Felhasználónév</label>
-            {errors.UserName && <p className="error-text">{errors.UserName}</p>}
+            {errors.userName && <p className="error-text">{errors.userName}</p>}
           </div>
 
           <div className="input-box">
@@ -113,7 +137,18 @@ export default function LoginRegister() {
             <button type="button" className="toggle-btn" onClick={() => setIsLogin(false)}>
               Regisztráció
             </button>
-          </p>
+            </p>
+
+            {message.status === "success" ? (
+              <div className="message-box">
+                <p className="success-text">{message.text}</p>
+              </div>
+            ) : message.status === "error" ? (
+              <div className="message-box">
+                  <p className="error-text">{message.text}</p>
+            </div>
+            ) : null}
+
         </form>
 
       </div>
@@ -144,7 +179,7 @@ export default function LoginRegister() {
               onChange={handleChange}
             />
             <label>Vezetéknév</label>
-            {errors.Vezeteknev && <p className="error-text">{errors.Vezeteknev}</p>}
+            {errors.vezeteknev && <p className="error-text">{errors.vezeteknev}</p>}
           </div>
 
           <div className="input-box">
@@ -156,7 +191,7 @@ export default function LoginRegister() {
               onChange={handleChange}
             />
             <label>Keresztnév</label>
-            {errors.Csaladnev && <p className="error-text">{errors.Csaladnev}</p>}
+            {errors.keresztnev && <p className="error-text">{errors.keresztnev}</p>}
           </div>
 
           <div className="input-box">
@@ -168,7 +203,7 @@ export default function LoginRegister() {
               onChange={handleChange}
             />
             <label>Email</label>
-            {errors.Email && <p className="error-text">{errors.Email}</p>}
+            {errors.email && <p className="error-text">{errors.email}</p>}
           </div>
           <div className="input-box">
             <input
@@ -179,7 +214,7 @@ export default function LoginRegister() {
               onChange={handleChange}
             />
             <label>Jelszó</label>
-            {errors.Password && <p className="error-text">{errors.Password}</p>}
+            {errors.password && <p className="error-text">{errors.password}</p>}
           </div>
           <div className="input-box">
             <input
@@ -190,16 +225,27 @@ export default function LoginRegister() {
               onChange={handleChange}
             />
             <label>Életkor</label>
-            {errors.Kor && <p className="error-text">{errors.Kor}</p>}
+            {errors.kor && <p className="error-text">{errors.kor}</p>}
           </div>
           
           <button type="submit" className="btn">Regisztráció</button>
+
+          {message.status === "success" ? (
+              <div className="message-box">
+                <p className="success-text">{message.text}</p>
+              </div>
+            ) : message.status === "error" ? (
+              <div className="message-box">
+                  <p className="error-text">{message.text}</p>
+            </div>
+            ) : null}
+
           <p className="register-link">
             Már van felhasználód?{" "}
             <button type="button" className="toggle-btn" onClick={() => setIsLogin(true)}>
               Bejelentkezés
             </button>
-          </p>
+            </p>
         </form>
       </div>
     </div>
