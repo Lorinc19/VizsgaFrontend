@@ -4,7 +4,7 @@ import React from 'react'
 export default function Cardh(props) {
 
     function userDelete(id){
-        axios.delete(`${process.env.REACT_APP_API_URL}/Hirdetés/${id}`)
+        axios.delete(`${process.env.REACT_APP_API_URL}/Advertisement/${id}`)
         .then(function(response){
             console.log(response);
             alert("Sikeres törlés");

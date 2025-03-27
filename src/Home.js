@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Card from "./Card";
 import Modal from "./Modal";
 import Naptar from "./Naptarproba";
 import axios from "axios";
 import Filter from "./Filter"; // Importáld a szűrés komponenst!
+import { AuthContext } from "./AuthContext";
 
 export default function Home() {
   const [database, setdatabase] = useState([]); // Az adatok tárolása
@@ -13,6 +14,8 @@ export default function Home() {
   const [filters, setFilters] = useState({});
   const [noResult, setNoResult] = useState(false);
 
+  const {user} = useContext(AuthContext);
+
   // Adatok lekérése a szűrők változása szerint
   useEffect(() => {
     Get(filters); // gombra kattintás után szűr
@@ -21,7 +24,7 @@ export default function Home() {
   // Adatok lekérése
   function Get(filters = {}) {
     setIsLoading(true);
-    axios.get(`${process.env.REACT_APP_API_URL}/Hirdetés/Hirdetes`)
+    axios.get(`${process.env.REACT_APP_API_URL}/Advertisement/All`)
       .then((response) => {
         if (!(response.status < 300)) {
           throw new Error();
@@ -91,7 +94,7 @@ export default function Home() {
       <div className="filter-container">
         <Filter onApply={setFilters} />
       </div>
-
+      {user ? (<p>Szia {user.userName}!</p>) : null} 
       <div className="card-container">
       {isLoading ? (
         <div className="text-center">Betöltés...</div>

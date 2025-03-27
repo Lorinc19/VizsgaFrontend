@@ -5,8 +5,7 @@ import "./NewHousePost.css";
 export default function NewHousePost() {
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
-    felhasznaloID: "",
-    lLeiras: "",
+    leiras: "",
     elerhetoseg: "",
     hirdetesnev: "",
     kepURL: "",
@@ -14,7 +13,7 @@ export default function NewHousePost() {
     varmegye: "",
     telepules: "",
     utca: "",
-    hazszam: 1,
+    hazszam: "",
     tipus: "",
     ar: 0,
     gyerekbarat: false,
@@ -31,30 +30,31 @@ export default function NewHousePost() {
     });
   };
 
-  const validate = () => {
-    let errors = {};
-
-    if (!formData.felhasznaloID.trim())
-      errors.felhasznaloID = "Vezetéknév szükséges!";
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+
+    const postData = {
+      ...formData,
+      ar: Number(formData.ar),
+      gyerekbarat: Boolean(formData.gyerekbarat),
+      allatbarat: Boolean(formData.allatbarat),
+      felhasznaloID: "02005282-de1b-4307-81a9-5b77d8a23d80"
+    };
+
+    console.log(postData);
+    
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/Hirdetés/Post`,
-        formData
+        `${process.env.REACT_APP_API_URL}/Advertisement`,
+        postData
       );
-      setMessage("Sikeres regisztráció! Jelentkezz be.");
-      console.log("Regisztráció sikeres:", response.data);
+      setMessage("Sikeres felvitel!");
+      console.log("Felvitel sikeres:", response.data);
     } catch (error) {
-      setMessage("Hiba történt a regisztráció során!");
+      setMessage("Hiba történt a felvitel során!");
       console.error(
-        "Regisztrációs hiba:",
+        "Felvitel hiba:",
         error.response?.data || error.message
       );
     }
@@ -65,124 +65,108 @@ export default function NewHousePost() {
       <h2>Új hirdetés</h2>
 
       <form onSubmit={handleSubmit} className="new-house-form">
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Leírás:</label>
-          <div className="col-sm-9">
+        <div className="form-grid">
+          <div className="form-item">
+            <label>Leírás:</label>
             <textarea
               type="text"
-              name="Leiras"
+              name="leiras"
               required
               value={formData.leiras}
               onChange={handleChange}
               className="form-control"
             />
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Elérhetőség:</label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>Elérhetőség:</label>
             <input
               type="text"
-              name="Elerhetoseg"
+              name="elerhetoseg"
               required
               value={formData.elerhetoseg}
               onChange={handleChange}
               className="form-control"
             />
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Hirdetés név:</label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>Hirdetés név:</label>
             <input
               type="text"
-              name="Hirdetesnev"
+              name="hirdetesnev"
               required
               value={formData.hirdetesnev}
               onChange={handleChange}
               className="form-control"
             />
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Kép URL:</label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>Kép URL:</label>
             <input
               type="text"
-              name="KepURL"
+              name="kepURL"
               required
               value={formData.kepURL}
               onChange={handleChange}
               className="form-control"
             />
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Ország:</label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>Ország:</label>
             <input
               type="text"
-              name="Orszag"
+              name="orszag"
               required
               value={formData.orszag}
               onChange={handleChange}
               className="form-control"
             />
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Vármegye:</label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>Vármegye:</label>
             <input
               type="text"
-              name="Varmegye"
+              name="varmegye"
               required
               value={formData.varmegye}
               onChange={handleChange}
               className="form-control"
             />
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Település:</label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>Település:</label>
             <input
               type="text"
-              name="Telepules"
+              name="telepules"
               required
               value={formData.telepules}
               onChange={handleChange}
               className="form-control"
             />
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Utca:</label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>Utca:</label>
             <input
               type="text"
-              name="Utca"
+              name="utca"
               required
               value={formData.utca}
               onChange={handleChange}
               className="form-control"
             />
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Házszám:</label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>Házszám:</label>
             <input
               type="number"
-              name="Hazszam"
+              name="hazszam"
               required
               min={1}
               value={formData.hazszam}
@@ -190,13 +174,11 @@ export default function NewHousePost() {
               className="form-control"
             />
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Ház típusa:</label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>Ház típusa:</label>
             <select
-              name="Tipus"
+              name="tipus"
               value={formData.tipus}
               onChange={handleChange}
               className="form-control"
@@ -206,56 +188,50 @@ export default function NewHousePost() {
               <option value="ház">Ház</option>
             </select>
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Ár:</label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>Ár:</label>
             <input
               type="number"
-              name="Ar"
+              name="ar"
               required
               value={formData.ar}
               onChange={handleChange}
               className="form-control"
             />
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Gyerek barát:</label>
-          <div className="col-sm-9">
-            <input
-              type="checkbox"
-              name="Gyerekbarat"
-              checked={formData.gyerekbarat}
-              onChange={handleChange}
-              className="form-control"
-            />
+          <div className="form-item checkbox-group">
+            <label className="custom-checkbox">
+            <span>Gyerekbarát:</span>
+              <input
+                type="checkbox"
+                name="gyerekbarat"
+                checked={formData.gyerekbarat}
+                onChange={handleChange}
+              />
+              
+            </label>
+
+            <label className="custom-checkbox">
+            <span>Állatbarát:</span>
+              <input
+                type="checkbox"
+                name="allatbarat"
+                checked={formData.allatbarat}
+                onChange={handleChange}
+              />
+              
+            </label>
           </div>
-        </div>
 
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">Állatbarát:</label>
-          <div className="col-sm-9">
-            <input
-              type="checkbox"
-              name="Allatbarat"
-              checked={formData.allatbarat}
-              onChange={handleChange}
-              className="form-control"
-            />
-          </div>
-        </div>
-
-        <div className="form-group row pb-3">
-          <label className="col-sm-3 col-form-label">
-            Kiadás idő tartalma (hó):
-          </label>
-          <div className="col-sm-9">
+          <div className="form-item">
+            <label>
+              Kiadás idő tartalma (hó):
+            </label>
             <input
               type="text"
-              name="Kiadasiidotartam"
+              name="kiadasiidotartam"
               required
               value={formData.kiadasiidotartam}
               onChange={handleChange}
@@ -267,6 +243,7 @@ export default function NewHousePost() {
         <button type="submit" className="btn btn-success">
           Küldés
         </button>
+
       </form>
       {message && <p>{message}</p>}
     </div>

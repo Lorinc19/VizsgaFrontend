@@ -20,7 +20,7 @@ export default function Admin() {
   //Function
 
   const handleClick = async () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/User/Adminfelhaszn`)
+    axios.get(`${process.env.REACT_APP_API_URL}/User/AdminUser`)
       .then((res) => {
         setadminf(res.data)
         console.log(res.data);
@@ -30,7 +30,7 @@ export default function Admin() {
   }
 
   const handleClick2 = async () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/Hirdetés/Hirdetes`)
+    axios.get(`${process.env.REACT_APP_API_URL}/Advertisement/All`)
       .then((res) => {
         sethird(res.data)
         console.log(res.data);

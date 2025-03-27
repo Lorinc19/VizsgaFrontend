@@ -10,10 +10,12 @@ import Lablec from './Lablec';
 import Profil from './Profil';
 import Hirdetes from './Hirdetes';
 import Admin from './Admin';
+import { AuthProvider } from './AuthContext';
 
 function App() {
   return (
     <div>
+      <AuthProvider>
         <BrowserRouter>
         <Navbar label={"hello"}/>
         <Routes>
@@ -30,10 +32,12 @@ function App() {
 
         </BrowserRouter>
         <Lablec />
+        </AuthProvider>
        
     </div>
     
   );
 }
+
 
 export default App;

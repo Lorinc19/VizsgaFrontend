@@ -4,21 +4,19 @@ import './App.css';
 import './LoginRegister.css';
 import { useNavigate } from "react-router-dom";
 
-
 export default function LoginRegister() {
   const [isLogin, setIsLogin] = useState(true);
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
-    Vezeteknev: "",
-    Keresztnev:"",
-    Email: "",
-    Password: "",
-    Kor:"",
-    UserName:""
+    vezeteknev: "",
+    keresztnev:"",
+    email: "",
+    password: "",
+    kor:"",
+    userName:""
   });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -31,13 +29,12 @@ export default function LoginRegister() {
   const validate = () => {
     let errors = {};
     if (!isLogin) {
-            if (!formData.Vezeteknev.trim()) errors.Vezeteknev = "Vezetéknév szükséges!";
-            if (!formData.Keresztnev.trim()) errors.Csaladnev = "Keresztnév szükséges!";
-            if (!formData.Email.includes("@")) errors.Email = "Érvénytelen email!";
-            if (!formData.Kor || isNaN(formData.Kor) || formData.Kor < 18) errors.Kor = "Minimum életkor 18 év!";
-            if (formData.Password.length < 6) errors.Password = "A jelszónak legalább 6 karakter hosszúnak kell lennie!";
+            if (!formData.vezeteknev.trim()) errors.vezeteknev = "Vezetéknév szükséges!";
+            if (!formData.keresztnev.trim()) errors.keresztnev = "Keresztnév szükséges!";
+            if (!formData.email.includes("@")) errors.email = "Érvénytelen email!";
+            if (!formData.kor || isNaN(formData.kor) || formData.kor < 18) errors.kor = "Minimum életkor 18 év!";
+            if (formData.password.length < 6) errors.password = "A jelszónak legalább 6 karakter hosszúnak kell lennie!";
     }
-    
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -51,7 +48,7 @@ export default function LoginRegister() {
     if (isLogin) {
       console.log("Bejelentkezés:", formData);
       try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Login`, {userName: formData.UserName, password: formData.Password});
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Login`, {userName: formData.userName, password: formData.password});
         setMessage("Sikeres belépés!");
         console.log("Belépés sikeres", response);
         localStorage.setItem("token", response.data.token);
@@ -66,7 +63,7 @@ export default function LoginRegister() {
     } else {
       console.log("Regisztráció:", formData);
       try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Regisztráció`, formData);
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Register`, formData);
         setMessage("Sikeres regisztráció! Jelentkezz be.");
         console.log("Regisztráció sikeres:", response.data);
       } catch (error) {
@@ -88,9 +85,9 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="text"
-              name="UserName"
+              name="userName"
               required
-              value={formData.UserName}
+              value={formData.userName}
               onChange={handleChange}
             />
             <label>Felhasználónév</label>
@@ -100,9 +97,9 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="password"
-              name="Password"
+              name="password"
               required
-              value={formData.Password}
+              value={formData.password}
               onChange={handleChange}
             />
             <label>Jelszó</label>
@@ -129,9 +126,9 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="text"
-              name="UserName"
+              name="userName"
               required 
-              value={formData.UserName} 
+              value={formData.userName} 
               onChange={handleChange}
             />
             <label>Felhasználó Név</label>
@@ -141,9 +138,9 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="text"
-              name="Vezeteknev"
+              name="vezeteknev"
               required
-              value={formData.Vezeteknev}
+              value={formData.vezeteknev}
               onChange={handleChange}
             />
             <label>Vezetéknév</label>
@@ -153,9 +150,9 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="text"
-              name="Keresztnev"
+              name="keresztnev"
               required
-              value={formData.Csaladnev}
+              value={formData.keresztnev}
               onChange={handleChange}
             />
             <label>Keresztnév</label>
@@ -165,9 +162,9 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="email"
-              name="Email"
+              name="email"
               required
-              value={formData.Email}
+              value={formData.email}
               onChange={handleChange}
             />
             <label>Email</label>
@@ -176,9 +173,9 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="password"
-              name="Password"
+              name="password"
               required
-              value={formData.Password}
+              value={formData.password}
               onChange={handleChange}
             />
             <label>Jelszó</label>
@@ -187,9 +184,9 @@ export default function LoginRegister() {
           <div className="input-box">
             <input
               type="number"
-              name="Kor"
+              name="kor"
               required
-              value={formData.Kor}
+              value={formData.kor}
               onChange={handleChange}
             />
             <label>Életkor</label>

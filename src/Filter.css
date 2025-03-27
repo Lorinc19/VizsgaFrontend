@@ -1,106 +1,179 @@
+.filter-panel h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #fff;
+  text-decoration:underline;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
 
-  .filter-panel h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    text-align: center;
-    color: #fff;
-    text-decoration:underline;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  .input-group label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  .input-group input,
-  .input-group select {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .input-group input[type="number"] {
-    -webkit-appearance: none; /* Eltüntetjük a növekvő és csökkenő nyilakat a szám inputban */
-    -moz-appearance: textfield;
-  }
-  
-  .input-group input[type="checkbox"] {
-    margin-top: 8px;
-  }
-  
-  .input-group input[type="range"] {
-    width: 100%;
-  }
-  
-  .input-group .filter-btn {
-    width: 50%;
-    background-color: #ffffff;
-    color: black;
-    box-shadow: 0 0 10px black;
-    cursor: pointer;
-    font-weight: bold;
-    transform: scale(1.2);
-    border-radius: 30px;
-    transition: background-color 0.3s ease;
-  }
+.input-group {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
 
-  .filter-panel {
-    position: relative;
-    background-color: #7f0000dd;
-    color: white;
-    padding: 15px;
-    border-radius: 0 10px 10px 0;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    z-index: 1;
-  }
-  
-  .filter-panel.closed {
-    transform: translateX(-90%);
-  }
-  
-  .filter-panel .open-icon {
-    position: absolute;
-    top: 10px;
-    left: 100%;
-    background: #740000;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    box-shadow: 0 0 8px black;
-  }
-  
-  .filter-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-  }
+.input-group label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+}
 
-  .input-group .filter-btn:hover {
-    background-color: #370101;
-    color: white;
-  }
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.input-group input[type="number"] {
+  -webkit-appearance: none; /* Eltüntetjük a növekvő és csökkenő nyilakat a szám inputban */
+  -moz-appearance: textfield;
+}
+
+.input-group input[type="checkbox"] {
+  margin-top: 8px;
+}
+
+.input-group input[type="range"] {
+  width: 100%;
+}
+
+.input-group .filter-btn {
+  width: 50%;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 30px;
+  font-weight: bold;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-group .filter-btn:hover {
+  background-color: #370101;
+}
+
+.input-group .filter-reset-btn {
+  width: 50%;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 30px;
+  font-weight: bold;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-group .filter-reset-btn:hover {
+  background-color: #370101;
+}
+
+.filter-panel {
+  position: relative;
+  background-color: #7f0000dd;
+  color: white;
+  padding: 15px;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.filter-panel.closed {
+  transform: translateX(-110%);
+}
+
+.filter-panel .open-icon {
+  position: absolute;
+  top: 10px;
+  left: 100%;
+  background: #740000;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  box-shadow: 0 0 8px black;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.checkbox-group label span {
+  display: inline-block;
+  width: 110px;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: normal;
+  user-select: none;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #740000;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-checkbox input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 5px;
+  height: 10px;
+  border: solid #740000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.custom-checkbox input[type="checkbox"]:checked::after {
+  opacity: 1;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}

@@ -16,7 +16,7 @@ function Footer() {
         </div>
         <div className="footer-column">
           <h4>Elérhetőségünk:</h4>
-          <p>Email: best.albigo@gmail.com<br />Kizásólag Email üzenetek fogadunk</p>
+          <p>Email: best.albigo@gmail.com<br />Kizárólag Email üzenetek fogadunk</p>
         </div>
         <div className="footer-column">
           <h4>Oldal készítői:</h4>
