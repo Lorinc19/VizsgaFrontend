@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/Auth/Regisztráció": {
+    "/Auth/Register": {
       "post": {
         "tags": [
           "Auth"
@@ -67,7 +67,7 @@
         }
       }
     },
-    "/Auth/Hozzárendelés": {
+    "/Auth/Assign": {
       "post": {
         "tags": [
           "Auth"
@@ -126,7 +126,7 @@
         }
       }
     },
-    "/Hirdetés/Hirdetes": {
+    "/Advertisement/All": {
       "get": {
         "tags": [
           "Hirdete"
@@ -155,7 +155,7 @@
         }
       }
     },
-    "/Hirdetés": {
+    "/Advertisement": {
       "post": {
         "tags": [
           "Hirdete"
@@ -206,7 +206,7 @@
         }
       }
     },
-    "/Hirdetés/getid": {
+    "/Advertisement/Getid": {
       "get": {
         "tags": [
           "Hirdete"
@@ -245,7 +245,7 @@
         }
       }
     },
-    "/Hirdetés/puthird": {
+    "/Advertisement/Puthird": {
       "put": {
         "tags": [
           "Hirdete"
@@ -303,7 +303,7 @@
         }
       }
     },
-    "/SzuresController/Szures": {
+    "/FilterUser": {
       "get": {
         "tags": [
           "Szures"
@@ -374,7 +374,7 @@
         }
       }
     },
-    "/User/{id}": {
+    "/User/id": {
       "get": {
         "tags": [
           "User"
@@ -382,8 +382,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -413,7 +412,45 @@
         }
       }
     },
-    "/User/Adminfelhaszn": {
+    "/User/UserAllHird": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aspnetuser"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aspnetuser"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Aspnetuser"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/AdminUser": {
       "get": {
         "tags": [
           "User"
@@ -442,7 +479,7 @@
         }
       }
     },
-    "/User/{id}/UserAdmin": {
+    "/User/{id}": {
       "delete": {
         "tags": [
           "User"
@@ -696,9 +733,6 @@
           "hazszam": {
             "type": "string",
             "nullable": true
-          },
-          "felhasznalo": {
-            "$ref": "#/components/schemas/Aspnetuser"
           }
         },
         "additionalProperties": false
