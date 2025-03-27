@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace vizsga_backend.Models;
 
@@ -37,5 +38,6 @@ public partial class Hirdete
 
     public string? Hazszam { get; set; }
 
+    [JsonIgnore]
     public virtual Aspnetuser Felhasznalo { get; set; } = null!;
 }

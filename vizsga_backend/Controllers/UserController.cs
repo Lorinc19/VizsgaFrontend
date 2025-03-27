@@ -29,6 +29,23 @@ namespace vizsga_backend.Controllers
 
             return NotFound();
         }
+
+        [HttpGet("UserAllHird")]
+        public async Task<ActionResult<Aspnetuser>> Get(string id)
+        {
+            var userhird = await szakmaivizsgaContext.Aspnetusers.Include(a => a.Hirdetes).FirstOrDefaultAsync(userhird => userhird.Id == id);
+
+            if (userhird != null)
+            {
+                return Ok(userhird);
+            }
+
+            return NotFound();
+
+        }
+
+
+
         [HttpGet("AdminUser")]
         public async Task<ActionResult<Aspnetuser>> AdminUserGet()
         {
