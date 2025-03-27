@@ -1,8 +1,117 @@
 [
   {
+    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
+    "Method": "Ujhird",
+    "RelativePath": "Advertisement",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createHirdetesDto",
+        "Type": "vizsga_backend.Models.CreateHirdetesDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
+    "Method": "Delete",
+    "RelativePath": "Advertisement",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
+    "Method": "Get",
+    "RelativePath": "Advertisement/All",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "vizsga_backend.Models.Hirdete",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
+    "Method": "GetByyID",
+    "RelativePath": "Advertisement/Getid",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "vizsga_backend.Models.Hirdete",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
+    "Method": "HirdetesPut",
+    "RelativePath": "Advertisement/Puthird",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "updateHirdetesDto",
+        "Type": "vizsga_backend.Models.UpdateHirdetesDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "vizsga_backend.Models.Hirdete",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "vizsga_backend.Controllers.AuthController",
     "Method": "AddRole",
-    "RelativePath": "Auth/Hozz\u00E1rendel\u00E9s",
+    "RelativePath": "Auth/Assign",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -39,7 +148,7 @@
   {
     "ContainingType": "vizsga_backend.Controllers.AuthController",
     "Method": "AddNewUser",
-    "RelativePath": "Auth/Regisztr\u00E1ci\u00F3",
+    "RelativePath": "Auth/Register",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -69,118 +178,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
-    "Method": "Ujhird",
-    "RelativePath": "Hirdet\u00E9s",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "createHirdetesDto",
-        "Type": "vizsga_backend.Models.CreateHirdetesDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
-    "Method": "Delete",
-    "RelativePath": "Hirdet\u00E9s",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
-    "Method": "GetByyID",
-    "RelativePath": "Hirdet\u00E9s/getid",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "vizsga_backend.Models.Hirdete",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
-    "Method": "Get",
-    "RelativePath": "Hirdet\u00E9s/Hirdetes",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "vizsga_backend.Models.Hirdete",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "vizsga_backend.Controllers.HirdeteController",
-    "Method": "HirdetesPut",
-    "RelativePath": "Hirdet\u00E9s/puthird",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "updateHirdetesDto",
-        "Type": "vizsga_backend.Models.UpdateHirdetesDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "vizsga_backend.Models.Hirdete",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "vizsga_backend.Controllers.SzuresController",
     "Method": "hirdetes",
-    "RelativePath": "SzuresController/Szures",
+    "RelativePath": "FilterUser",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -230,34 +230,8 @@
   },
   {
     "ContainingType": "vizsga_backend.Controllers.UserController",
-    "Method": "GetByID",
-    "RelativePath": "User/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "vizsga_backend.Models.Aspnetuser",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "vizsga_backend.Controllers.UserController",
     "Method": "Delete",
-    "RelativePath": "User/{id}/UserAdmin",
+    "RelativePath": "User/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -273,11 +247,37 @@
   {
     "ContainingType": "vizsga_backend.Controllers.UserController",
     "Method": "AdminUserGet",
-    "RelativePath": "User/Adminfelhaszn",
+    "RelativePath": "User/AdminUser",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "vizsga_backend.Models.Aspnetuser",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "vizsga_backend.Controllers.UserController",
+    "Method": "GetByID",
+    "RelativePath": "User/id",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "vizsga_backend.Models.Aspnetuser",

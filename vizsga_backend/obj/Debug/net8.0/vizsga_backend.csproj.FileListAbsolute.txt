@@ -2265,3 +2265,16 @@ C:\Users\Tanulo\Desktop\LL\banan\vizsga_backend\obj\Debug\net8.0\refint\vizsga_b
 C:\Users\Tanulo\Desktop\LL\banan\vizsga_backend\obj\Debug\net8.0\vizsga_backend.pdb
 C:\Users\Tanulo\Desktop\LL\banan\vizsga_backend\obj\Debug\net8.0\vizsga_backend.genruntimeconfig.cache
 C:\Users\Tanulo\Desktop\LL\banan\vizsga_backend\obj\Debug\net8.0\ref\vizsga_backend.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Tanulo\Desktop\KM\VizsgaFrontend\vizsga_backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

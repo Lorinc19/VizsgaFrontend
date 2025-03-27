@@ -5,7 +5,7 @@ using vizsga_backend.Models;
 
 namespace vizsga_backend.Controllers
 {
-    [Route("Hirdetés")]
+    [Route("Advertisement")]
     [ApiController]
     public class HirdeteController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace vizsga_backend.Controllers
             this.szakmaivizsgaContext = szakmaivizsgaContext;
         }
 
-        [HttpGet("Hirdetes")]
+        [HttpGet("All")]
         public async Task<ActionResult<Hirdete>> Get()
         {
             return Ok(await szakmaivizsgaContext.Hirdetes.ToListAsync());
@@ -72,7 +72,7 @@ namespace vizsga_backend.Controllers
             return NotFound(new { message = "Nincs ilyen találat." });
         }
 
-        [HttpGet("getid")]
+        [HttpGet("Getid")]
         public async Task<ActionResult<Hirdete>> GetByyID(Guid id)
         {
             var os = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(os => os.Id == id);
@@ -85,7 +85,7 @@ namespace vizsga_backend.Controllers
             return NotFound();
         }
 
-        [HttpPut("puthird")]
+        [HttpPut("Puthird")]
         public async Task<ActionResult<Hirdete>> HirdetesPut(Guid id, UpdateHirdetesDto updateHirdetesDto)
         {
             var uphird = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(os => os.Id == id);

@@ -16,7 +16,7 @@ namespace vizsga_backend.Controllers
             this.auth = auth;
         }
 
-        [HttpPost("Regisztráció")]
+        [HttpPost("Register")]
         public async Task<ActionResult> AddNewUser(RegiszterRequestDto regiszterRequestDto)
         {
             var user = await auth.Regiszter(regiszterRequestDto);
@@ -42,7 +42,7 @@ namespace vizsga_backend.Controllers
             return NotFound(res);
         }
 
-        [HttpPost("Hozzárendelés")]
+        [HttpPost("Assign")]
         public async Task<ActionResult> AddRole(string UserName, string roleName)
         {
             var res = await auth.AssignRole(UserName, roleName);

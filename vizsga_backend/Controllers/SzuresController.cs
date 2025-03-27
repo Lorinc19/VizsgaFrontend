@@ -6,7 +6,7 @@ using vizsga_backend.Service;
 
 namespace vizsga_backend.Controllers
 {
-    [Route("SzuresController")]
+    [Route("")]
     [ApiController]
     public class SzuresController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace vizsga_backend.Controllers
             _szuresService = szuresService;
 
         }
-        [HttpGet("Szures")]
+        [HttpGet("FilterUser")]
         public IActionResult hirdetes ([FromQuery] string orszag = null,
         [FromQuery] string varmegye = null,
         [FromQuery] string telepules = null,

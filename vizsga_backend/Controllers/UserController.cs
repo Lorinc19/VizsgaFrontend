@@ -17,7 +17,7 @@ namespace vizsga_backend.Controllers
         }
         //ID alapon lekérdezés a userekről
 
-        [HttpGet("{id}")]
+        [HttpGet("id")]
         public async Task<ActionResult<Aspnetuser>> GetByID(string id)
         {
             var os = await szakmaivizsgaContext.Aspnetusers.FirstOrDefaultAsync(os => os.Id == id);
@@ -29,13 +29,13 @@ namespace vizsga_backend.Controllers
 
             return NotFound();
         }
-        [HttpGet("Adminfelhaszn")]
+        [HttpGet("AdminUser")]
         public async Task<ActionResult<Aspnetuser>> AdminUserGet()
         {
             return Ok(await szakmaivizsgaContext.Aspnetusers.ToListAsync());
         }
 
-        [HttpDelete("{id}/UserAdmin")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(string id)
         {
             var os = await szakmaivizsgaContext.Aspnetusers.FirstOrDefaultAsync(o => o.Id == id);
