@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Profil.css';
 import axios from 'axios';
+import Cardh from './Cardh';
+import './Admin.css';
 
 export default function Profil({ isLoggedIn, setIsLoggedIn }) {
     const [data, setData] = useState({});
@@ -9,6 +11,10 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
     const navigate = useNavigate();
     const userId = localStorage.getItem("userId");
     
+  const [hird, sethird] = useState([])
+  const [selectedBtn, setselectedBtn] = useState(null)
+  const role = localStorage.getItem("role");
+  
 
 
 
@@ -47,6 +53,15 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
         navigate("/belepes");
     };
 
+    const handleClick2 = async () => {
+        axios.get(`${process.env.REACT_APP_API_URL}/Advertisement/All`)
+          .then((res) => {
+            sethird(res.data)
+            console.log(res.data);
+            setselectedBtn("Hird")
+          })
+    
+      }
     return (
         <div className="profil-container">
             {message ? <h2 className='error-text'>{message}</h2> : (
@@ -59,9 +74,22 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
                     <h3>Felhasználónév: {data.userName}</h3>
                     <p><strong>Életkor:</strong> {data.kor}</p>
                     <p><strong>Email:</strong> {data.email}</p>
-                    <button className='alma' onClick={() => navigate("/hirdetes")}>Hirdetéseim</button>
+                    <button className="alma1" onClick={handleClick2}>Hirdetéseim</button>
                     <button className='alma2' onClick={handleLogout}>Kijelentkezés <i className="bi bi-box-arrow-right"></i></button>
-                </div>
+                
+                <div className='tartalom'>
+{selectedBtn ==="Hird" ? (
+            <div className="szekcio">
+              <h2>Hirdetések</h2>
+                {
+                  hird.map(hirdet => (<Cardh key={hirdet.id} hirdetes={hirdet} hirdgetfv={handleClick2} />))
+                }
+            </div>
+          ) : null}
+</div>
+        </div>
+
+      
             )}
         </div>
     );
