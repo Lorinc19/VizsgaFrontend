@@ -26,7 +26,7 @@ namespace vizsga_backend.Controllers
             {
                 return StatusCode(201, user);
             }
-            return BadRequest(new { result = "", message = "Sikertelen regisztráció." });
+            return BadRequest();
         }
 
 

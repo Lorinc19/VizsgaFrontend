@@ -75,6 +75,12 @@ namespace vizsga_backend.Service
 
             };
 
+            if (user == null)
+            {
+                return null;
+            }
+
+
             var result = await userManager.CreateAsync(user,regiszterRequestDto.Password);
 
             if (result.Succeeded)
@@ -83,7 +89,7 @@ namespace vizsga_backend.Service
 
                 return new { result = userReturn, message = "Sikeres Regisztráció." };
             }
-            return new { result = "", message = result.Errors.FirstOrDefault().Description };
+            return null;
         }
     }
 }

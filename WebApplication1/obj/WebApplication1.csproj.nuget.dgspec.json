@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tanulo\\Desktop\\LL\\WebApplication1\\vizsga_backend\\vizsga_backend.csproj": {}
+    "C:\\Users\\Tanulo\\Desktop\\LL\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tanulo\\Desktop\\LL\\WebApplication1\\vizsga_backend\\vizsga_backend.csproj": {
+    "C:\\Users\\Tanulo\\Desktop\\LL\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tanulo\\Desktop\\LL\\WebApplication1\\vizsga_backend\\vizsga_backend.csproj",
-        "projectName": "vizsga_backend",
-        "projectPath": "C:\\Users\\Tanulo\\Desktop\\LL\\WebApplication1\\vizsga_backend\\vizsga_backend.csproj",
+        "projectUniqueName": "C:\\Users\\Tanulo\\Desktop\\LL\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectName": "WebApplication1",
+        "projectPath": "C:\\Users\\Tanulo\\Desktop\\LL\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\Tanulo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tanulo\\Desktop\\LL\\WebApplication1\\vizsga_backend\\obj\\",
+        "outputPath": "C:\\Users\\Tanulo\\Desktop\\LL\\WebApplication1\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,36 +50,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "MailKit": {
-              "target": "Package",
-              "version": "[4.10.0, )"
-            },
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[8.0.12, )"
-            },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.12, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.12, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[8.0.12, )"
-            },
-            "MimeKit": {
-              "target": "Package",
-              "version": "[4.10.0, )"
-            },
-            "MySql.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.8, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
