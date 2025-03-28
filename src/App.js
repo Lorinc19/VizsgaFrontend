@@ -5,48 +5,42 @@ import LoginRegister from './LoginRegister';
 import Navbar from './Navbar';
 import NewHousePost from './NewHousePost';
 import Map from './Map';
-import Naptarproba from './Naptarproba';
 import Lablec from './Lablec';
 import Profil from './Profil';
 import Hirdetes from './Hirdetes';
 import Admin from './Admin';
-import { AuthProvider } from './AuthContext';
 import { useEffect, useState } from 'react';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  // const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-  // useEffect(() => {
-  //   if(token) {
-  //     setIsLoggedIn(true)
-  //   }
-  // }, [token])
+  useEffect(() => {
+    if (token) {
+      setIsLoggedIn(true)
+    }
+  }, [token])
 
   return (
     <div>
-      <AuthProvider>
-        <BrowserRouter>
-        <Navbar isLoggedIn={isLoggedIn}/>
+      <BrowserRouter>
+        <Navbar isLoggedIn={isLoggedIn} />
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
-          <Route path='/belepes' element={<LoginRegister isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}/>
-          <Route path='/regisztracio' element={<LoginRegister/>} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
-          <Route path='/ujhaz' element={<NewHousePost isLoggedIn={isLoggedIn}/>}/>
-          <Route path='/map' element={<Map/>}/>
-          <Route path='/profil' element={<Profil isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}/>
-          <Route path='/hirdetes' element={<Hirdetes/>}/>
-          <Route path='/admin' element={<Admin isLoggedIn={isLoggedIn} />}/>
-
+          <Route path='/belepes' element={<LoginRegister isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='/regisztracio' element={<LoginRegister isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='/ujhaz' element={<NewHousePost isLoggedIn={isLoggedIn} />} />
+          <Route path='/map' element={<Map />} />
+          <Route path='/profil' element={<Profil isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='/hirdetes' element={<Hirdetes />} />
+          <Route path='/admin' element={<Admin isLoggedIn={isLoggedIn} />} />
         </Routes>
 
-        </BrowserRouter>
-        <Lablec />
-        </AuthProvider>
-       
+      </BrowserRouter>
+      <Lablec />
     </div>
-    
+
   );
 }
 

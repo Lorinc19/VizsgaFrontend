@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import './Admin.css';
 import axios from 'axios';
 import Carda from './Carda';
 import Cardh from './Cardh';
+import { useNavigate } from 'react-router-dom';
 
 
-export default function Admin() {
+export default function Admin({isLoggedIn}) {
 
   //useState
   const [adminf, setadminf] = useState([])
   const [hird, sethird] = useState([])
   const [selectedBtn, setselectedBtn] = useState(null)
+  const role = localStorage.getItem("role");
+  const navigate = useNavigate();
 
   //useEffect
-
+  useEffect(() => {
+    if(!isLoggedIn || role !== "Admin"){
+      navigate("/");
+    }
+  }, [role, isLoggedIn, navigate])
 
 
 
@@ -73,5 +80,4 @@ export default function Admin() {
       </div>
   );
 };
-
 

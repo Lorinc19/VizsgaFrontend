@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
 import './LoginRegister.css';
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { BeatLoader, PacmanLoader } from "react-spinners";
 
 export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
   const [isLogin, setIsLogin] = useState(true);
@@ -19,6 +20,13 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if(isLoggedIn){
+      navigate("/");
+    }
+  
+  }, [isLoggedIn, navigate])
+  
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -47,25 +55,33 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
     }
 
     if (isLogin) {
-      console.log("Bejelentkezés:", formData);
+
+      const logData = {
+        userName: formData.userName,
+        password: formData.password
+      }
+
+      console.log("Bejelentkezés:", logData);
       try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Login`, {userName: formData.userName, password: formData.password});
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Login`, logData);
 
         if(response.status !== 200) {
           throw new Error();
         }
 
-        setMessage({text: "Sikeres belépés!", status: "success"});
-        console.log("Belépés sikeres", response);
+        setMessage({text: response.data.message, status: "success"});
+        console.log("Belépés sikeres:", response);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userName", response.data.result.userName);
         localStorage.setItem("email", response.data.result.email);
         localStorage.setItem("role", jwtDecode(response.data.token).role);
-        console.log(localStorage.getItem("role"));
-        setIsLoggedIn(true)
+        localStorage.setItem("userId", jwtDecode(response.data.token).sub);
+        
+        
         setTimeout(() => {
-          navigate("/")
-        }, 2000);
+          setIsLoggedIn(true)
+          navigate("/") // 2 másodperc várakozás, hogy megmutassuk a loading ikont
+        }, 1000);
         
 
       } catch (error) {
@@ -85,7 +101,7 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
       try {
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Register`, regData);
         
-        setMessage({text: "Sikeres regisztráció! Jelentkezz be.", status: "success"});
+        setMessage({text: `${response.message} Jelentkezz be!`, status: "success"});
         console.log("Regisztráció sikeres:", response.data);
         setTimeout(() => {
           setIsLogin(true)
@@ -134,7 +150,7 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
           <p className="register-link">
             Nincs felhasználód?{" "}
             
-            <button type="button" className="toggle-btn" onClick={() => setIsLogin(false)}>
+            <button type="button" className="alma2" onClick={() => setIsLogin(false)}>
               Regisztráció
             </button>
             </p>
@@ -142,6 +158,7 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
             {message.status === "success" ? (
               <div className="message-box">
                 <p className="success-text">{message.text}</p>
+                <PacmanLoader color="#f9a825"/>
               </div>
             ) : message.status === "error" ? (
               <div className="message-box">
@@ -230,22 +247,22 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
           
           <button type="submit" className="btn">Regisztráció</button>
 
-          {message.status === "success" ? (
+          <p className="register-link">
+            Már van felhasználód?{" "}
+            <button type="button" className="alma2" onClick={() => setIsLogin(true)}>
+              Bejelentkezés
+            </button>
+            </p>
+
+            {message.status === "success" ? (
               <div className="message-box">
                 <p className="success-text">{message.text}</p>
               </div>
             ) : message.status === "error" ? (
               <div className="message-box">
                   <p className="error-text">{message.text}</p>
-            </div>
+              </div>
             ) : null}
-
-          <p className="register-link">
-            Már van felhasználód?{" "}
-            <button type="button" className="toggle-btn" onClick={() => setIsLogin(true)}>
-              Bejelentkezés
-            </button>
-            </p>
         </form>
       </div>
     </div>

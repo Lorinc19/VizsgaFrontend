@@ -1,25 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import Modal from "./Modal";
 import Naptar from "./Naptarproba";
 import axios from "axios";
-import Filter from "./Filter"; // Importáld a szűrés komponenst!
-import { AuthContext } from "./AuthContext";
+import Filter from "./Filter";
+import { BeatLoader } from "react-spinners";
 
-export default function Home() {
-  const [database, setdatabase] = useState([]); // Az adatok tárolása
+export default function Home({ isLoggedIn }) {
+  const [database, setdatabase] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null); // Kiválasztott kártya tárolása
   const [isModalOpen, setIsModalOpen] = useState(false); // A modal nyitott állapota
   const [isLoading, setIsLoading] = useState(false);
   const [filters, setFilters] = useState({});
   const [noResult, setNoResult] = useState(false);
 
-  const {user} = useContext(AuthContext);
-
   // Adatok lekérése a szűrők változása szerint
   useEffect(() => {
-    Get(filters); // gombra kattintás után szűr
-  }, [filters]); // Ha a szűrők változnak
+    Get(filters);
+  }, [filters]);
+
+  const visibleHouses = isLoggedIn ? database : database.slice(0, 5);
 
   // Adatok lekérése
   function Get(filters = {}) {
@@ -67,7 +67,9 @@ export default function Home() {
       .catch((error) => {
         console.error("Hiba: ", error);
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => setTimeout(() => {
+        setIsLoading(false) // 1 másodperc várakozás, hogy megmutassuk a loading ikont
+      }, 1000));
   }
 
   // Kattintásra megnyitjuk a modált
@@ -94,24 +96,24 @@ export default function Home() {
       <div className="filter-container">
         <Filter onApply={setFilters} />
       </div>
-      {user ? (<p>Szia {user.userName}!</p>) : null} 
+
       <div className="card-container">
-      {isLoading ? (
-        <div className="text-center">Betöltés...</div>
-      ) : noResult ? (
-            <p className="text-danger fw-bold mt-3">
-              Nincs a feltételeknek megfelelő hirdetés.
-            </p>
-          ) : (
-            database.map((data) => (
-              <Card
-                key={data.id}
-                felhasznalo={data}
-                getFv={Get}
-                handleCardClick={handleCardClick}
-              />
-            ))
-          )}
+        {isLoading ? (
+          <BeatLoader color="#740000" />
+        ) : noResult ? (
+          <p className="text-danger fw-bold mt-3">
+            Nincs a feltételeknek megfelelő hirdetés.
+          </p>
+        ) : (
+          visibleHouses.map((data) => (
+            <Card
+              key={data.id}
+              felhasznalo={data}
+              getFv={Get}
+              handleCardClick={handleCardClick}
+            />
+          ))
+        )}
       </div>
 
       {isModalOpen && (

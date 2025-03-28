@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./NewHousePost.css";
+import { useNavigate } from "react-router-dom";
 
-export default function NewHousePost() {
+export default function NewHousePost({isLoggedIn}) {
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     leiras: "",
@@ -20,7 +21,13 @@ export default function NewHousePost() {
     allatbarat: false,
     kiadasiidotartam: "",
   });
-  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate])
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

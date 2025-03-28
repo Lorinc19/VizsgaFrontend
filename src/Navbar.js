@@ -30,37 +30,37 @@ export default function Navbar({ isLoggedIn }) {
           </li>
         ) : null
         }
-
-        <li>
-
-          <Link className={location.pathname === "/ujhaz" ? "active" : ""} to="/ujhaz">
-            Új hirdetés feltöltése
-          </Link>
-        </li>
+        {isLoggedIn ? (
+          <li>
+            <Link className={location.pathname === "/ujhaz" ? "active" : ""} to="/ujhaz">
+              Új hirdetés feltöltése
+            </Link>
+          </li>
+        ) : null
+        }
         <li>
           <Link className={location.pathname === "/map" ? "active" : ""} to="/map">
             terkep proba
           </Link>
         </li>
-        <li>
-          <Link className={(location.pathname === "/profil" || location.pathname === "/hirdetes") ? "active" : ""} to="/profil">
-            Profil
-          </Link>
-        </li>
-        {(isLoggedIn && role === "Admin") ? (
-        <li>
-          <Link
-            className={location.pathname === "/admin" ? "active" : ""} to="/admin">
-            Admin
-          </Link>
-        </li>
+        {isLoggedIn ? (
+          <li>
+            <Link className={(location.pathname === "/profil" || location.pathname === "/hirdetes") ? "active" : ""} to="/profil">
+              Profil
+            </Link>
+          </li>
         ) : null
         }
-
-
-
-
+        {(isLoggedIn && role === "Admin") ? (
+          <li>
+            <Link
+              className={location.pathname === "/admin" ? "active" : ""} to="/admin">
+              Admin
+            </Link>
+          </li>
+        ) : null
+        }
       </ul>
-    </div>
+    </div >
   );
 }
