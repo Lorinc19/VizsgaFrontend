@@ -31,7 +31,7 @@ function App() {
           <Route path='/belepes' element={<LoginRegister isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/regisztracio' element={<LoginRegister isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/ujhaz' element={<NewHousePost isLoggedIn={isLoggedIn} />} />
-          <Route path='/map' element={<Map />} />
+          {/* <Route path='/map' element={<Map />} /> */}
           <Route path='/profil' element={<Profil isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/hirdetes' element={<Hirdetes />} />
           <Route path='/admin' element={<Admin isLoggedIn={isLoggedIn} />} />

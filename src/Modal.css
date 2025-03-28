@@ -11,7 +11,6 @@
   align-items: center;
   z-index: 1000;
 }
-
 .modal-overlay::before {
   content: "";
   position: absolute;
@@ -25,22 +24,23 @@
 /* Modális tartalom (ablak) */
 .modal-content {
   background-color: #ffffff !important;
-  color: #000;
-  text-align: left;
+  color: #333;
+  text-align: center; /* Középre igazítás */
   border-radius: 15px;
-  padding: 30px;
+  padding: 40px; /* Térköz növelése */
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column; /* Függőleges irányba rendezzük a tartalmat */
+  justify-content: center;
+  align-items: center; /* Minden elem középre igazítása */
   gap: 20px;
   height: 90%;
-  width: 85%;
-  max-width: 1000px;
+  width: 90%;
+  max-width: 1200px;
   overflow-y: auto;
-  box-shadow: 0 0 30px #000;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.3s ease-in-out;
   position: relative;
-  
+  background: #f9f9f9;
 }
 
 @keyframes fadeIn {
@@ -52,6 +52,60 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Kép navigációs gombok */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 24px;
+  padding: 15px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2100;
+}
+
+
+.nav-btn:first-child {
+  left: 20px;
+}
+
+.nav-btn:last-child {
+  right: 20px;
+}
+
+/* Képek */
+.modal-images {
+  display: flex;
+  justify-content: center; /* Képek középre igazítása */
+  gap: 15px;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-images img {
+  width: 200px; /* Képek méretének növelése */
+  height: auto;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-images img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Záró gomb */
@@ -73,81 +127,8 @@
   transform: scale(1.1);
 }
 
-.modal-left,
-.modal-right {
-  flex: 1;
-}
 
-.modal-left {
-  padding-right: 20px;
-}
-
-.modal-left h2,
-.modal-left h3 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.modal-left h2 {
-  font-size: 24px;
-  color: #333;
-}
-
-.modal-left h3 {
-  font-size: 18px;
-  color: #555;
-}
-
-.modal-description {
-  font-size: 16px;
-  color: #666;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.modal-map {
-  width: 50%;
-  height: 300px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 20px #000;
-  border: 2px solid #000;
-}
-
-.google-map {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.modal-images {
-  display: flex;
-  justify-content: flex-start;
-  gap: 10px;
-  margin-top: 20px;
-  padding-bottom: 10px;
-  border-radius: 10px;
-  border: 2px solid #000;
-  box-shadow: 0 0 20px #000;
-  overflow-x: auto;
-  flex-wrap: nowrap;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.modal-images img {
-  width: 30%;
-  border-radius: 10px;
-  border: 2px solid #000;
-  box-shadow: 0 0 5px #000;
-  transition: transform 0.3s ease;
-}
-
-.modal-images img:hover {
-  transform: scale(1.05);
-}
-
+/* Kép nagyítás modal */
 .image-modal {
   position: fixed;
   top: 50%;
@@ -171,26 +152,19 @@
   object-fit: contain;
 }
 
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  font-size: 24px;
-  padding: 10px;
+/* Google Map */
+.modal-map {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.google-map {
+  width: 100%;
+  height: 100%;
   border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 2100;
-}
-
-.nav-btn:first-child {
-  left: 10px;
-}
-
-.nav-btn:last-child {
-  right: 10px;
 }
 
 /* Reszponzív */
@@ -208,13 +182,39 @@
   }
 
   .modal-images img {
-    width: 90%;
+    width: 70%; /* Képek méretének növelése kisebb képernyőkön */
+  }
+
+  .modal-map {
+    height: 200px; /* Térkép magasság csökkentése kisebb képernyőkön */
   }
 }
 
 @media (max-width: 768px) {
   .modal-content {
-    padding: 15px;
+    padding: 20px;
+  }
+
+  .modal-left h2 {
+    font-size: 22px;
+  }
+
+  .modal-left h3 {
+    font-size: 18px;
+  }
+
+  .modal-description {
+    font-size: 15px;
+  }
+
+  .modal-map {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-images img {
+    width: 100%; /* Képek szélessége 100%-ra növelve */
   }
 
   .modal-left h2 {
@@ -228,14 +228,4 @@
   .modal-description {
     font-size: 14px;
   }
-
-  .modal-map {
-    height: 200px;
-  }
-}
-
-@media (max-width: 480px) {
-  .modal-images img {
-    width: 100%;
-  }
-}
+}  
