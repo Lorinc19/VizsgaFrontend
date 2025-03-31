@@ -10,7 +10,7 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
     const userId = localStorage.getItem("userId");
-    
+
     const [hird, sethird] = useState([])
     const [selectedBtn, setselectedBtn] = useState(null)
     const role = localStorage.getItem("role");
@@ -53,8 +53,6 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
         navigate("/belepes");
     };
 
-    
-
     const handleClick2 = async () => {
         axios.get(`${process.env.REACT_APP_API_URL}/Advertisement/All`)
             .then((res) => {
@@ -84,7 +82,7 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
                     <p><strong>Email:</strong> {data.email}</p>
                     <button className="alma1" onClick={handleClick2}>Hirdetéseim</button>
                     <button className='alma2' onClick={handleLogout}>Kijelentkezés <i className="bi bi-box-arrow-right"></i></button>
-                    <button className='gomb' onclick={handleClick3}>Módosítás</button>
+                    
 
                     <div className='tartalom'>
                         {selectedBtn === "Hird" ? (
