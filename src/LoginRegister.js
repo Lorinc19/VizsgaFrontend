@@ -4,11 +4,11 @@ import './App.css';
 import './LoginRegister.css';
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { BeatLoader, PacmanLoader } from "react-spinners";
+import { PacmanLoader } from "react-spinners";
 
 export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
   const [isLogin, setIsLogin] = useState(true);
-  const [message, setMessage] = useState({text: "", status: ""});
+  const [message, setMessage] = useState({text: "null", status: ""});
   const [formData, setFormData] = useState({
     vezeteknev: "",
     keresztnev:"",
@@ -65,11 +65,11 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
       try {
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Login`, logData);
 
-        if(response.status !== 200) {
+        if(response.status >= 300) {
           throw new Error();
         }
 
-        setMessage({text: response.data.message, status: "success"});
+        setMessage({text: response.data.message, status: "loginSuccess"});
         console.log("Belépés sikeres:", response);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userName", response.data.result.userName);
@@ -100,8 +100,8 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
 
       try {
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/Auth/Register`, regData);
-        
-        setMessage({text: `${response.message} Jelentkezz be!`, status: "success"});
+        console.log(response);
+        setMessage({text: `${response.data.message} Jelentkezz be!`, status: "registerSuccess"});
         console.log("Regisztráció sikeres:", response.data);
         setTimeout(() => {
           setIsLogin(true)
@@ -155,7 +155,7 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
             </button>
             </p>
 
-            {message.status === "success" ? (
+            {message.status === "loginSuccess" ? (
               <div className="message-box">
                 <p className="success-text">{message.text}</p>
                 <PacmanLoader color="#f9a825"/>
@@ -254,7 +254,7 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
             </button>
             </p>
 
-            {message.status === "success" ? (
+            {message.status === "registerSuccess" ? (
               <div className="message-box">
                 <p className="success-text">{message.text}</p>
               </div>

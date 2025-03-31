@@ -9,7 +9,7 @@ export default function NewHousePost({isLoggedIn}) {
     leiras: "",
     elerhetoseg: "",
     hirdetesnev: "",
-    kepURL: "",
+    kepURL: null,
     orszag: "",
     varmegye: "",
     telepules: "",
@@ -30,10 +30,10 @@ export default function NewHousePost({isLoggedIn}) {
   }, [isLoggedIn, navigate])
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked, files } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === "checkbox" ?  checked : type === "file" ? files[0] : value,
     });
   };
 
@@ -110,12 +110,12 @@ export default function NewHousePost({isLoggedIn}) {
           </div>
 
           <div className="form-item">
-            <label>Kép URL:</label>
+            <label>Kép feltöltés:</label>
             <input
-              type="text"
+              type="file"
               name="kepURL"
+              accept="image/*"
               required
-              value={formData.kepURL}
               onChange={handleChange}
               className="form-control"
             />

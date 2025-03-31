@@ -11,12 +11,12 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
     const navigate = useNavigate();
     const userId = localStorage.getItem("userId");
     
-  const [hird, sethird] = useState([])
-  const [selectedBtn, setselectedBtn] = useState(null)
-  const role = localStorage.getItem("role");
-  
+    const [hird, sethird] = useState([])
+    const [selectedBtn, setselectedBtn] = useState(null)
+    const role = localStorage.getItem("role");
 
 
+    console.log(isLoggedIn);
 
     useEffect(() => {
         if (!isLoggedIn) {
@@ -29,7 +29,7 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
             console.log(userId);
             setMessage("Hiba az adatok lekérése során.");
             console.error("Hiba az adatok lekérése során: nincs userId");
-            
+
             return;
         }
 
@@ -48,23 +48,31 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
         localStorage.removeItem("userName");
         localStorage.removeItem("email");
         localStorage.removeItem("role");
-        localStorage.removeItem("userId"); 
+        localStorage.removeItem("userId");
         setIsLoggedIn(false);
         navigate("/belepes");
     };
 
+    
+
     const handleClick2 = async () => {
         axios.get(`${process.env.REACT_APP_API_URL}/Advertisement/All`)
-          .then((res) => {
-            sethird(res.data)
-            console.log(res.data);
-            setselectedBtn("Hird")
-          })
-    
-      }
+            .then((res) => {
+                console.log(res.data);
+                const filtered = res.data.filter((item) => item.felhasznaloId === userId);
+                sethird(filtered);
+                setselectedBtn("Hird")
+            })
+
+    }
     return (
         <div className="profil-container">
-            {message ? <h2 className='error-text'>{message}</h2> : (
+            {message ? (
+                <div className='message-box'>
+                    <h2 className='error-text'>{message}</h2>
+                    <button className='alma2' onClick={handleLogout}>Kijelentkezés <i className="bi bi-box-arrow-right"></i></button>
+                </div>
+            ) : (
                 <div className="profil-box">
                     <div className="avatar-circle" title={`${data.vezeteknev} ${data.keresztnev}`}>
                         {data.vezeteknev?.charAt(0)}{data.keresztnev?.charAt(0)}
@@ -76,20 +84,21 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
                     <p><strong>Email:</strong> {data.email}</p>
                     <button className="alma1" onClick={handleClick2}>Hirdetéseim</button>
                     <button className='alma2' onClick={handleLogout}>Kijelentkezés <i className="bi bi-box-arrow-right"></i></button>
-                
-                <div className='tartalom'>
-{selectedBtn ==="Hird" ? (
-            <div className="szekcio">
-              <h2>Hirdetések</h2>
-                {
-                  hird.map(hirdet => (<Cardh key={hirdet.id} hirdetes={hirdet} hirdgetfv={handleClick2} />))
-                }
-            </div>
-          ) : null}
-</div>
-        </div>
+                    <button className='gomb' onclick={handleClick3}>Módosítás</button>
 
-      
+                    <div className='tartalom'>
+                        {selectedBtn === "Hird" ? (
+                            <div className="szekcio">
+                                <h2>Hirdetések</h2>
+                                {
+                                    hird.map(hirdet => (<Cardh key={hirdet.id} hirdetes={hirdet} hirdgetfv={handleClick2} />))
+                                }
+                            </div>
+                        ) : null}
+                    </div>
+                </div>
+
+
             )}
         </div>
     );

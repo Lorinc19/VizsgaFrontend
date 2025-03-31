@@ -173,7 +173,7 @@ ul.topnav li.right {
     padding: 15px;
   }
 
-  .card {
+  .card, #adminCards .customCard {
     width: 100%;
     max-width: 350px;
   }
@@ -190,7 +190,7 @@ ul.topnav li.right {
 
 
 /* cardok */
-.card {
+.card, #adminCards .customCard {
   width: 100%;
   max-width: 560px;
   aspect-ratio: 1 / 0.7;
@@ -201,7 +201,7 @@ ul.topnav li.right {
   box-shadow: 0 0 20px #000;
   padding: 20px;
   margin: 20px;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -209,7 +209,7 @@ ul.topnav li.right {
   align-items: center;
 }
 
-.card .image-box img {
+.card .image-box img, #adminCards .customCard .image-box img{
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -217,7 +217,7 @@ ul.topnav li.right {
   transition: 0.5s ease-in-out;
 }
 
-.card .image-box {
+.card .image-box, #adminCards .customCard .image-box {
   width: 100%;
   height: 100%;
   border-radius: inherit;
@@ -225,7 +225,7 @@ ul.topnav li.right {
   z-index: 1;
 }
 
-.card:hover {
+.card:hover,#adminCards .customCard:hover {
   transform: scale(1.01);
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
 }

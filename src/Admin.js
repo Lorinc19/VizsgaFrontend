@@ -53,6 +53,7 @@ export default function Admin({isLoggedIn}) {
       <div className="gombok-tartó">
         <button className="gomb" onClick={handleClick}>Felhasználók</button>
         <button className="gomb" onClick={handleClick2}>Hirdetések</button>
+        
       </div>
 
       <div className="tartalom">
@@ -61,8 +62,9 @@ export default function Admin({isLoggedIn}) {
           {selectedBtn === "Felh" ? (
             <div className="szekcio">
               <h2>Felhasználók</h2>
+              
                 {
-                  adminf.map(adminfs => (<Carda key={adminfs.id} felhasz={adminfs} admingetf={handleClick} />))
+                  adminf.map(adminfs => (<Carda key={adminfs.id} felhasz={adminfs} admingetfv={handleClick} />))
 
                 }
             </div>

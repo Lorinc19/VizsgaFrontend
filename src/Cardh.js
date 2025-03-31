@@ -14,8 +14,8 @@ export default function Cardh(props) {
     
 
     return (
-        <div>
-            <div className="card" style={{ width: "18rem" }}>
+        <div id='adminCards'>
+            <div className="customCard" style={{ width: "18rem" }}>
                 <div className="card-body">
                     <h4 className="card-title">Hirdetésnév: {props.hirdetes.hirdetesnev}</h4>
                     <h6 className="card-subtitle mb-2 text-body-secondary">Leiras: {props.hirdetes.leiras}</h6>
@@ -27,7 +27,7 @@ export default function Cardh(props) {
                     <p className="card-text">utca: {props.hirdetes.utcahazszam}</p>
                     <button onClick={function () {
                         if (window.confirm("Biztos törölni szeretnéd?")) {
-                            userDelete(props.felhasz.Id)
+                            userDelete(props.hirdetes.id)
                         }
                     }}>
                         <i className="bi bi-trash3"></i>
