@@ -15,7 +15,6 @@ export default function Carda(props) {
 
 
     return (
-        <div id="adminCards">
             <div className="customCard" style={{width :"18rem"}}>
                 <div className="card-body">
                     <h4 className="card-title">Felhaszanálónév: {props.felhasz.userName}</h4>
@@ -32,6 +31,5 @@ export default function Carda(props) {
                     </button>
                 </div>
             </div>
-        </div>
     )
 }

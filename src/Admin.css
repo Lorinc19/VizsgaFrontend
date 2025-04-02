@@ -27,7 +27,7 @@
   border: none;
   border-radius: 5px;
   transition: all 0.3s ease;
-  box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.3); /* Árnyék */
+  box-shadow: 0px 4px 8px rgba(134, 0, 0, 0.5); /* Árnyék */
 }
 
 .gomb:hover {
@@ -37,15 +37,25 @@
 
 .gomb:focus {
   outline: none; /* Eltávolítja az alapértelmezett fókuszkeretet */
-  box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5); /* Erősebb árnyék */
+  box-shadow: 0px 0px 10px rgba(134, 0, 0, 0.5); /* Erősebb árnyék */
+}
+
+.gomb.aktiv {
+  background-color: #b30000;
+  box-shadow: 0 0 10px rgba(179, 0, 0, 0.4);
 }
 
 /* Tartalom szekció */
 .tartalom {
   width: 85%;
-  max-width: 1000px;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   text-align: center;
+  flex-wrap: wrap;
   padding: 30px;
+  gap: 30px;
   border: 1px solid #000000;
   border-radius: 10px;
   background-color: #ffffff;
@@ -136,4 +146,16 @@ h2 {
 
 .torles-gomb:hover {
   background-color: #e60000;
+}
+
+@media (max-width: 600px) {
+  .gombok-tartó {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gomb {
+    width: 100%;
+    text-align: center;
+  }
 }

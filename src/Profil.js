@@ -44,13 +44,15 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
     }, [userId]);
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("userName");
-        localStorage.removeItem("email");
-        localStorage.removeItem("role");
-        localStorage.removeItem("userId");
-        setIsLoggedIn(false);
-        navigate("/belepes");
+        if (window.confirm("Biztosan kijelentkezel?")) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("userName");
+            localStorage.removeItem("email");
+            localStorage.removeItem("role");
+            localStorage.removeItem("userId");
+            setIsLoggedIn(false);
+            navigate("/belepes");
+        }
     };
 
     const handleClick2 = async () => {
@@ -60,6 +62,10 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
                 const filtered = res.data.filter((item) => item.felhasznaloId === userId);
                 sethird(filtered);
                 setselectedBtn("Hird")
+            })
+            .catch((error) => {
+                console.error(error);
+                setMessage("Hiba az adatok betöltése során.");
             })
 
     }
@@ -82,7 +88,7 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
                     <p><strong>Email:</strong> {data.email}</p>
                     <button className="alma1" onClick={handleClick2}>Hirdetéseim</button>
                     <button className='alma2' onClick={handleLogout}>Kijelentkezés <i className="bi bi-box-arrow-right"></i></button>
-                    
+
 
                     <div className='tartalom'>
                         {selectedBtn === "Hird" ? (

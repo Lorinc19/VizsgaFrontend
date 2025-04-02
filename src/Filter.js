@@ -130,26 +130,26 @@ const Filter = ({ onApply }) => {
               />
             </div>
             <div className="checkbox-row">
-              <label>
+              <label className="custom-checkbox">
+                <span>Gyerekbarát</span>
                 <input
-                  className="form-check form-switch"
                   type="checkbox"
                   name="gyerekbarat"
                   onChange={handleChange}
                   checked={filtersTemp.gyerekbarat}
                 />
-                Gyerekbarát
+                
               </label>
 
-              <label>
+              <label className="custom-checkbox">
+                <span>Állatbarát</span>
                 <input
-                  className="form-check form-switch"
                   type="checkbox"
                   name="allatbarat"
                   onChange={handleChange}
                   checked={filtersTemp.allatbarat}
                 />
-                Állatbarát
+                
               </label>
             </div>
             <div className="input-group">

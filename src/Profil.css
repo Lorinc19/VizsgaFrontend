@@ -5,19 +5,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65vh; /* A teljes képernyőt lefedi */
+  padding: 30px;
 }
 
 .profil-box {
   background-color: #fff;
   padding: 20px;
-  
   border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 0 0 20px #000; /* Fekete keret */
-  max-width: 90%; /* Maximális szélesség, hogy ne legyen túl széles mobilon */
-  width: 500px; /* Fix szélesség a nagyobb képernyők számára */
-  box-sizing: border-box; /* A padding nem növeli a szélességet */
+  width: 100%;
+  max-width: 600px; /* Maximális szélesség, hogy ne legyen túl széles mobilon */
+  margin-bottom: 40px;
 }
 
 h1, p {

@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Admin.css';
 import axios from 'axios';
 import Carda from './Carda';
@@ -6,7 +6,7 @@ import Cardh from './Cardh';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function Admin({isLoggedIn}) {
+export default function Admin({ isLoggedIn }) {
 
   //useState
   const [adminf, setadminf] = useState([])
@@ -17,7 +17,7 @@ export default function Admin({isLoggedIn}) {
 
   //useEffect
   useEffect(() => {
-    if(!isLoggedIn || role !== "Admin"){
+    if (!isLoggedIn || role !== "Admin") {
       navigate("/");
     }
   }, [role, isLoggedIn, navigate])
@@ -26,7 +26,7 @@ export default function Admin({isLoggedIn}) {
 
   //Function
 
-  const handleClick = async () => {
+  const handleClick = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/User/AdminUser`)
       .then((res) => {
         setadminf(res.data)
@@ -36,7 +36,7 @@ export default function Admin({isLoggedIn}) {
 
   }
 
-  const handleClick2 = async () => {
+  const handleClick2 = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/Advertisement/All`)
       .then((res) => {
         sethird(res.data)
@@ -46,40 +46,40 @@ export default function Admin({isLoggedIn}) {
 
   }
 
-
-
   return (
     <div className="admin-felület">
       <div className="gombok-tartó">
-        <button className="gomb" onClick={handleClick}>Felhasználók</button>
-        <button className="gomb" onClick={handleClick2}>Hirdetések</button>
-        
+        <button className={`gomb ${selectedBtn === "Felh" ? "aktiv" : ""}`} onClick={handleClick}>Felhasználók</button>
+        <button className={`gomb ${selectedBtn === "Hird" ? "aktiv" : ""}`} onClick={handleClick2}>Hirdetések</button>
+
       </div>
 
       <div className="tartalom">
+        {selectedBtn === null && <p>Kérlek válassz egy lehetőséget fentről.</p>}
 
-        
-          {selectedBtn === "Felh" ? (
-            <div className="szekcio">
-              <h2>Felhasználók</h2>
-              
-                {
-                  adminf.map(adminfs => (<Carda key={adminfs.id} felhasz={adminfs} admingetfv={handleClick} />))
+        {selectedBtn === "Felh" ? (
+          <div className="szekcio">
+            <h2>Felhasználók</h2>
+            <div id='adminCards' className='row'>
+              {
+                adminf.map(adminfs => (<Carda key={adminfs.id} felhasz={adminfs} admingetfv={handleClick} />))
 
-                }
+              }
             </div>
-          ) : selectedBtn ==="Hird" ? (
-            <div className="szekcio">
-              <h2>Hirdetések</h2>
-                {
-                  hird.map(hirdet => (<Cardh key={hirdet.id} hirdetes={hirdet} hirdgetfv={handleClick2} />))
-                }
+          </div>
+        ) : selectedBtn === "Hird" ? (
+          <div className="szekcio">
+            <h2>Hirdetések</h2>
+            <div id='adminCards' className='row'>
+              {
+                hird.map(hirdet => (<Cardh key={hirdet.id} hirdetes={hirdet} hirdgetfv={handleClick2} />))
+              }
             </div>
-          ) : null}
-
-        </div>
+          </div>
+        ) : null}
 
       </div>
+
+    </div>
   );
 };
-
