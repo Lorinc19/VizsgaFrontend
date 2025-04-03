@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Már 25. 15:52
--- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.0.30
+-- Gép: mysql:3306
+-- Létrehozás ideje: 2025. Ápr 03. 07:38
+-- Kiszolgáló verziója: 9.1.0
+-- PHP verzió: 8.2.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,10 +30,10 @@ USE `szakmaivizsga`;
 --
 
 CREATE TABLE `aspnetroleclaims` (
-  `Id` int(11) NOT NULL,
-  `RoleId` varchar(255) NOT NULL,
-  `ClaimType` longtext DEFAULT NULL,
-  `ClaimValue` longtext DEFAULT NULL
+  `Id` int NOT NULL,
+  `RoleId` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `ClaimType` longtext COLLATE utf8mb4_general_ci,
+  `ClaimValue` longtext COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -43,10 +43,10 @@ CREATE TABLE `aspnetroleclaims` (
 --
 
 CREATE TABLE `aspnetroles` (
-  `Id` varchar(255) NOT NULL,
-  `Name` varchar(256) DEFAULT NULL,
-  `NormalizedName` varchar(256) DEFAULT NULL,
-  `ConcurrencyStamp` longtext DEFAULT NULL
+  `Id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Name` varchar(256) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `NormalizedName` varchar(256) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ConcurrencyStamp` longtext COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -63,10 +63,10 @@ INSERT INTO `aspnetroles` (`Id`, `Name`, `NormalizedName`, `ConcurrencyStamp`) V
 --
 
 CREATE TABLE `aspnetuserclaims` (
-  `Id` int(11) NOT NULL,
-  `UserId` varchar(255) NOT NULL,
-  `ClaimType` longtext DEFAULT NULL,
-  `ClaimValue` longtext DEFAULT NULL
+  `Id` int NOT NULL,
+  `UserId` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `ClaimType` longtext COLLATE utf8mb4_general_ci,
+  `ClaimValue` longtext COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -76,10 +76,10 @@ CREATE TABLE `aspnetuserclaims` (
 --
 
 CREATE TABLE `aspnetuserlogins` (
-  `LoginProvider` varchar(255) NOT NULL,
-  `ProviderKey` varchar(255) NOT NULL,
-  `ProviderDisplayName` longtext DEFAULT NULL,
-  `UserId` varchar(255) NOT NULL
+  `LoginProvider` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `ProviderKey` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `ProviderDisplayName` longtext COLLATE utf8mb4_general_ci,
+  `UserId` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -89,8 +89,8 @@ CREATE TABLE `aspnetuserlogins` (
 --
 
 CREATE TABLE `aspnetuserroles` (
-  `UserId` varchar(255) NOT NULL,
-  `RoleId` varchar(255) NOT NULL
+  `UserId` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `RoleId` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -108,24 +108,24 @@ INSERT INTO `aspnetuserroles` (`UserId`, `RoleId`) VALUES
 --
 
 CREATE TABLE `aspnetusers` (
-  `Id` varchar(255) NOT NULL,
-  `Keresztnev` longtext DEFAULT NULL,
-  `Vezeteknev` longtext DEFAULT NULL,
-  `Kor` int(11) DEFAULT NULL,
-  `UserName` varchar(256) DEFAULT NULL,
-  `NormalizedUserName` varchar(256) DEFAULT NULL,
-  `Email` varchar(256) DEFAULT NULL,
-  `NormalizedEmail` varchar(256) DEFAULT NULL,
+  `Id` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Keresztnev` longtext COLLATE utf8mb4_general_ci,
+  `Vezeteknev` longtext COLLATE utf8mb4_general_ci,
+  `Kor` int DEFAULT NULL,
+  `UserName` varchar(256) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `NormalizedUserName` varchar(256) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Email` varchar(256) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `NormalizedEmail` varchar(256) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `EmailConfirmed` tinyint(1) NOT NULL,
-  `PasswordHash` longtext DEFAULT NULL,
-  `SecurityStamp` longtext DEFAULT NULL,
-  `ConcurrencyStamp` longtext DEFAULT NULL,
-  `PhoneNumber` longtext DEFAULT NULL,
+  `PasswordHash` longtext COLLATE utf8mb4_general_ci,
+  `SecurityStamp` longtext COLLATE utf8mb4_general_ci,
+  `ConcurrencyStamp` longtext COLLATE utf8mb4_general_ci,
+  `PhoneNumber` longtext COLLATE utf8mb4_general_ci,
   `PhoneNumberConfirmed` tinyint(1) NOT NULL,
   `TwoFactorEnabled` tinyint(1) NOT NULL,
   `LockoutEnd` datetime DEFAULT NULL,
   `LockoutEnabled` tinyint(1) NOT NULL,
-  `AccessFailedCount` int(11) NOT NULL
+  `AccessFailedCount` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -159,10 +159,10 @@ INSERT INTO `aspnetusers` (`Id`, `Keresztnev`, `Vezeteknev`, `Kor`, `UserName`, 
 --
 
 CREATE TABLE `aspnetusertokens` (
-  `UserId` varchar(255) NOT NULL,
-  `LoginProvider` varchar(255) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Value` longtext DEFAULT NULL
+  `UserId` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `LoginProvider` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Value` longtext COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -172,41 +172,43 @@ CREATE TABLE `aspnetusertokens` (
 --
 
 CREATE TABLE `hirdetes` (
-  `ID` char(36) NOT NULL,
-  `FelhasznaloID` varchar(255) NOT NULL,
-  `Hirdetesnev` varchar(50) NOT NULL,
-  `Leiras` varchar(500) NOT NULL,
-  `Ar` int(100) NOT NULL,
-  `Elerhetoseg` varchar(50) NOT NULL,
-  `Orszag` varchar(50) NOT NULL,
-  `Varmegye` varchar(50) NOT NULL,
-  `Telepules` varchar(50) NOT NULL,
-  `Tipus` varchar(50) NOT NULL,
-  `Kiadasiidotartam` varchar(50) NOT NULL,
+  `ID` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `FelhasznaloID` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Hirdetesnev` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Leiras` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
+  `Ar` int NOT NULL,
+  `Elerhetoseg` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Orszag` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Varmegye` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Telepules` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Tipus` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Kiadasiidotartam` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `Gyerekbarat` tinyint(1) NOT NULL,
   `Allatbarat` tinyint(1) NOT NULL,
-  `KepURL` text NOT NULL,
-  `Utca` varchar(50) DEFAULT NULL,
-  `Hazszam` varchar(50) DEFAULT NULL
+  `Utca` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Hazszam` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ImageData` longblob NOT NULL,
+  `FileName` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `ContentType` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `hirdetes`
 --
 
-INSERT INTO `hirdetes` (`ID`, `FelhasznaloID`, `Hirdetesnev`, `Leiras`, `Ar`, `Elerhetoseg`, `Orszag`, `Varmegye`, `Telepules`, `Tipus`, `Kiadasiidotartam`, `Gyerekbarat`, `Allatbarat`, `KepURL`, `Utca`, `Hazszam`) VALUES
-('2136a830-b298-458c-991b-1a03fc5fd446', 'a30c7159-389b-4628-8256-4b05dc900c8b', 'Panorámás lakás erkéllyel', 'Kiadó modern lakás erkéllyel és panorámás kilátással.', 32000000, '+36 70 999 8888', 'Magyarország', 'Győr-Moson-Sopron', 'Győr', 'lakás', '7', 1, 0, 'https://lakbermagazin.hu/wp-content/uploads/images/stories/gallery/cikkek/kis-lakas/iz/th/regi_lakohazban_nagyon_modern_kis_lakas_utolag_epitett_kis_erkellyel_01.jpg', 'Bartók Béla út', '21'),
-('384920bc-caa0-4c76-8543-c76407918457', '261cc2e8-b817-4c57-9d6f-0d994c2a9b2f', 'string', 'string', 5500, 'string', 'string', 'string', 'string', 'string', 'string', 1, 1, 'string', NULL, NULL),
-('3f383177-2b45-4028-b224-2b284bda875d', '2df77e72-c1c5-4807-bdc0-7c238477ba0b', 'Alma', 'Alma', 25544, 'Alma', 'Alma', 'Alma', 'Alma', 'stAlmaring', 'Alma', 1, 1, 'Alma', NULL, NULL),
-('7a4fc073-077f-4229-b87c-f6d5a26c0fed', '02bcffd6-4279-4c5d-a190-f97b9873a5d7', 'Vidéki ház gyümölcsöskerttel', 'Hangulatos vidéki ház eladó, nagy kerttel és gyümölcsfákkal.', 48000000, '+36 70 888 9999', 'Magyarország', 'Somogy', 'Kaposvár', 'ház', '7', 1, 1, 'https://classingatlan.hu/ingatlan/elado-csaladi-haz-szalkszentmarton-kozpontjaban-falusi-csok/', 'Rózsa utca', '16'),
-('a16b5718-cf48-4b3e-adb3-b51bf6fa5259', 'd85925dc-dfc6-47ee-af0b-27aa71c8f4e9', 'Kiadó szoba fiataloknak', 'Albérletként kiadó egy külön bejáratú szoba diákoknak vagy fiatal dolgozóknak.', 90000, '+36 20 666 7777', 'Magyarország', 'Hajdú-Bihar', 'Debrecen', 'szoba', '6', 0, 0, 'https://hu.pinterest.com/moncsitus/pici-szoba/', 'Kossuth tér', '7'),
-('a3e6c457-c1f7-43ac-afe6-2ce54be131ab', 'c64569ef-2ba9-4981-86a6-102ad2707438', 'Csendes családi ház kerttel', 'Felújított családi ház nagy kerttel, csendes környéken.', 67000000, '+36 30 222 3333', 'Magyarország', 'Fejér', 'Székesfehérvár', 'ház', '24', 1, 1, 'https://www.falusivakacio.hu/madaras-hazak', 'Arany János utca', '14'),
-('b55005ee-dac7-44f2-b896-c23082836cb6', '02005282-de1b-4307-81a9-5b77d8a23d80', 'Családi ház kerttel', 'Tágas családi ház kerttel és garázzsal a város szélén.', 75000000, '+36 30 123 4567', 'Magyarország', 'Pest', 'Gödöllő', 'ház', '5', 1, 1, 'https://magyar-tudatossag.blog.hu/2022/08/23/terrendezes_magyar_haz', 'Kossuth Lajos utca', '12'),
-('ebd5cd88-18d4-402a-9f37-f28ea0baf7c5', '80ea5fc3-39c1-4cd8-a7b9-c7c5111c0539', 'Balatoni nyaraló', 'Nyaralónak is kiváló, csendes kis ház a Balaton partján.', 92000000, '+36 30 654 3210', 'Magyarország', 'Veszprém', 'Balatonfüred', 'ház', '12', 1, 1, 'https://www.zenga.hu/magyarorszag+elado+haz', 'Tópart utca', '8'),
-('eff6a86a-0b05-41df-a69f-282d23ae47f7', '059f4c1d-a92b-4334-8488-d2563b28a8bf', 'Felújított belvárosi lakás', 'Modern, felújított lakás a belváros szívében, közel a metróhoz.', 55000000, '+36 70 456 7890', 'Magyarország', 'Budapest', 'Budapest', 'lakás', '3', 1, 0, 'https://forgozoltanugyved.hu/uj-lakas-vasarlasok-jogi-buktatoi/', 'Andrássy út', '33'),
-('f0be827b-53e2-4668-8cb9-b15c7b5ee4b0', 'ec919da6-70a7-42a6-875e-40560eb67dc0', 'Panorámás lakás a hegyekben', 'Kiadó panorámás lakás a hegyekben, tökéletes pihenésre vagy munkára.', 41000000, '+36 30 777 8888', 'Magyarország', 'Heves', 'Eger', 'lakás', '36', 1, 1, 'https://femina.hu/otthon/hegyvideki-hazak/', 'Dobó István tér', '5'),
-('f4e5664c-9220-41c6-bf28-745708f26d1c', 'd4fdf283-04f0-414b-9ca7-9ab9166021d9', 'Új építésű lakás a Duna-parton', 'Új építésű lakás kiadó a Duna-part közelében, modern berendezéssel.', 62000000, '+36 70 555 4444', 'Magyarország', 'Budapest', 'Budapest', 'lakás', '2', 1, 0, 'https://www.homeinfo.hu/lakberendezes/lakasbemutato/85251-legies-megjelenesu-37-nm-es-lakas-nagy-konyhaval-es-erkellyel-alaprajzzal', 'Váci út', '99'),
-('f9de66b9-c71e-4220-a2c2-5c990c138e07', '5dcb0c0a-5819-4dfd-920a-c3a09f09f11b', 'Bútorozott kiadó szoba', 'Kiadó egy bútorozott szoba egy fiatal dolgozó vagy diák számára.', 85000, '+36 20 789 1234', 'Magyarország', 'Borsod-Abaúj-Zemplén', 'Miskolc', 'szoba', '8', 0, 0, 'https://butopea.com/mlc/pici-szoba-praktikus-berendezese/', 'Petőfi Sándor utca', '5');
+INSERT INTO `hirdetes` (`ID`, `FelhasznaloID`, `Hirdetesnev`, `Leiras`, `Ar`, `Elerhetoseg`, `Orszag`, `Varmegye`, `Telepules`, `Tipus`, `Kiadasiidotartam`, `Gyerekbarat`, `Allatbarat`, `Utca`, `Hazszam`, `ImageData`, `FileName`, `ContentType`) VALUES
+('2136a830-b298-458c-991b-1a03fc5fd446', 'a30c7159-389b-4628-8256-4b05dc900c8b', 'Panorámás lakás erkéllyel', 'Kiadó modern lakás erkéllyel és panorámás kilátással.', 32000000, '+36 70 999 8888', 'Magyarország', 'Győr-Moson-Sopron', 'Győr', 'lakás', '7', 1, 0, 'Bartók Béla út', '21', '', '', ''),
+('384920bc-caa0-4c76-8543-c76407918457', '261cc2e8-b817-4c57-9d6f-0d994c2a9b2f', 'string', 'string', 5500, 'string', 'string', 'string', 'string', 'string', 'string', 1, 1, NULL, NULL, '', '', ''),
+('3f383177-2b45-4028-b224-2b284bda875d', '2df77e72-c1c5-4807-bdc0-7c238477ba0b', 'Alma', 'Alma', 25544, 'Alma', 'Alma', 'Alma', 'Alma', 'stAlmaring', 'Alma', 1, 1, NULL, NULL, '', '', ''),
+('7a4fc073-077f-4229-b87c-f6d5a26c0fed', '02bcffd6-4279-4c5d-a190-f97b9873a5d7', 'Vidéki ház gyümölcsöskerttel', 'Hangulatos vidéki ház eladó, nagy kerttel és gyümölcsfákkal.', 48000000, '+36 70 888 9999', 'Magyarország', 'Somogy', 'Kaposvár', 'ház', '7', 1, 1, 'Rózsa utca', '16', '', '', ''),
+('a16b5718-cf48-4b3e-adb3-b51bf6fa5259', 'd85925dc-dfc6-47ee-af0b-27aa71c8f4e9', 'Kiadó szoba fiataloknak', 'Albérletként kiadó egy külön bejáratú szoba diákoknak vagy fiatal dolgozóknak.', 90000, '+36 20 666 7777', 'Magyarország', 'Hajdú-Bihar', 'Debrecen', 'szoba', '6', 0, 0, 'Kossuth tér', '7', '', '', ''),
+('a3e6c457-c1f7-43ac-afe6-2ce54be131ab', 'c64569ef-2ba9-4981-86a6-102ad2707438', 'Csendes családi ház kerttel', 'Felújított családi ház nagy kerttel, csendes környéken.', 67000000, '+36 30 222 3333', 'Magyarország', 'Fejér', 'Székesfehérvár', 'ház', '24', 1, 1, 'Arany János utca', '14', '', '', ''),
+('b55005ee-dac7-44f2-b896-c23082836cb6', '02005282-de1b-4307-81a9-5b77d8a23d80', 'Családi ház kerttel', 'Tágas családi ház kerttel és garázzsal a város szélén.', 75000000, '+36 30 123 4567', 'Magyarország', 'Pest', 'Gödöllő', 'ház', '5', 1, 1, 'Kossuth Lajos utca', '12', '', '', ''),
+('ebd5cd88-18d4-402a-9f37-f28ea0baf7c5', '80ea5fc3-39c1-4cd8-a7b9-c7c5111c0539', 'Balatoni nyaraló', 'Nyaralónak is kiváló, csendes kis ház a Balaton partján.', 92000000, '+36 30 654 3210', 'Magyarország', 'Veszprém', 'Balatonfüred', 'ház', '12', 1, 1, 'Tópart utca', '8', '', '', ''),
+('eff6a86a-0b05-41df-a69f-282d23ae47f7', '059f4c1d-a92b-4334-8488-d2563b28a8bf', 'Felújított belvárosi lakás', 'Modern, felújított lakás a belváros szívében, közel a metróhoz.', 55000000, '+36 70 456 7890', 'Magyarország', 'Budapest', 'Budapest', 'lakás', '3', 1, 0, 'Andrássy út', '33', '', '', ''),
+('f0be827b-53e2-4668-8cb9-b15c7b5ee4b0', 'ec919da6-70a7-42a6-875e-40560eb67dc0', 'Panorámás lakás a hegyekben', 'Kiadó panorámás lakás a hegyekben, tökéletes pihenésre vagy munkára.', 41000000, '+36 30 777 8888', 'Magyarország', 'Heves', 'Eger', 'lakás', '36', 1, 1, 'Dobó István tér', '5', '', '', ''),
+('f4e5664c-9220-41c6-bf28-745708f26d1c', 'd4fdf283-04f0-414b-9ca7-9ab9166021d9', 'Új építésű lakás a Duna-parton', 'Új építésű lakás kiadó a Duna-part közelében, modern berendezéssel.', 62000000, '+36 70 555 4444', 'Magyarország', 'Budapest', 'Budapest', 'lakás', '2', 1, 0, 'Váci út', '99', '', '', ''),
+('f9de66b9-c71e-4220-a2c2-5c990c138e07', '5dcb0c0a-5819-4dfd-920a-c3a09f09f11b', 'Bútorozott kiadó szoba', 'Kiadó egy bútorozott szoba egy fiatal dolgozó vagy diák számára.', 85000, '+36 20 789 1234', 'Magyarország', 'Borsod-Abaúj-Zemplén', 'Miskolc', 'szoba', '8', 0, 0, 'Petőfi Sándor utca', '5', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -215,8 +217,8 @@ INSERT INTO `hirdetes` (`ID`, `FelhasznaloID`, `Hirdetesnev`, `Leiras`, `Ar`, `E
 --
 
 CREATE TABLE `__efmigrationshistory` (
-  `MigrationId` varchar(150) NOT NULL,
-  `ProductVersion` varchar(32) NOT NULL
+  `MigrationId` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `ProductVersion` varchar(32) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -293,13 +295,13 @@ ALTER TABLE `__efmigrationshistory`
 -- AUTO_INCREMENT a táblához `aspnetroleclaims`
 --
 ALTER TABLE `aspnetroleclaims`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `aspnetuserclaims`
 --
 ALTER TABLE `aspnetuserclaims`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Megkötések a kiírt táblákhoz
