@@ -32,11 +32,15 @@ public partial class Hirdete
 
     public bool Allatbarat { get; set; }
 
-    public string KepUrl { get; set; } = null!;
-
     public string? Utca { get; set; }
 
     public string? Hazszam { get; set; }
+
+    public byte[] ImageData { get; set; } = null!;
+
+    public string FileName { get; set; } = null!;
+
+    public string ContentType { get; set; } = null!;
 
     [JsonIgnore]
     public virtual Aspnetuser Felhasznalo { get; set; } = null!;

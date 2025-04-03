@@ -8,7 +8,6 @@
             public string Leiras { get; set; }
             public string Elerhetoseg { get; set; }
             public string Hirdetesnev { get; set; }
-            public string KepURL { get; set; }
             public string Orszag { get; set; }
             public string Varmegye { get; set; }
             public string Telepules { get; set; }

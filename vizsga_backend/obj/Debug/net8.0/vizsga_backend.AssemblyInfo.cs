@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("vizsga_backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24a850f7f216b8476ca3ccbcdc6e7dda871e5675")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f157d56a49aa11002b78797949d6cca4712abe8b")]
 [assembly: System.Reflection.AssemblyProductAttribute("vizsga_backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("vizsga_backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

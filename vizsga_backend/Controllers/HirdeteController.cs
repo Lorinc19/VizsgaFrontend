@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 using vizsga_backend.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace vizsga_backend.Controllers
 {
@@ -19,40 +21,58 @@ namespace vizsga_backend.Controllers
         [HttpGet("All")]
         public async Task<ActionResult<Hirdete>> Get()
         {
+
             return Ok(await szakmaivizsgaContext.Hirdetes.ToListAsync());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Ujhird(CreateHirdetesDto createHirdetesDto)
+        public async Task<IActionResult> Ujhird(IFormFile file,[FromQuery] CreateHirdetesDto createHirdetesDto)
         {
             if (createHirdetesDto == null)
             {
                 return BadRequest("A hirdetés adatainak megadása szükséges.");
             }
-            var hird = new Hirdete
+
+            if (file == null || file.Length == 0)
             {
-                FelhasznaloId = createHirdetesDto.FelhasznaloID,
-                Leiras = createHirdetesDto.Leiras,
-                Elerhetoseg = createHirdetesDto.Elerhetoseg,
-                Hirdetesnev = createHirdetesDto.Hirdetesnev,
-                KepUrl = createHirdetesDto.KepURL,
-                Orszag = createHirdetesDto.Orszag,
-                Varmegye = createHirdetesDto.Varmegye,
-                Telepules = createHirdetesDto.Telepules,
-                Utca = createHirdetesDto.Utca,
-                Hazszam = createHirdetesDto.Hazszam,
-                Tipus = createHirdetesDto.Tipus,
-                Ar = createHirdetesDto.Ar,
-                Gyerekbarat = createHirdetesDto.Gyerekbarat,
-                Allatbarat = createHirdetesDto.Allatbarat,
-                Kiadasiidotartam = createHirdetesDto.Kiadasiidotartam
+                return BadRequest("Nincs fájl kiválasztva.");
+            }
+           
+            
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.CopyToAsync(memoryStream);
 
-            };
+                var hird = new Hirdete
+                {
+                    FelhasznaloId = createHirdetesDto.FelhasznaloID,
+                    Leiras = createHirdetesDto.Leiras,
+                    Elerhetoseg = createHirdetesDto.Elerhetoseg,
+                    Hirdetesnev = createHirdetesDto.Hirdetesnev,
+                    Orszag = createHirdetesDto.Orszag,
+                    Varmegye = createHirdetesDto.Varmegye,
+                    Telepules = createHirdetesDto.Telepules,
+                    Utca = createHirdetesDto.Utca,
+                    Hazszam = createHirdetesDto.Hazszam,
+                    Tipus = createHirdetesDto.Tipus,
+                    Ar = createHirdetesDto.Ar,
+                    Gyerekbarat = createHirdetesDto.Gyerekbarat,
+                    Allatbarat = createHirdetesDto.Allatbarat,
+                    Kiadasiidotartam = createHirdetesDto.Kiadasiidotartam,
+                    ImageData = memoryStream.ToArray(),
+                    FileName = file.FileName,
+                    ContentType = file.ContentType
+                };
 
-            szakmaivizsgaContext.Hirdetes.Add(hird);
-            await szakmaivizsgaContext.SaveChangesAsync();
+                szakmaivizsgaContext.Hirdetes.Add(hird);
+                await szakmaivizsgaContext.SaveChangesAsync();
+            }
+            
 
-            return StatusCode(201,hird);
+            return Ok(new { message = "Kép sikeresen feltöltve!" });
+
+           
+
         }
 
 
@@ -95,7 +115,6 @@ namespace vizsga_backend.Controllers
                 uphird.Leiras = updateHirdetesDto.Leiras;
                 uphird.Elerhetoseg=updateHirdetesDto.Elerhetoseg;
                 uphird.Hirdetesnev = updateHirdetesDto.Hirdetesnev;
-                uphird.KepUrl = updateHirdetesDto.KepURL;
                 uphird.Orszag=updateHirdetesDto.Orszag;
                 uphird.Varmegye = updateHirdetesDto.Varmegye;
                 uphird.Telepules = updateHirdetesDto.Telepules;
