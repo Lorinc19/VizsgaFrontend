@@ -15,11 +15,12 @@ namespace vizsga_backend.Controllers
         {
             this.auth = auth;
         }
-
+        //Regisztráció végpont
         [HttpPost("Register")]
         public async Task<ActionResult> AddNewUser(RegiszterRequestDto regiszterRequestDto)
         {
             var user = await auth.Regiszter(regiszterRequestDto);
+
 
 
             if (user != null)
@@ -29,7 +30,7 @@ namespace vizsga_backend.Controllers
             return BadRequest();
         }
 
-
+        //Bejelentkezési Végpont
         [HttpPost("Login")]
         public async Task<ActionResult> LoginUser (LoginRequestDto loginRequestDto)
         {
@@ -42,6 +43,7 @@ namespace vizsga_backend.Controllers
             return NotFound(res);
         }
 
+        //Szerepkör beállító végpont
         [HttpPost("Assign")]
         public async Task<ActionResult> AddRole(string UserName, string roleName)
         {

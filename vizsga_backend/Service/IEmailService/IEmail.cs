@@ -4,6 +4,6 @@ namespace vizsga_backend.Service.IEmailService
 {
     public interface IEmail
     {
-        void SendEmail(EmailRequestDto emailRequestDto);
+        void SendEmail(string toEmail, string Subject, string Body);
     }
 }
