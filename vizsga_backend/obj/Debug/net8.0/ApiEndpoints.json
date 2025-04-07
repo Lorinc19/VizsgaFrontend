@@ -162,22 +162,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "vizsga_backend.Controllers.EmailController",
-    "Method": "SendNewMail",
-    "RelativePath": "Email",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "emailRequestDto",
-        "Type": "vizsga_backend.Models.Dtos.EmailRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "vizsga_backend.Controllers.SzuresController",
     "Method": "hirdetes",
     "RelativePath": "FilterUser",

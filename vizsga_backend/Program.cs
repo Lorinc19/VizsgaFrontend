@@ -14,13 +14,7 @@ using vizsga_backend.Service.IAuthService;
 using vizsga_backend.Service.IEmailService;
 
 var builder = WebApplication.CreateBuilder(args);
-/*
-builder.Services.AddDbContext<SzakmaivizsgaContext>(option =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("MySql");
-    option.UseMySQL(connectionString);
-});
-*/
+
 builder.Services.AddDbContext<SzakmaivizsgaContext>(options =>
     options.UseMySQL(builder.Configuration.GetConnectionString("MySql")));
 
@@ -88,7 +82,7 @@ builder.Services.AddAuthentication(x =>
 });
 
 // Add services to the container.
-builder.Services.AddScoped<IEmail, Email>();
+builder.Services.AddTransient<IEmail, Email>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 

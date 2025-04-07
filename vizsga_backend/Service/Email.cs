@@ -2,7 +2,8 @@
 using MimeKit;
 using vizsga_backend.Models.Dtos;
 using vizsga_backend.Service.IEmailService;
-using MailKit.Net.Smtp;
+using System.Net.Mail;
+using System.Net;
 
 namespace vizsga_backend.Service
 {
@@ -15,24 +16,32 @@ namespace vizsga_backend.Service
         {
             _configuration = configuration;
         }
-        public void SendEmail(EmailRequestDto emailRequestDto)
+
+        public async Task SendEmail(string toEmail, string Subject, string Body)
         {
-            var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(_configuration.GetSection("EmailSettings:EmailUserName").Value));
-            email.To.Add(MailboxAddress.Parse(emailRequestDto.To));
-            email.Subject = emailRequestDto.Subject;
-            email.Body = new TextPart(TextFormat.Html) { Text = emailRequestDto.Body };
+            var emailSettings = _configuration.GetSection("EmailSettings");
 
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(
+                    emailSettings["FromAddress"],
+                    emailSettings["FromName"]),
+                Subject = Subject,
+                Body = Body,
+                IsBodyHtml = true
+            };
 
-            using var smtp = new SmtpClient();
+            mailMessage.To.Add(toEmail);
 
-            smtp.Connect(_configuration.GetSection("EmailSettings:EmailHost").Value, 587, MailKit.Security.SecureSocketOptions.StartTls);
-            smtp.Authenticate(_configuration.GetSection("EmailSettings:EmailUserName").Value, _configuration.GetSection("EmailSettings:EmailPassword").Value);
-
-            smtp.Send(email);
-
-            smtp.Disconnect(true);
-
+            using var smtpClient = new SmtpClient(emailSettings["SmtpServer"])
+            {
+                Port = int.Parse(emailSettings["SmtpPort"]),
+                Credentials = new NetworkCredential(
+                emailSettings["SmtpUsername"],
+                emailSettings["SmtpPassword"]),
+                EnableSsl = bool.Parse(emailSettings["EnableSsl"])
+            };
+            await smtpClient.SendMailAsync(mailMessage);
 
         }
     }

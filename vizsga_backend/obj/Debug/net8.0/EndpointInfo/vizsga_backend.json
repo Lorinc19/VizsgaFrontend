@@ -95,37 +95,6 @@
         }
       }
     },
-    "/Email": {
-      "post": {
-        "tags": [
-          "Email"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EmailRequestDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EmailRequestDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/EmailRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/Advertisement/All": {
       "get": {
         "tags": [
@@ -164,17 +133,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateHirdetesDto"
+                "$ref": "#/components/schemas/CreateHirdetesRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateHirdetesDto"
+                "$ref": "#/components/schemas/CreateHirdetesRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateHirdetesDto"
+                "$ref": "#/components/schemas/CreateHirdetesRequest"
               }
             }
           }
@@ -606,10 +575,6 @@
             "type": "string",
             "nullable": true
           },
-          "kepURL": {
-            "type": "string",
-            "nullable": true
-          },
           "orszag": {
             "type": "string",
             "nullable": true
@@ -651,18 +616,21 @@
         },
         "additionalProperties": false
       },
-      "EmailRequestDto": {
+      "CreateHirdetesRequest": {
         "type": "object",
         "properties": {
-          "to": {
+          "createHirdetesDto": {
+            "$ref": "#/components/schemas/CreateHirdetesDto"
+          },
+          "base64File": {
             "type": "string",
             "nullable": true
           },
-          "subject": {
+          "fileName": {
             "type": "string",
             "nullable": true
           },
-          "body": {
+          "contentType": {
             "type": "string",
             "nullable": true
           }
@@ -722,15 +690,24 @@
           "allatbarat": {
             "type": "boolean"
           },
-          "kepUrl": {
-            "type": "string",
-            "nullable": true
-          },
           "utca": {
             "type": "string",
             "nullable": true
           },
           "hazszam": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageData": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentType": {
             "type": "string",
             "nullable": true
           }
@@ -793,10 +770,6 @@
             "nullable": true
           },
           "hirdetesnev": {
-            "type": "string",
-            "nullable": true
-          },
-          "kepURL": {
             "type": "string",
             "nullable": true
           },
