@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0GuQIbJ9Wfw=",
+  "dgSpecHash": "7yaXDESrHwA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tanulo\\Desktop\\LL\\mango\\mango\\vizsga_backend\\vizsga_backend.csproj",
+  "projectFilePath": "C:\\Users\\Tanulo\\Desktop\\LL\\back\\vizsga_backend\\vizsga_backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tanulo\\.nuget\\packages\\bouncycastle.cryptography\\2.5.0\\bouncycastle.cryptography.2.5.0.nupkg.sha512",
     "C:\\Users\\Tanulo\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512",
@@ -53,6 +53,7 @@
     "C:\\Users\\Tanulo\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\Tanulo\\.nuget\\packages\\mysql.data\\9.1.0\\mysql.data.9.1.0.nupkg.sha512",
     "C:\\Users\\Tanulo\\.nuget\\packages\\mysql.entityframeworkcore\\8.0.8\\mysql.entityframeworkcore.8.0.8.nupkg.sha512",
+    "C:\\Users\\Tanulo\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Tanulo\\.nuget\\packages\\swashbuckle.aspnetcore\\6.6.2\\swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
     "C:\\Users\\Tanulo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.6.2\\swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
     "C:\\Users\\Tanulo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.6.2\\swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",

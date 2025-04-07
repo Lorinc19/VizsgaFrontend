@@ -25,59 +25,64 @@ namespace vizsga_backend.Controllers
             return Ok(await szakmaivizsgaContext.Hirdetes.ToListAsync());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Ujhird(IFormFile file,[FromQuery] CreateHirdetesDto createHirdetesDto)
-        {
-            if (createHirdetesDto == null)
-            {
-                return BadRequest("A hirdetés adatainak megadása szükséges.");
-            }
+		[HttpPost]
+		public async Task<IActionResult> Ujhird([FromBody] CreateHirdetesRequest request)
+		{
+			if (request == null || request.CreateHirdetesDto == null)
+			{
+				return BadRequest("A hirdetés adatainak megadása szükséges.");
+			}
 
-            if (file == null || file.Length == 0)
-            {
-                return BadRequest("Nincs fájl kiválasztva.");
-            }
-           
-            
-            using (var memoryStream = new MemoryStream())
-            {
-                await file.CopyToAsync(memoryStream);
+			if (string.IsNullOrEmpty(request.Base64File))
+			{
+				return BadRequest("Nincs fájl kiválasztva.");
+			}
 
-                var hird = new Hirdete
-                {
-                    FelhasznaloId = createHirdetesDto.FelhasznaloID,
-                    Leiras = createHirdetesDto.Leiras,
-                    Elerhetoseg = createHirdetesDto.Elerhetoseg,
-                    Hirdetesnev = createHirdetesDto.Hirdetesnev,
-                    Orszag = createHirdetesDto.Orszag,
-                    Varmegye = createHirdetesDto.Varmegye,
-                    Telepules = createHirdetesDto.Telepules,
-                    Utca = createHirdetesDto.Utca,
-                    Hazszam = createHirdetesDto.Hazszam,
-                    Tipus = createHirdetesDto.Tipus,
-                    Ar = createHirdetesDto.Ar,
-                    Gyerekbarat = createHirdetesDto.Gyerekbarat,
-                    Allatbarat = createHirdetesDto.Allatbarat,
-                    Kiadasiidotartam = createHirdetesDto.Kiadasiidotartam,
-                    ImageData = memoryStream.ToArray(),
-                    FileName = file.FileName,
-                    ContentType = file.ContentType
-                };
+			try
+			{
+				// Base64 string konvertálása byte tömbbé
+				var fileBytes = Convert.FromBase64String(request.Base64File);
 
-                szakmaivizsgaContext.Hirdetes.Add(hird);
-                await szakmaivizsgaContext.SaveChangesAsync();
-            }
-            
+				var hird = new Hirdete
+				{
+					FelhasznaloId = request.CreateHirdetesDto.FelhasznaloID,
+					Leiras = request.CreateHirdetesDto.Leiras,
+					Elerhetoseg = request.CreateHirdetesDto.Elerhetoseg,
+					Hirdetesnev = request.CreateHirdetesDto.Hirdetesnev,
+					Orszag = request.CreateHirdetesDto.Orszag,
+					Varmegye = request.CreateHirdetesDto.Varmegye,
+					Telepules = request.CreateHirdetesDto.Telepules,
+					Utca = request.CreateHirdetesDto.Utca,
+					Hazszam = request.CreateHirdetesDto.Hazszam,
+					Tipus = request.CreateHirdetesDto.Tipus,
+					Ar = request.CreateHirdetesDto.Ar,
+					Gyerekbarat = request.CreateHirdetesDto.Gyerekbarat,
+					Allatbarat = request.CreateHirdetesDto.Allatbarat,
+					Kiadasiidotartam = request.CreateHirdetesDto.Kiadasiidotartam,
+					ImageData = fileBytes,
+					FileName = request.FileName,
+					ContentType = request.ContentType
+				};
 
-            return Ok(new { message = "Kép sikeresen feltöltve!" });
+				szakmaivizsgaContext.Hirdetes.Add(hird);
+				await szakmaivizsgaContext.SaveChangesAsync();
 
-           
+				return Ok(new { message = "Kép sikeresen feltöltve!" });
+			}
+			catch (FormatException)
+			{
+				return BadRequest("Érvénytelen base64 formátum.");
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, $"Hiba történt a feltöltés során: {ex.Message}");
+			}
+		}
 
-        }
 
 
 
-        [HttpDelete]
+		[HttpDelete]
         public async Task<ActionResult> Delete(Guid id)
         {
             var os = await szakmaivizsgaContext.Hirdetes.FirstOrDefaultAsync(o => o.Id == id);

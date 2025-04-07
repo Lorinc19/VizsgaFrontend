@@ -8,79 +8,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "file",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      },
-      {
-        "Name": "FelhasznaloID",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Leiras",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Elerhetoseg",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Hirdetesnev",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Orszag",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Varmegye",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Telepules",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Utca",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Hazszam",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Tipus",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Ar",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "Gyerekbarat",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "Allatbarat",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "Kiadasiidotartam",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "request",
+        "Type": "vizsga_backend.Models.CreateHirdetesRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
