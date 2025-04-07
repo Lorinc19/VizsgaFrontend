@@ -3,7 +3,14 @@ import axios from "axios";
 import "./NewHousePost.css";
 import { useNavigate } from "react-router-dom";
 
-export default function NewHousePost({isLoggedIn}) {
+export default function NewHousePost({ isLoggedIn }) {
+
+
+  const [file, setFile] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     leiras: "",
@@ -19,12 +26,12 @@ export default function NewHousePost({isLoggedIn}) {
     gyerekbarat: false,
     allatbarat: false,
     kiadasiidotartam: "",
-    imageData:""
+
   });
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!isLoggedIn) {
+    if (!isLoggedIn) {
       navigate("/");
     }
   }, [isLoggedIn, navigate])
@@ -33,37 +40,74 @@ export default function NewHousePost({isLoggedIn}) {
     const { name, value, type, checked, files } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ?  checked : type === "file" ? files[0] : value,
+      [name]: type === "checkbox" ? checked : type === "file" ? files[0] : value,
+    });
+  };
+
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        // Eltávolítjuk a "data:*/*;base64," előtagot
+        const base64String = reader.result.split(',')[1];
+        resolve(base64String);
+      };
+      reader.onerror = error => reject(error);
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setMessage("");
 
-    const {ar, gyerekbarat, allatbarat, felhasznaloID, imageData, ...rest} = formData;
-
-    const postData = {
-      ...rest,
-      ar: Number(formData.ar),
-      gyerekbarat: Boolean(formData.gyerekbarat),
-      allatbarat: Boolean(formData.allatbarat),
-      felhasznaloID: "02005282-de1b-4307-81a9-5b77d8a23d80"
-    };
-
-    const kepData = new FormData();
-    kepData.append("file", imageData);
+    if (!file) {
+      setMessage("Kérjük válasszon ki egy képet!");
+      setIsLoading(false);
+      return;
+    }
 
 
-    console.log(postData, imageData);
-    
 
     try {
+      const { ar, gyerekbarat, allatbarat, felhasznaloID, ...rest } = formData;
+
+      const base64Image = await convertToBase64(file);
+
+      const postData = {
+        ...rest,
+        ar: Number(formData.ar),
+        gyerekbarat: Boolean(formData.gyerekbarat),
+        allatbarat: Boolean(formData.allatbarat),
+        felhasznaloID: "02005282-de1b-4307-81a9-5b77d8a23d80",
+      };
+
+
+      console.log(postData);
+
+
+
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/Advertisement`, imageData, {params: postData}
+        `${process.env.REACT_APP_API_URL}/Advertisement`, {
+          createHirdetesDto: postData,
+          base64File: base64Image,
+          fileName: file.name,
+          contentType: file.type
+
+        }
 
       );
       setMessage("Sikeres felvitel!");
       console.log("Felvitel sikeres:", response.data);
+      setFile(null);
     } catch (error) {
       setMessage("Hiba történt a felvitel során!");
       console.error(
@@ -122,8 +166,8 @@ export default function NewHousePost({isLoggedIn}) {
               name="imageData"
               accept="image/*"
               required
-              onChange={handleChange}
-              files={formData.imageData}
+              onChange={handleFileChange}
+
               className="form-control"
             />
           </div>
@@ -216,25 +260,25 @@ export default function NewHousePost({isLoggedIn}) {
 
           <div className="form-item checkbox-group">
             <label className="custom-checkbox">
-            <span>Gyerekbarát:</span>
+              <span>Gyerekbarát:</span>
               <input
                 type="checkbox"
                 name="gyerekbarat"
                 checked={formData.gyerekbarat}
                 onChange={handleChange}
               />
-              
+
             </label>
 
             <label className="custom-checkbox">
-            <span>Állatbarát:</span>
+              <span>Állatbarát:</span>
               <input
                 type="checkbox"
                 name="allatbarat"
                 checked={formData.allatbarat}
                 onChange={handleChange}
               />
-              
+
             </label>
           </div>
 
