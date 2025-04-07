@@ -10,7 +10,7 @@ export default function Card(props) {
       {/* Ha a modál nem nyitva, akkor látszik a kártya */}
 
           <div className="image-box" >
-            <img src="https://www.oc.hu/build/images/_sets/bauhaus-1500.webp" alt="Image" />
+            <img src={props.felhasznalo.imageData ? `data:image/jpeg;base64,${props.felhasznalo.imageData}` : "https://www.oc.hu/build/images/_sets/bauhaus-1500.webp"} alt="Image" />
           </div>
           <div className="feljo">
           <h4>{props.felhasznalo.hirdetesnev}</h4>

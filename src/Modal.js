@@ -7,10 +7,7 @@ export default function Modal({ data, onClose, onCloseOverlay }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(null); // Kezdetben nincs kiválasztott kép
   
   const images = [
-    "/haziko.png",
-    "/hazikok.jpg",
-    "/tobbhaziko.jpg",
-    "/tobbhaziko.jpg"
+    data.imageData ? `data:image/jpeg;base64,${data.imageData}` : "https://www.oc.hu/build/images/_sets/bauhaus-1500.webp"
   ]; // A képek tömbje
 
   // A képre kattintva a megfelelő kép megjelenítése
