@@ -126,6 +126,7 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
             <input
               type="text"
               name="userName"
+              placeholder="Felhasználónév..."
               required
               value={formData.userName}
               onChange={handleChange}
@@ -138,6 +139,7 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
             <input
               type="password"
               name="password"
+              placeholder="Jelszó..."
               required
               value={formData.password}
               onChange={handleChange}
