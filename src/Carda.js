@@ -3,6 +3,7 @@ import React from 'react'
 
 export default function Carda(props) {
 
+    //userDelete függvény a felhasználó törlésére szolgál
     function userDelete(id){
         
         axios.delete(`${process.env.REACT_APP_API_URL}/User/${id}`)

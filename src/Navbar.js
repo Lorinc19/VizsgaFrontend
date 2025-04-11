@@ -38,11 +38,7 @@ export default function Navbar({ isLoggedIn }) {
           </li>
         ) : null
         }
-        {/*<li>
-          <Link className={location.pathname === "/map" ? "active" : ""} to="/map">
-            terkep proba
-          </Link>
-      </li>*/}
+        
         {isLoggedIn ? (
           <li>
             <Link className={(location.pathname === "/profil" || location.pathname === "/hirdetes") ? "active" : ""} to="/profil">

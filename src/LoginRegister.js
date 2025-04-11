@@ -27,6 +27,8 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
   
   }, [isLoggedIn, navigate])
   
+    // Űrlap mezők változtatása
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -48,6 +50,7 @@ export default function LoginRegister({isLoggedIn, setIsLoggedIn}) {
     return Object.keys(errors).length === 0;
   };
 
+    // Űrlap beküldése
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) {

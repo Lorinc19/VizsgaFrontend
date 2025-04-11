@@ -8,15 +8,13 @@ function Footer() {
         <div className="footer-column">
           <p>&copy; 2025 Minden jog fenntartva.</p>
           <a href="https://adatjog.hu/adatvedelmi-tajekoztato" target="_blank">Adatvédelmi nyilatkozat</a>
-         {/*} <p>&copy; Rejtett játék 
-  <a href="Rejtettjatekugralohaz.html" id="showInfo" style="color: blue; text-decoration: underline; cursor: pointer;">További információ</a>
-</p>{*/}
+        
 
 
         </div>
         <div className="footer-column">
           <h4>Elérhetőségünk:</h4>
-          <p>Email: best.albigo@gmail.com<br />Kizárólag Email üzenetek fogadunk</p>
+          <p>Email: best.albigoo@gmail.com<br />Kizárólag Email üzenetek fogadunk</p>
         </div>
         <div className="footer-column">
           <h4>Oldal készítői:</h4>

@@ -21,9 +21,9 @@ export default function Cardh(props) {
         allatbarat: false,
         kiadasiidotartam: "",
         kepURL: ""
-    });  // Hirdetés adatainak kezdeti értékei a props-ból
+    }); 
 
-    const [message, setMessage] = useState("");  // Üzenet megjelenítéséhez
+    const [message, setMessage] = useState("");  
 
     // Törlés funkció
     const userDelete = (id) => {

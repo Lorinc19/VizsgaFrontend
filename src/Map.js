@@ -3,16 +3,15 @@ import './App.css';
 import './Modal.css';
 
 export default function Map() {
-  // Állapotok a beviteli mezők tárolására
-  const [mapUrl, setMapUrl] = useState(''); // Térkép URL-je
-  const [customUrl, setCustomUrl] = useState(''); // Felhasználó által megadott URL
+  
+  const [mapUrl, setMapUrl] = useState(''); 
+  const [customUrl, setCustomUrl] = useState(''); 
 
-  // Űrlap elküldésekor az iframe URL beállítása
   const handleSubmit = (e) => {
     e.preventDefault(); // Ne töltsük újra az oldalt
 
-    // Az URL beállítása az iframe src attribútumhoz
-    setMapUrl(customUrl); // A felhasználó által megadott URL
+    
+    setMapUrl(customUrl); 
   };
 
   return (
@@ -38,7 +37,7 @@ export default function Map() {
           {/* Dinamikusan frissített iframe, ha van URL */}
           {mapUrl && (
             <iframe
-              src={mapUrl} // Az URL, amit a felhasználó beírt
+              src={mapUrl} 
               className="google-map"
               allowFullScreen=""
               loading="lazy"

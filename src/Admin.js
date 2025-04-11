@@ -8,14 +8,14 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Admin({ isLoggedIn }) {
 
-  //useState
+ 
   const [adminf, setadminf] = useState([])
   const [hird, sethird] = useState([])
   const [selectedBtn, setselectedBtn] = useState(null)
   const role = localStorage.getItem("role");
   const navigate = useNavigate();
 
-  //useEffect
+ 
   useEffect(() => {
     if (!isLoggedIn || role !== "Admin") {
       navigate("/");
@@ -24,7 +24,7 @@ export default function Admin({ isLoggedIn }) {
 
 
 
-  //Function
+  //Függvény a felhasználók adatainak lekérésére és megjelenítésére
 
   const handleClick = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/User/AdminUser`)
@@ -35,6 +35,7 @@ export default function Admin({ isLoggedIn }) {
       })
 
   }
+  // Függvény a hirdetések adatainak lekérésére és megjelenítésére
 
   const handleClick2 = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/Advertisement/All`)

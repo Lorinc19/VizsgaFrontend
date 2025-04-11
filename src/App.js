@@ -16,6 +16,8 @@ function App() {
 
   const token = localStorage.getItem("token");
 
+//ellenőrzi a token meglétét
+
   useEffect(() => {
     if (token) {
       setIsLoggedIn(true)

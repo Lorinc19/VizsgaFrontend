@@ -49,7 +49,7 @@ const Filter = ({ onApply }) => {
       kiadasiidotartam: "",
     };
     setFiltersTemp(emptyFilters);
-    onApply(emptyFilters);
+    onApply(emptyFilters);//Szűrés alkalmazása
   };
 
   return (

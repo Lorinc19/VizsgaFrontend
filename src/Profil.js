@@ -43,6 +43,8 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
             });
     }, [userId]);
 
+        // Kijelentkezés kezelése
+
     const handleLogout = () => {
         if (window.confirm("Biztosan kijelentkezel?")) {
             localStorage.removeItem("token");
@@ -54,6 +56,8 @@ export default function Profil({ isLoggedIn, setIsLoggedIn }) {
             navigate("/belepes");
         }
     };
+
+        // A felhasználó hirdetéseinek lekérése
 
     const handleClick2 = async () => {
         axios.get(`${process.env.REACT_APP_API_URL}/Advertisement/All`)
