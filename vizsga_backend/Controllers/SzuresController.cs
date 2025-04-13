@@ -17,6 +17,7 @@ namespace vizsga_backend.Controllers
             _szuresService = szuresService;
 
         }
+        //A hirdetések szüréséhez kell. Itt minden paraméter opcionális.
         [HttpGet("FilterUser")]
         public IActionResult hirdetes ([FromQuery] string orszag = null,
         [FromQuery] string varmegye = null,
@@ -27,6 +28,7 @@ namespace vizsga_backend.Controllers
         [FromQuery] bool? allatbarat = null,
         [FromQuery] string kiadasiIdo = null)
 
+        //A service meghivása az adott paraméterekkel
         {
             var szuresI = _szuresService.hirdetes(orszag: orszag, varmegye: varmegye, telepules: telepules, tipus:tipus, ar:ar, gyerekbarat:gyerekbarat, allatbarat:allatbarat, kiadasiIdo:kiadasiIdo);
             return Ok(szuresI);

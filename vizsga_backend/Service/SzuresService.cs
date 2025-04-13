@@ -11,14 +11,15 @@ namespace vizsga_backend.Service
         {
             _context = context;
         }
-
+        //Hirdetések szűrése a különböző paraméterek szerint.
         public IEnumerable<Hirdete> hirdetes(string orszag = null, string varmegye = null, string telepules = null,
         string tipus = null, decimal? ar = null, bool? gyerekbarat = null, bool? allatbarat = null, string kiadasiIdo = null)
         {
+
             var lekerdezes = _context.Hirdetes.AsQueryable();
             if (!string.IsNullOrEmpty(orszag))
                 lekerdezes = lekerdezes.Where(i => i.Orszag.Contains(orszag));
-
+            // Szűrési feltételek alkalmazása (csak ha meg lettek adva)
             if (!string.IsNullOrEmpty(varmegye))
                 lekerdezes = lekerdezes.Where(i => i.Varmegye.Contains(varmegye));
 

@@ -15,10 +15,13 @@ using vizsga_backend.Service.IEmailService;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+//Adatbázis konfigurálása
 builder.Services.AddDbContext<SzakmaivizsgaContext>(options =>
     options.UseMySQL(builder.Configuration.GetConnectionString("MySql")));
 
 
+//JSON konfigurálása
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -81,10 +84,12 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-// Add services to the container.
+
+
+
 builder.Services.AddTransient<IEmail, Email>();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 
 builder.Services.AddScoped<SzuresService>();
 builder.Services.AddControllers();
@@ -104,7 +109,7 @@ var app = builder.Build();
 
 
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vizsga_backend.Models;
@@ -30,6 +31,7 @@ namespace vizsga_backend.Controllers
             return NotFound();
         }
 
+        // Az adott felhasználót és a hozzá tartozó összes hirdetést lekérdezi
         [HttpGet("UserAllHird")]
         public async Task<ActionResult<Aspnetuser>> Get(string id)
         {
@@ -45,13 +47,15 @@ namespace vizsga_backend.Controllers
         }
 
 
-
+        //Az összes felhasználót lekérdezi
+        
         [HttpGet("AdminUser")]
         public async Task<ActionResult<Aspnetuser>> AdminUserGet()
         {
             return Ok(await szakmaivizsgaContext.Aspnetusers.ToListAsync());
         }
 
+        //Adott felhasználót törli
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(string id)
         {

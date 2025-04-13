@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9MsE56W5H4A=",
+  "dgSpecHash": "gNRh9tdOiLs=",
   "success": true,
-  "projectFilePath": "G:\\ananasz\\ananas\\vizsga_backend\\vizsga_backend.csproj",
+  "projectFilePath": "G:\\ananasz\\valami\\vizsga_backend\\vizsga_backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Otthon\\.nuget\\packages\\bouncycastle.cryptography\\2.5.0\\bouncycastle.cryptography.2.5.0.nupkg.sha512",
     "C:\\Users\\Otthon\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512",

@@ -18,6 +18,8 @@ namespace vizsga_backend.Controllers
             this.szakmaivizsgaContext = szakmaivizsgaContext;
         }
 
+
+        //Lekéri az összes hirdetés és annak adatait
         [HttpGet("All")]
         public async Task<ActionResult<Hirdete>> Get()
         {
@@ -25,6 +27,7 @@ namespace vizsga_backend.Controllers
             return Ok(await szakmaivizsgaContext.Hirdetes.ToListAsync());
         }
 
+        //Új hirdetés felvétele
 		[HttpPost]
 		public async Task<IActionResult> Ujhird([FromBody] CreateHirdetesRequest request)
 		{
@@ -40,7 +43,7 @@ namespace vizsga_backend.Controllers
 
 			try
 			{
-				// Base64 string konvertálása byte tömbbé
+				// A kapot képet konvertálja byte tömbbé
 				var fileBytes = Convert.FromBase64String(request.Base64File);
 
 				var hird = new Hirdete
@@ -80,7 +83,7 @@ namespace vizsga_backend.Controllers
 		}
 
 
-
+        //Hirdetés törlése
 
 		[HttpDelete]
         public async Task<ActionResult> Delete(Guid id)
@@ -96,7 +99,7 @@ namespace vizsga_backend.Controllers
 
             return NotFound(new { message = "Nincs ilyen találat." });
         }
-
+        //Csak egy adott hirdetésnek a lekérése
         [HttpGet("Getid")]
         public async Task<ActionResult<Hirdete>> GetByyID(Guid id)
         {
@@ -110,6 +113,7 @@ namespace vizsga_backend.Controllers
             return NotFound();
         }
 
+        //Hirdetés változtatása
         [HttpPut("Puthird")]
         public async Task<ActionResult<Hirdete>> HirdetesPut(Guid id, UpdateHirdetesDto updateHirdetesDto)
         {

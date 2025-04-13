@@ -16,7 +16,7 @@ namespace vizsga_backend.Service
         {
             _configuration = configuration;
         }
-
+        
         public async Task SendEmail(string toEmail, string Subject, string Body)
         {
             var emailSettings = _configuration.GetSection("EmailSettings");

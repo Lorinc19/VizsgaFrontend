@@ -69,6 +69,7 @@ namespace vizsga_backend.Service
             return null;
         }
 
+        //Regisztáció
         public async Task<object> Regiszter(RegiszterRequestDto regiszterRequestDto)
         {
             var user = new ApplicationUser()
@@ -89,6 +90,7 @@ namespace vizsga_backend.Service
 
             var result = await userManager.CreateAsync(user, regiszterRequestDto.Password);
 
+            // sikeres regisztrációt követően küld egy emailt a bereisztrált emailra
             if (result.Succeeded)
             {
                 var userReturn = await szakmaivizsgaContext.applicationUsers.FirstOrDefaultAsync(user => user.UserName == regiszterRequestDto.UserName);
